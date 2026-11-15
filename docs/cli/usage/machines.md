@@ -143,7 +143,7 @@ Progress goes to stderr as each machine lands, so stdout stays parseable:
 
 Two collections never run at once. The second stands aside with `another
 collection is already running`, whether it came from another `ed`, the menu bar
-app's own half-hourly round, or the button in Settings.
+app's own half-hourly round, or the button in Usage settings.
 
 ```
 ed usage machines collect "Asus TUF 7"

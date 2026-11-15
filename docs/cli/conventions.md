@@ -110,9 +110,7 @@ Progress is the rest of what stderr carries. A command that would otherwise sit
 silent while it works reports through `CLIProgress`, which paints a header, a
 row per phase as it lands, a summary, and a spinner for the work in flight that
 is rewritten in place and cleared when that work ends. `ed usage refresh` uses
-all of it, phases and summaries included, and `ed tools install` prints a header
-and streams each line the installer emits. `ed tools ls`, `ed cleaner scan`,
-`ed cleaner clean`, `ed machines files get`, `ed machines files put` and `ed app
+all of it, phases and summaries included. `ed cleaner scan`, `ed cleaner clean`, `ed machines files get`, `ed machines files put` and `ed app
 relaunch` use the spinner alone to name what they are on, with the two transfers
 counting bytes against the total. None of it touches stdout, and it is switched
 off whole rather than trimmed when there is nobody to watch it: `--json` turns
@@ -284,7 +282,7 @@ ed extensions ls          extension ids, and which are on
 ed permissions ls         permission ids, and what the app last observed
 ed usage sources          the agents that produced the usage history
 ed cleaner categories     the cache categories the cleaner knows
-ed tools ls               the command line tools and whether they are installed
+ed tools ls               the command line tools extensions use, and whether they are installed
 ed app actions            the one-shot actions, what each needs, and whether it can run now
 ```
 
@@ -438,8 +436,8 @@ is a local question that needs no permission and no round trip.
 | `ed system stats`, `ed system disks` | no | the same sampler, run in this process |
 | `ed clipboard`, `ed color`, `ed shelf`, `ed download`, `ed cleaner` | no | stores under Application Support and the shared defaults suite |
 | `ed app info`, `ed app paths`, `ed app links`, `ed app open-path`, `ed app open-link` | no | bundle metadata, known filesystem locations, and fixed or cached links |
-| `ed apps ls`, `ed tools ls`, `ed app actions`, `ed app updates`, `ed app clear-updates` | no | the process table, `PATH`, and a log file; clearing previews unless `--yes` is present |
-| `ed tools install` | no | it fetches and installs the tool itself, then checks the tool landed on `PATH` |
+| `ed apps ls`, `ed app actions`, `ed app updates`, `ed app clear-updates` | no | the process table, `PATH`, and a log file; clearing previews unless `--yes` is present |
+| `ed tools ls`, `install`, `update`, `remove` | yes, the app itself | the app owns the tools folder, the install ledger and the status file extensions read; `remove` previews unless `--yes` is present |
 | `ed music ls`, `mkdir`, `mv`, `rename`, `rm`, `rescan`, `shuffle`, `repeat`, `status`, `players` | no | the library is a folder of files and two defaults keys |
 | `ed machines`, and `ed <machine> <command...>` | no, except `files undo` | `/usr/bin/ssh` over a ControlMaster socket shared with the app |
 

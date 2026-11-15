@@ -77,9 +77,9 @@ app and shows up as `Edith` in human output.
 Each is reached a different way, which is why some commands need Edith running
 and others do not.
 
-- `spotify` and `apple` are driven straight over AppleScript: `ed` pipes a
-  script into `/usr/bin/osascript` and waits up to 6 seconds. Edith does not
-  have to be running for this, and never sees the command.
+- `spotify` and `apple` are driven straight over AppleScript: `ed` runs the
+  script in process with `NSAppleScript` and waits up to 6 seconds for the send.
+  Edith does not have to be running for this, and never sees the command.
 - `builtin` is driven over the app's own notification bus. Reading its state
   posts `requestMusicState` and waits up to 2 seconds for a `musicState` reply;
   changing it posts `musicCommand`. It counts as reachable only when the menu
@@ -186,7 +186,7 @@ reset, cache invalidation and live notification as the Music page picker.
 | 1 | A library operation the filesystem refused: a blank name, a destination that already exists, a Trash that failed, or trashing the library root. Also `shuffle` or `repeat` given a word that is neither on nor off. |
 | 2 | `volume` or `seek` outside 0 to 1, a level or position that is not a number, an unknown flag, a missing argument. |
 | 3 | An unknown `--player` spelling, a track query that matches nothing, a track query that matches more than one track, a library folder selection that does not exist or is not a directory, a folder that does not exist. |
-| 4 | No player is running, or the forced player is not; no music folder is set; `start` or `seek` with the menu bar app closed; Edith's own player unreachable because the app is closed, the Music extension is off, or it did not answer in time; osascript refused, timed out, or macOS has not granted this command line Automation access. |
+| 4 | No player is running, or the forced player is not; no music folder is set; `start` or `seek` with the menu bar app closed; Edith's own player unreachable because the app is closed, the Music extension is off, or it did not answer in time; AppleScript refused, timed out, or macOS has not granted this command line Automation access. |
 
 ## Notes and gotchas
 
@@ -198,11 +198,11 @@ answer rather than a hang: 2 seconds for the built-in reply and 6 for each
 script. `--player` cuts it to a single probe.
 
 Automation failures are swallowed on the way in. Reading a player's state drops
-any osascript error and treats the player as not running, and every transport
+any AppleScript error and treats the player as not running, and every transport
 command probes before it sends, so with Automation denied `ed music status`
 exits 4 with `no music player is running` and `ed music pause --player spotify`
 exits 4 with `Spotify is not running` rather than naming the real cause. The
-osascript error is reported verbatim only when the send itself fails after a
+AppleScript error is reported verbatim only when the send itself fails after a
 probe that worked: then `ed` exits 4 with
 `macOS has not granted this command line Automation access` and points at
 System Settings. That grant belongs to your terminal, not to Edith, and is

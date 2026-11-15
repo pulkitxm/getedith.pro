@@ -2,8 +2,9 @@
 
 The LaTeX editor's project library and compiler are available directly through
 `ed`, without a running app or background agent. Disk projects save source and
-PDF artifacts beside the file. Repository projects use GitHub reads, Pukbot
-writes, GitHub Actions builds, and native Quinjet review, without a local clone.
+PDF artifacts beside the file. Repository projects read and write through the
+GitHub CLI (`gh api` git data calls, `gh pr create`, `gh pr merge`), build on
+GitHub Actions, and show a native review diff, without a local clone.
 
 ## Commands
 
@@ -53,14 +54,15 @@ run on GitHub after submission, so inspect `review` for checks.
 `compile` rebuilds the saved revision without changing source. Disk results contain
 `pdfPath` and `log`. Repository results contain `buildURL`, `buildID`, and `status`,
 with a null `pdfPath`. A running build is reused; a completed build is rerun
-through Pukbot. Use `preview` after the build succeeds.
+with `gh run rerun`. Use `preview` after the build succeeds.
 
 `preview --data --json` returns base64 PDF bytes. Repository previews stay in
 memory and only return artifacts matching the current branch head. Pending or
 failed builds may have no artifact. Disk preview reports `pdfPath`; repository
 preview always reports a null path.
 
-`merge --yes` squash merges through Pukbot and deletes the branch.
+`merge --yes` squash merges with `gh pr merge --squash --delete-branch` and
+deletes the branch.
 `merge --auto --yes` schedules that merge after required checks pass. Branch
 protections remain enforced. A new edit after a closed or merged PR starts a
 new review branch. `remove --yes` removes only the project pointer.

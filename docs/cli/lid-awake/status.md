@@ -54,7 +54,8 @@ engine. If it does not answer, the command exits 4. With the app closed, status
 does not fail. It reads the stored extension, active, session, threshold and
 restore values, returns `appRunning: false`, `helperStatus: "unavailable"`,
 `applying: false`, `batterySuspended: false`, and no remaining time or last
-error. That closed-app answer is persisted state, not a fresh `pmset` reading.
+error. That closed-app answer is persisted state, not a fresh reading of the
+system sleep setting.
 
 ## Where to go next
 

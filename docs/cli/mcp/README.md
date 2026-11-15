@@ -20,7 +20,7 @@ apply only when the call passes `confirm`, which adds `--yes`. An agent that
 forgets to confirm gets the preview, never the change, and a call that slips
 `--yes` into `arguments` is refused, so `confirm` is the only way to apply.
 
-While a TypeSafe key is saved in Settings > Jev, the server also lists
+While a TypeSafe key is saved in Jev settings, the server also lists
 `edith_find`. It takes a plain-language `request` and returns the five likeliest
 tools with their summaries and probabilities. See [`ed jev`](../jev/README.md).
 
@@ -29,14 +29,14 @@ here too, so one registration covers both surfaces.
 
 ## Registering it
 
-The easiest way is Settings > Connect agents in the Edith window, also reachable from the
-Get Started card on Home and from the last onboarding step. It lists Claude Code,
+The easiest way is Settings > Tools in the Edith window. It lists Claude Code,
 Codex, Cursor and VS Code, says whether each one is installed on this Mac and
 whether it is Connected, Not connected, Points at another Edith (the entry runs a
-different `ed`, such as a moved app or a development build) or Needs manual setup.
-Connect, Connect all and Disconnect run the same code as the commands below, and a
-step Edith cannot do for you shows the exact snippet with a Copy button. Open it
-from a terminal with `ed app reveal settings --tab mcp`.
+different `ed`, such as a moved app or a development build) or Settings file
+unreadable (the file is not plain JSON, so Edith leaves it alone). Connect,
+Connect all and Disconnect run the same code as the commands below, and no agent
+command has to be installed. Open it
+from a terminal with `ed app reveal settings --tab tools`.
 
 From a terminal, one command registers Edith with every agent client found on this Mac, using the
 `ed` inside the installed app:
@@ -47,14 +47,9 @@ ed mcp install --client all
 ed mcp status
 ```
 
-Claude Code is registered through its own CLI, so this runs:
-
-```sh
-claude mcp add --scope user edith -- /Applications/Edith.app/Contents/MacOS/ed mcp
-```
-
-Codex is registered with `codex mcp add` when the `codex` command is installed,
-and otherwise gets this block in `~/.codex/config.toml`:
+Claude Code gets a user-scope `mcpServers.edith` entry in `~/.claude.json`,
+written with a merge-safe atomic replace that keeps every other key. Codex gets
+this block in `~/.codex/config.toml`:
 
 ```toml
 [mcp_servers.edith]

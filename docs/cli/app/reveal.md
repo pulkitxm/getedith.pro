@@ -8,9 +8,9 @@ ed app reveal [<section>] [--tab <tab>] [--list] [--json]
 
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
-| `<section>` | `home`, `agents`, `usage`, `herdr`, `quinjet`, `companion`, `plugins`, `machines`, `docs`, `utilities`, `appMaintenance`, `homebrew`, `cleaner`, `blitztree`, `system`, `calendar`, `desk`, `media`, `studio`, `timeLapse`, `virtualCamera`, `music`, `downloads`, `socialManager`, `developer`, `database`, `codeStats`, `seoAudit`, `latex`, `attention`, `extensions`, `settings`, `about` | none | The sidebar section to show. A category group is named by its category id and an extension page by its extension id. Without it the window comes up where it already was, and the answer names that section. |
-| `--tab` | section-specific | none | A tab inside the section. `appMaintenance` has `updates`, `remove`, `history`; `companion` has `chat`, `capture`, `desk`, `library`, `mind`, `setup`, `settings`; `settings` has `general`, `surfaces`, `agentActivity`, `permissions`, `agent`, `jev`, `data`, `storage`, `shortcuts`, `terminal`, `mcp`, `icloud`, `updates`. |
-| `--list` | flag | off | Print every sidebar section id and title. Does not change the window. |
+| `<section>` | `home`, `usage`, `herdr`, `quinjet`, `companion`, `plugins`, `machines`, `docs`, `appMaintenance`, `homebrew`, `cleaner`, `blitztree`, `system`, `calendar`, `studio`, `timeLapse`, `virtualCamera`, `music`, `downloads`, `socialManager`, `database`, `codeStats`, `seoAudit`, `latex`, `attention`, `extensions`, `settings`, `about` | none | The page to show. An extension page is named by its extension id and opens whether or not it is pinned to the sidebar; `extensions` is Library and `about` is About Edith. An extension without a page opens its Library entry. Without it the window comes up where it already was, and the answer names that section. |
+| `--tab` | section-specific | none | A tab inside the section. `appMaintenance` has `updates`, `remove`, `history`; `companion` has `chat`, `capture`, `desk`, `library`, `mind`, `setup`, `settings`; `settings` has `general`, `surfaces`, `permissions`, `data`, `storage`, `shortcuts`, `icloud`, `updates`, and in the Developer profile also `agentActivity`, `agent`, `jev`, `terminal`, `mcp`. |
+| `--list` | flag | off | Print every page id and title that can be revealed. Does not change the window. |
 | `--json` | flag | off | Emit JSON on stdout. |
 
 `--json` shape:
@@ -31,7 +31,7 @@ ed app reveal companion
 ed app reveal docs
 ed app reveal companion --tab settings
 ed app reveal settings --tab permissions
-ed app reveal settings --tab mcp
+ed app reveal settings --tab updates
 ed app reveal machines --json
 ed app reveal companion/chat
 ```

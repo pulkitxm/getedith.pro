@@ -32,20 +32,24 @@ reachable machine in Machines. A usable host needs:
 
 - a running Docker, Podman or Colima runtime with Compose support;
 - at least 12 GB of free disk space;
-- the configured API, PostgreSQL and Redis ports, plus port 11434, available;
-- the Companion source tree either on this Mac or already in the deployment
-  directory.
+- the configured API, PostgreSQL and Redis ports, plus port 11434, available.
+
+Edith does not install a container runtime, because Docker Desktop, OrbStack and
+Podman each need their own installer and license choice. When no host has one,
+the setup sheet lists the host as "No container runtime" and shows a Get Docker
+button that opens the Docker Desktop download page. Install any of them, start
+it, then press Check again.
 
 Apple Container can be detected, but it cannot host this stack because the current
 deployment uses Compose. The default ports are 4820 for the API, 5432 for
 PostgreSQL, 6379 for Redis and 11434 for Ollama. Change the first three in Backend
 before deployment if they conflict with another service.
 
-For a source checkout, Edith looks for `apps/companion` under `~/edith` or
-`~/Desktop/Edith`. Set `EDITH_COMPANION_SOURCE` to another checkout before opening
-Edith when the repository lives elsewhere. Deployment sends that source to the
-chosen host, writes the Compose and environment files, builds the API, starts the
-services and runs health checks.
+The Memory package carries the Companion service source as a tarball, so no
+checkout is needed. Deployment sends that tarball to the chosen host, writes the
+Compose and environment files, builds the API, starts the services and runs health
+checks. Compose runs through the runtime Edith detected on that host: `podman
+compose` on Podman hosts and `docker compose` on Docker and Colima hosts.
 
 GPU hosts use the GPU Compose overlay, Macs use the Apple Metal overlay, and other
 hosts use the CPU overlay. The initial image pulls, model downloads and Rust build

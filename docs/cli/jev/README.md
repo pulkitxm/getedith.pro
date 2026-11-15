@@ -5,8 +5,8 @@ questions with a yes/no probability, a choice over up to 255 options with a full
 distribution, or a score on an ordered rubric, usually in well under a second.
 It never writes text.
 
-Edith calls Jev only while a TypeSafe API key is saved, either in Settings > Jev
-or with `ed jev key set`. Without a key every Jev feature is off and each
+Edith calls Jev only while a TypeSafe API key is saved, either in Jev settings
+(the Settings button on Jev in the Library) or with `ed jev key set`. Without a key every Jev feature is off and each
 feature keeps its own rules. The key lives in the background agent's Keychain
 item, and every request goes through the agent, so the app, the menu bar helper
 and `ed` share one cache and one rate limit.

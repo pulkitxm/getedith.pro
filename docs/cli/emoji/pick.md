@@ -36,8 +36,8 @@ dismissing the panel does not change the already completed command. Picking an
 emoji in the panel types it into the app that was frontmost and records the use,
 exactly as [`ed emoji insert`](./insert.md) does.
 
-The shortcut is `⌃⇧E` unless you have rebound it in Settings > Shortcuts, which
-writes `emojiHotKeyCode`, `emojiHotKeyMods` and `emojiHotKeyLabel`. The panel
+The shortcut is `⌃⇧E` unless you have rebound it under Shortcuts in Emoji Picker
+settings, which writes `emojiHotKeyCode`, `emojiHotKeyMods` and `emojiHotKeyLabel`. The panel
 opens where `emojiPopupAt` says: `cursor` by default, or `statusItem`, `window`,
 `center` or `lastPosition`.
 

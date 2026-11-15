@@ -18,15 +18,17 @@ saved copy whose build is not the running one and never failed its startup
 check. The command fails when there is none.
 
 The CLI performs the rollback itself, so it works when the app is not
-answering. It first checks the saved copy's signature: it must pass
-`codesign --verify --deep --strict`, carry the same team as the running app
-and, for a team-signed app, pass Gatekeeper; otherwise nothing changes. It then
-starts a detached helper in its own session (so closing the terminal does not
-stop it), records the running build as failed, sets Sparkle's
+answering. It first checks the saved copy's signature with Security.framework:
+the code must validate strictly, including nested code and every architecture,
+carry the same team as the running app and, for a team-signed app, satisfy
+`notarized and anchor apple generic and certificate leaf[subject.OU] =
+"PUWDA36B2R"`; otherwise nothing changes. It then starts Edith itself as a
+detached helper in its own session (so closing the terminal does not stop it,
+and no shell script runs), records the running build as failed, sets Sparkle's
 `SUSkippedVersion` so that build is not installed again automatically (a newer
-one still is), and asks the app to quit. The helper replaces the app bundle once
-it has left (stopping it after 15 seconds if it does not) and opens the restored
-version. It deletes the replaced app only after the restored one is running,
+one still is), and asks the app to quit. The helper checks the saved copy
+again, clones it next to the app and swaps it in once the app has left (stopping
+it after 15 seconds if it does not), then opens the restored version. It deletes the replaced app only after the restored one is running,
 and puts it back if the restored one does not start within 30 seconds. When the
 install folder is not writable nothing is recorded or changed. Settings, data
 and extensions are not touched.

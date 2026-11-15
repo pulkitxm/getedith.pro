@@ -8,7 +8,7 @@ runs into the agents already on this Mac.
 `preview` and `copy` download `SKILL.md` from GitHub and fall back to
 `~/Library/Application Support/Edith/plugins/cache` when that fetch fails.
 `install` is the install sheet: it previews the skill and agents, then with
-`--yes` runs the same `npx skills` installer the app uses. `ed skills` with
+`--yes` runs the same built-in installer the app uses. `ed skills` with
 nothing after it is `ed skills ls`.
 
 ## At a glance
@@ -46,7 +46,7 @@ nothing after it is `ed skills ls`.
   `--all-agents` prints the full catalog.
 - Install without `--agent` uses detected agents whose saved selection is on,
   which is the sheet's default.
-- Passing `--yes` is what writes files. A preview does not call `npx`.
+- Passing `--yes` is what writes files. A preview downloads nothing.
 
 ## See also
 

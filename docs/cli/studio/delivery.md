@@ -36,8 +36,9 @@ HEVC Main 10 and ProRes retain high-precision rendering buffers. The selected
 color space controls both the reader composition and writer color tags.
 
 AAC copy preserves a complete unedited soundtrack, including encoder priming
-and trailing trim. It requires FFmpeg and ffprobe and rejects frame ranges,
-audio effects, mixes and resampling before delivery files are created.
+and trailing trim. It requires FFmpeg, verifies packets natively, and rejects
+frame ranges, audio effects, mixes and resampling before delivery files are
+created.
 
 ## `ed studio edit render-audio`
 

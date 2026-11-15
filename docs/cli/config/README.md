@@ -61,6 +61,13 @@ not here cannot be set, and `import` skips it.
 - **read only** marks the 19 keys the app owns and maintains. `ed` reports them
   and refuses to write them, exit 1.
 
+### `profile`
+
+| Key | Type | Default | Scope | What it controls |
+| --- | --- | --- | --- | --- |
+| `profile` | string: `simple`, `developer` | none | shared | How you use Edith. The first-run screen sets it; until it is set the app shows that screen. |
+| `chrome` | string: `standard`, `native` | `standard` | shared | Window style: the standard Edith look or the native macOS look. Takes effect when Edith restarts. |
+
 ### `appearance`
 
 | Key | Type | Default | Scope | What it controls |
@@ -77,9 +84,7 @@ not here cannot be set, and `import` skips it.
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |
 | `extensionsExpand` | string | none | shared | Extension card the Extensions page scrolls to and opens next. |
-| `settingsSection` | string | none | shared | Settings section a deep link opens on. |
 | `mainWindowZoom` | number | `1` | shared | Main window zoom factor. |
-| `onboardingCompleted` | bool | `false` | shared | Whether the welcome tour has been finished or skipped. |
 | `EdithMainWindowFullScreen` | bool | `false` | standard | Whether the main window opens in full screen. |
 | `hotKeyCode` | int | `14` | shared | Virtual key code of the global panel shortcut. |
 | `hotKeyMods` | int | `2304` | shared | Carbon modifier mask of the global panel shortcut. |
@@ -322,23 +327,13 @@ not here cannot be set, and `import` skips it.
 
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |
-| `notchShelfEnabled` | bool | `false` | shared | Notch Shelf extension: file shelf, now playing, camera and alerts. |
-| `notchShelfOpenOnDrag` | bool | none | shared | Open the shelf when a drag reaches the notch. |
-| `notchShelfOpenOnHover` | bool | none | shared | Open the shelf on hover. |
-| `notchShelfRequireOption` | bool | none | shared | Require Option held to open the shelf. |
-| `notchShelfKeepDuration` | string | none | shared | How long shelf items are kept. |
-| `notchShelfRemoveAfterDragOut` | bool | none | shared | Remove an item from the shelf after it is dragged out. |
-| `notchShelfShowOnExternal` | bool | none | shared | Show the shelf on external displays. |
-| `notchShelfHaptics` | bool | none | shared | Haptic feedback on the shelf. |
-| `notchShelfShowMusic` | bool | none | shared | Show now playing controls in the shelf. |
-| `notchAlertsEnabled` | bool | none | shared | Show alerts around the notch. |
-| `notchAlertAudio` | bool | none | shared | Alert on audio device changes. |
-| `notchAlertPower` | bool | none | shared | Alert on power source changes. |
-| `notchAlertBattery` | bool | none | shared | Alert on battery level changes. |
-| `notchAlertBluetooth` | bool | none | shared | Alert on Bluetooth connections. |
-| `notchAudioMixerEnabled` | bool | none | shared | Per-app audio mixer in the notch shelf. |
-| `notchBrowserEnabled` | bool | `false` | shared | Notch Shelf browser tab: tabbed browsing in the notch with a Chrome profile. |
-| `notchBrowserSearchEngine` | string | `google` | shared | Search engine the notch browser address bar uses for plain text: `google`, `duckDuckGo`, `bing` or `kagi`. |
+| `notchEnabled` | bool | none | shared | Show the notch with live activity from the extensions you allow. Defaults to on, or off in the native window style. |
+| `notchSystemAlerts` | bool | `true` | shared | Show Edith's own alerts, such as a ready update, in the notch. |
+| `notchOpenOnHover` | bool | `false` | shared | Open the notch when the pointer rests on it. |
+| `notchShelfKeepDuration` | string | `forever` | shared | How long shelf items are kept: `forever`, `oneHour`, `oneDay`, `oneWeek` or `oneMonth`. |
+| `notchShowOnExternal` | bool | `false` | shared | Show the notch on displays without a notch. |
+
+Every installed tool that can show notch activity also gets `<tool>ShowInNotch` (bool, default `true`) in its own group, for example `musicShowInNotch`.
 
 ### `focusdim`
 
@@ -397,7 +392,6 @@ not here cannot be set, and `import` skips it.
 | `presenterBlurSiteAudit` | bool | none | shared | Blur site audit projects and pages. |
 | `presenterBlurRunningApps` | bool | none | shared | Blur running app names and icons. |
 | `presenterBlurShelf` | bool | none | shared | Blur files parked on the shelf. |
-| `presenterBlurBrowser` | bool | none | shared | Blur the notch browser, including the address and page titles. |
 | `presenterHotKeyCode` | int | none | shared | Virtual key code of the presenter shortcut. |
 | `presenterHotKeyMods` | int | none | shared | Carbon modifier mask of the presenter shortcut. |
 | `presenterHotKeyLabel` | string | none | shared | Printable label for the presenter shortcut. |
@@ -448,7 +442,6 @@ not here cannot be set, and `import` skips it.
 | `permFullDiskGranted` | bool | `false` | shared, read only | Full Disk Access permission, as last observed by Edith. |
 | `permScreenRecordingGranted` | bool | `false` | shared, read only | Screen Recording permission, as last observed by Edith. |
 | `permCameraGranted` | bool | `false` | shared, read only | Camera permission, as last observed by Edith. |
-| `permissionsFilter` | string | none | shared | Filter the Permissions page opens with. |
 
 ### `terminal`
 
@@ -492,7 +485,7 @@ skipped by `import`.
 
 **A missing default is not the same as `false`.** Where the catalogue declares
 no default, the setting reads blank in the table and `null` in `--json` until
-something writes it, which is why most of the `notch*` switches look empty on
+something writes it, which is why many switches look empty on
 a fresh install. `ed config ls --changed` is the honest view of
 what has actually been decided.
 
@@ -521,7 +514,7 @@ allowed list, the default where the catalogue declares one, and `x-group`,
 `tabHerdrEnabled`,
 `tabSystemEnabled`, `tabMachinesEnabled`, `tabCompanionEnabled`,
 `menuBarSystemStats`, `micMuteEnabled`, `lidAwakeEnabled`, `tabMusicEnabled`,
-`tabCalendarEnabled`, `notchShelfEnabled`, `clipboardEnabled`,
+`tabCalendarEnabled`, `clipboardEnabled`,
 `focusDimEnabled`, `presenterEnabled` and `colorPickerEnabled` are the same
 switches `ed extensions enable` and
 `ed extensions disable` flip. Prefer those verbs: they know which macOS

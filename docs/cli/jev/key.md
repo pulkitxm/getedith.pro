@@ -1,7 +1,7 @@
 # `ed jev key`
 
 Stores or removes the TypeSafe API key Edith uses for every Jev feature. The
-same action is Save and Remove key in Settings > Jev.
+same action is Save and Remove key in Jev settings.
 
 ```
 ed jev key show [--json]

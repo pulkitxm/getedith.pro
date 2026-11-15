@@ -46,15 +46,16 @@ of the same skill. Successful installations are verified on disk before the
 sheet reports completion. An Installed button reflects a verified installation
 from the current app session; click it to install again or choose other agents.
 
-Edith uses `npx skills@1.5.24 add` against a temporary copy of the fetched skill with explicit
-skill and agent arguments, global scope, and copy mode. Node.js 22.20 or later
-must be available on Edith's PATH. The installer can download its package on
-first use. Failed installs show their output and can be retried.
+Edith downloads the skill itself: `SKILL.md` and every local Markdown file it
+links to, from the Edith website. Nothing else needs to be installed. Each agent
+folder receives a complete copy written to a staging folder first and swapped
+into place in one step, so an agent never sees a half-written skill. Links that
+point outside the skill folder are rejected. Failed installs show their output
+and can be retried.
 
-Agent detection uses configuration folders from the skills CLI's agent
-catalogue. Agents without global skill support are excluded. Detection respects
+Agent detection uses the configuration folders each agent documents. Agents without global skill support are excluded. Detection respects
 environment settings such as `CODEX_HOME`, `CLAUDE_CONFIG_DIR` and
-`XDG_CONFIG_HOME`; installation uses the CLI's destination conventions, including
+`XDG_CONFIG_HOME`; installation uses each agent's destination conventions, including
 the shared `~/.agents/skills` directory for universal agents. Open a newly
 installed agent once so its configuration folder exists, then reopen the sheet.
 

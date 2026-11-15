@@ -9,7 +9,9 @@ default. Adding a project verifies that its source exists and is UTF-8 text.
 
 ## Local documents
 
-Install Tectonic from the extension's tool controls. Choose a `.tex` file, edit
+Install Tectonic with its Install button in LaTeX settings or Settings > Tools.
+pdfLaTeX appears as a compiler choice for local documents only when TeX Live
+(`latexmk`) is already on this Mac; Edith detects it but does not install it. Choose a `.tex` file, edit
 its source, and select Save & compile. The source stays on disk and the PDF is
 written beside it. The output pane shows the PDF or build log. Compilation runs
 from the source directory so relative includes and assets resolve normally.
@@ -24,14 +26,17 @@ and compile. The PDF pane has page navigation, zoom, fit, and Save PDF as.
 
 ## Repository documents
 
-Install GitHub CLI and Pukbot, then authenticate with `gh auth login`.
+Install GitHub CLI with its Install button in LaTeX settings, then sign in to
+GitHub from Settings > Tools.
 The account needs permission to push branches and add GitHub Actions workflows.
 Use `owner/repository` and a relative path such as `papers/main.tex`.
 
 Edit the source and select Create pull request, or press Command-S to save and
 compile through GitHub. Edith creates a branch from the
 commit that supplied your source and commits the edited source plus a dedicated
-compiler workflow through Pukbot. Subsequent edits update the same open PR.
+compiler workflow through the GitHub CLI: it uploads both files as blobs,
+creates a tree and commit on top of the branch head, and moves the branch to it.
+Subsequent edits update the same open PR.
 Repository sources remain in memory until submitted. Only project pointers and
 PR identifiers are saved locally. No repository checkout or local PDF is made.
 If submission fails after creating the branch or PR, retry reconnects the

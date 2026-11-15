@@ -1,155 +1,83 @@
 # `ed tools ls`
 
-Lists the seven tools with their state, version and reason.
+Lists every tool Edith's extensions use.
 
 Usage:
 
 ```
-ed tools ls [--json]
+ed tools ls [--refresh] [--json]
 ```
 
 Options:
 
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
-| `--json` | flag | off | Emits one JSON document on stdout. |
+| `--refresh` | flag | off | Checks GitHub for newer releases of tools Edith installed, instead of using the answer cached for up to 24 hours. |
+| `--json` | flag | off | Emits one JSON array on stdout. |
 
-There are no positional arguments, and there is nothing to filter or sort by:
-the order is always `yt-dlp`, `ffmpeg`, `deno`, `claude`, `codex`, `quinjet`, `homebrew`.
+Each tool that is found is asked for its version with a five second limit.
+Tools Edith installed are also checked for updates: direct downloads against
+the latest release tag, Homebrew installs with `brew outdated`.
 
-`--json` shape, an array with one object per tool:
-
-```json
-[
-  {
-    "id": "yt-dlp",
-    "installed": true,
-    "name": "yt-dlp",
-    "path": "/Users/pulkit/Library/Application Support/Edith/bin/yt-dlp",
-    "version": "2026.07.04",
-    "why": "Downloads YouTube audio into your Music library."
-  },
-  {
-    "id": "ffmpeg",
-    "installed": true,
-    "name": "FFmpeg",
-    "path": "/opt/homebrew/bin/ffmpeg",
-    "version": "ffmpeg version 9.0.2",
-    "why": "Converts downloaded audio and combines video with sound."
-  },
-  {
-    "id": "deno",
-    "installed": true,
-    "name": "Deno",
-    "path": "/opt/homebrew/bin/deno",
-    "version": "deno 2.9.7",
-    "why": "Enables YouTube downloads with yt-dlp."
-  },
-  {
-    "id": "claude",
-    "installed": true,
-    "name": "Claude Code",
-    "path": "/Users/pulkit/.local/bin/claude",
-    "version": "2.1.226 (Claude Code)",
-    "why": "Includes Claude Code cloud sessions in Agent Usage."
-  },
-  {
-    "id": "codex",
-    "installed": true,
-    "name": "Codex",
-    "path": "/Users/pulkit/.local/bin/codex",
-    "version": "codex-cli 0.146.0-alpha.9.2",
-    "why": "Reads Codex session and weekly limits when that provider is enabled."
-  },
-  {
-    "id": "quinjet",
-    "installed": true,
-    "name": "Quinjet",
-    "path": "/opt/homebrew/bin/quinjet",
-    "version": "quinjet 1.0.0",
-    "why": "Powers local pull request review and live workspace changes."
-  },
-  {
-    "id": "homebrew",
-    "installed": true,
-    "name": "Homebrew",
-    "path": "/opt/homebrew/bin/brew",
-    "version": "Homebrew 7.0.4",
-    "why": "Provides the formula and cask catalog managed by this extension."
-  }
-]
-```
-
-`id` is what `install` takes. `name` is the display name the Settings row shows,
-which differs from the id for some tools. `why` is the sentence under that
-name in the same row. A tool that is not installed keeps every key and nulls the
-two that have no answer:
+`--json` shape, one object per tool in catalog order:
 
 ```json
 {
   "id": "yt-dlp",
-  "installed": false,
   "name": "yt-dlp",
-  "path": null,
-  "version": null,
-  "why": "Downloads YouTube audio into your Music library."
+  "purpose": "Downloads video and audio from websites.",
+  "usedBy": ["music", "downloads"],
+  "state": "installed",
+  "version": "2026.10.26",
+  "latestVersion": null,
+  "path": "/Users/me/Library/Application Support/Edith/Tools/bin/yt-dlp",
+  "origin": "edith",
+  "installedByEdith": true,
+  "method": "direct",
+  "installable": true
 }
 ```
 
-For a broken tool, `path` still names the executable while `installed` is false
-and `version` is null. A successful probe that prints no version uses the
-executable name as its version fallback.
+`state` is one of:
+
+| Value | Meaning |
+| --- | --- |
+| `installed` | Found and answered its version check. |
+| `outdated` | Installed by Edith and a newer version exists; `latestVersion` names it. |
+| `missing` | Not found anywhere Edith looks. |
+| `broken` | Found, but its version check failed or timed out. |
+| `installing` | Edith is installing it right now. |
+| `detectOnly` | Not found, and Edith cannot install it (TeX Live). |
+
+`origin` says where the found copy lives: `edith` (Edith's tools folder),
+`homebrew`, `system`, or `other`. `method` is `direct`, `homebrew` or `package`
+for tools Edith installed and `null` otherwise.
 
 Examples:
 
 ```
 ed tools ls
-ed tools ls --json
-ed tools ls --json | jq -r '.[] | select(.installed | not) | .id'
+ed tools ls --refresh
+ed tools ls --json | jq -r '.[] | select(.state == "missing") | .id'
 ```
-
-The table is four columns, and the last one is not padded:
 
 ```
 $ ed tools ls
-ID      STATE      VERSION                      WHY
-yt-dlp  installed  2026.07.04                   Downloads YouTube audio into your Music library.
-claude  installed  2.1.226 (Claude Code)        Includes Claude Code cloud sessions in Agent Usage.
-codex   installed  codex-cli 0.146.0-alpha.9.2  Reads Codex session and weekly limits when that provider is enabled.
-quinjet installed  quinjet 1.0.0                 Powers local pull request review and live workspace changes.
+ID          STATE       VERSION     SOURCE    USED BY
+homebrew    installed   5.0.1       homebrew  homebrew, appMaintenance
+herdr       missing                           herdr
+quinjet     installed   0.0.86      homebrew  quinjet
+gh          installed   2.104.0     homebrew  latex, codeStats, quinjet
+git         installed   2.50.1      system    codeStats, cleaner
+yt-dlp      installed   2026.10.26  edith     music, downloads
+ffmpeg      installed   8.0.1       homebrew  music, studio, downloads
+deno        missing                           music, downloads
+gallery-dl  missing                           music, downloads
+tectonic    missing                           latex
+latexmk     detectOnly                        latex
+ripgrep     installed   15.2.0      homebrew  bifrost
+sshfs       missing                           machines
 ```
-
-`STATE` is `installed`, `missing` or `broken`. A missing tool has no executable;
-a broken tool exists but timed out or returned a non-zero status from
-`--version`. Both leave `VERSION` blank:
-
-```
-$ ed tools ls
-ID      STATE      VERSION                      WHY
-yt-dlp  missing                                 Downloads YouTube audio into your Music library.
-claude  installed  2.1.226 (Claude Code)        Includes Claude Code cloud sessions in Agent Usage.
-codex   installed  codex-cli 0.146.0-alpha.9.2  Reads Codex session and weekly limits when that provider is enabled.
-quinjet missing                                  Powers local pull request review and live workspace changes.
-```
-
-Behaviour: `ls` reads no settings, posts no notification and needs neither the
-main window nor the menu bar helper. It writes
-`~/Library/Application Support/Edith`, which assembling the PATH creates when it
-is not already there, and `tool-versions.json` inside it, which is the version
-cache. The four tools are probed concurrently, one task each, and a tool with
-no cached version, or one whose cached stamp no longer matches the resolved
-executable's path, filesystem identity, size or modification time, is run once,
-with stdin on `/dev/null` and stderr discarded, and waited for, so a cold run is
-only as slow as the slowest `--version` on the machine. This follows symlinks,
-so replacing a package-managed target invalidates the cache even when its PATH
-entry does not change. Each probe stops after five seconds, and only exit status
-0 counts as installed.
-
-While it probes it says so. A single spinner line on stderr reads
-`probing 4 tools`, carries the seconds elapsed, is rewritten in place and is
-erased before the table lands, so it leaves nothing in the transcript. It is
-skipped entirely when stderr is not a terminal, when `--json` is passed, or when
-`NO_COLOR` is set or `TERM` is `dumb`: stdout is the same either way.
 
 ## Where to go next
 

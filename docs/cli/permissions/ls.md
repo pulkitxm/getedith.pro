@@ -63,12 +63,10 @@ the fixed order of the table above. Trimmed here to three of the ten rows:
       "grantsOnFirstUse": true,
       "id": "bluetooth",
       "name": "Bluetooth",
-      "optionalFor": [
-        "notchShelf"
-      ],
-      "reason": "Asked when Notch Shelf first checks for device connections.",
+      "optionalFor": [],
+      "reason": "Asked when an extension first checks for device connections.",
       "requiredBy": [],
-      "usedByEnabledExtension": true
+      "usedByEnabledExtension": false
     }
   ]
 }

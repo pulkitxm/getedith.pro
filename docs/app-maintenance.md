@@ -1,18 +1,18 @@
 # App Updates
 
-App Updates combines an App Update Center, verified single-app disk image installation, and review-first removal. Enable it from Edith's Extensions pane, then open **Mac Utilities > App Updates** in the main sidebar. The page has three tabs: Updates, Remove and History (`ed app reveal appMaintenance --tab remove`). Homebrew and Cleaner are separate extensions with their own pages under Mac Utilities.
+App Updates combines an App Update Center, verified single-app disk image installation, and review-first removal. Turn it on in Library, then open **App Updates** from the sidebar or Library. The page has three tabs: Updates, Remove and History (`ed app reveal appMaintenance --tab remove`). Homebrew and Cleaner are separate extensions with their own pages.
 
 ## Manage Homebrew packages
 
 The Packages section lists installed formulae and casks, finds available updates, and searches Homebrew metadata. It can install, upgrade, and uninstall one validated package at a time. Homebrew is optional, so app updates, disk image installation, and removal remain available without it.
 
-Edith invokes the local `brew` executable directly. It does not install Homebrew. Package operations are noninteractive, bounded, cancellable, and use the same safety rules as the `ed brew` commands. See the [Homebrew package guide](./homebrew-manager.md) for the complete behavior.
+Edith invokes the local `brew` executable directly. When Homebrew is missing, the Updates page shows an Install Homebrew button that runs the shared installer from [Tools](./tools.md); app updates keep working without it. Package operations are noninteractive, bounded, cancellable, and use the same safety rules as the `ed brew` commands. See the [Homebrew package guide](./homebrew-manager.md) for the complete behavior.
 
 ## Review application updates
 
-The Updates section checks installed apps through Homebrew casks and formulae, Mac App Store metadata through `mas` when it is installed, and HTTPS Sparkle or standard app feed URLs declared by the app bundle. Findings show the source, current and available versions, release information when supplied, confidence, check time, and exact action.
+The Updates section checks installed apps through Homebrew casks and formulae, the Mac App Store (apps with an App Store receipt are looked up by bundle identifier in Apple's public catalog, so nothing extra needs to be installed), and HTTPS Sparkle or standard app feed URLs declared by the app bundle. Findings show the source, current and available versions, release information when supplied, confidence, check time, and how the app updates.
 
-Select any combination to build a batch plan. Edith shows the command before running it, requires confirmation, limits concurrent work to the configured bound, retries failures, records a result for every item, and supports cancellation. Managed sources run their native command. Feed-based apps open so their own updater remains in control. You can reveal an app, copy its command, ignore one version, snooze it for a day, or exclude the app. Hidden policies can be reset from update settings.
+Select any combination to build a batch plan. Edith explains how each app updates, requires confirmation, limits concurrent work to the configured bound, retries failures, records a result for every item, and supports cancellation. Homebrew installs Homebrew items. App Store items open their App Store page. Feed-based apps open so their own updater remains in control. You can reveal an app, ignore one version, snooze it for a day, or exclude the app. Hidden policies can be reset from update settings.
 
 Automatic refresh is off by default and only performs discovery when enabled. It never installs an update. Optional notifications only follow an automatic refresh. If Edith Automations is installed and enabled, the settings popover exposes `ed maintenance updates --json` as the safe scheduling hook. Closing App Updates cancels active discovery and update work.
 
@@ -20,7 +20,7 @@ Update policy and per-item history are stored in `~/Library/Application Support/
 
 ## Install from a disk image
 
-Choose **Install Disk Image** and select a `.dmg`. Edith mounts it read-only and accepts exactly one regular top-level application. It validates the bundle and executable, rejects Apple apps and Edith, verifies the deep code signature, and requires an accepted Gatekeeper assessment when assessments are enabled.
+Choose **Install Disk Image** and select a `.dmg`. Edith mounts it read-only and accepts exactly one regular top-level application. It validates the bundle and executable, rejects Apple apps and Edith, verifies the code signature strictly (nested code and every architecture), and requires an accepted Gatekeeper assessment.
 
 The review sheet shows the verified app, version, bundle identifier, disk image, destination, and any existing app that would be replaced. Installation is explicit. The app is copied into a private staging directory and verified a second time before it moves into Applications. An existing app can only be replaced when its bundle identifier matches, the replacement toggle is selected, and its reviewed identity has not changed. The old app goes to the Trash.
 

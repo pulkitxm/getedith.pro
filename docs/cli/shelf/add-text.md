@@ -8,7 +8,7 @@ ed shelf add-text <text...> [--json]
 ```
 
 Words are joined with spaces. Quote shell metacharacters or newlines when they
-must reach the item unchanged. The command and a text drop in the notch use the
+must reach the item unchanged. The command and the notch drop tray use the
 same shelf mutation executor, persist the same index shape, and notify a running
 shelf after the write succeeds.
 

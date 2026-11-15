@@ -52,18 +52,21 @@ ed machines tuf mount /var/log
 
 ## Behaviour notes
 
-This needs an `sshfs` on this Mac, which Edith does not install:
+This needs `sshfs` on this Mac. When it is missing, the machine's Tools tab says
+"Mounting needs sshfs" next to an Install sshfs button. That button, Settings >
+Tools, or `ed tools install sshfs` installs FUSE-T and its sshfs from their
+signed installer packages (see [`ed tools`](../tools/README.md)):
 
 ```
 $ ed machines mount tuf
 error: sshfs is not installed on this Mac.
-hint: install FUSE-T, which needs no kernel extension: brew install --cask macos-fuse-t/cask/fuse-t macos-fuse-t/cask/fuse-t-sshfs
+hint: install FUSE-T and sshfs with `ed tools install sshfs`
 ```
 
 Either FUSE works. FUSE-T is the one to reach for first because it is a user
 space NFS server rather than a kernel extension, so it installs without loading
 a kext, without Reduced Security on an Apple Silicon Mac, and without a restart.
-macFUSE with `gromgit/fuse/sshfs-mac` works too, at the cost of approving a
+macFUSE with its own sshfs works too, at the cost of approving a
 kernel extension. Edith drives whichever `sshfs` is first on `PATH`, and it
 tries the mount twice: once with the macFUSE-only options, `volname`,
 `idmap=user`, `defer_permissions` and the Apple metadata switches, and then
@@ -71,7 +74,8 @@ without them, so an sshfs that rejects the first set still mounts.
 
 The mount rides the same ControlMaster socket everything else on this page uses.
 `ed` opens the connection first, then points `sshfs` at that socket with
-`ControlPath`, `ControlMaster=no` and `BatchMode=yes`, so the mount is a second
+`ControlPath`, `ControlMaster=no` and `BatchMode=yes`, and has it run the
+system `/usr/bin/ssh` through `ssh_command`, so the mount is a second
 channel on the connection already there and no password or passphrase is asked
 for twice. The socket path is quoted inside the option, because it lives under
 `Application Support` and `ssh` would otherwise stop at the space. Because it

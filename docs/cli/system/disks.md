@@ -53,8 +53,8 @@ Six keys, always all six:
 is mounted. `usedKB` is `totalKB` minus `availableKB`, and `usedPercent` is
 `usedKB` over `totalKB`.
 
-`battery` is read from `pmset -g batt` and carries `percent` and a capitalised
-`status` such as `Charging`, `Discharging` or `Finishing Charge`. It is `null`
+`battery` is read from the IOKit power source API and carries `percent` and a
+`status` of `Charging`, `Discharging`, `Charged` or `AC Attached`. It is `null`
 on a Mac with no battery, and `null` rather than missing, so the key is always
 there.
 
@@ -114,9 +114,9 @@ ed system disks --json | jq -r '.filesystems[] | "\(.mount) \(.usedPercent | flo
 
 ## Behaviour notes
 
-Read only, instant, and needs neither the app nor a permission. The one
-subprocess it runs is `pmset`, for the battery line, and a `pmset` that fails to
-run is reported as `battery: null` rather than as an error.
+Read only, instant, and needs neither the app nor a permission. It starts no
+other program, and a Mac whose battery cannot be read reports `battery: null`
+rather than an error.
 
 Only volumes macOS marks browsable and not hidden, and that report a capacity
 above zero, are listed, so the Preboot, Recovery and VM volumes that `mount` and

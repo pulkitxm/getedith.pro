@@ -5,7 +5,7 @@ lists and prints pages, and it answers "which command does this?" for a
 plain-language request. The Docs page in the app shows the same pages with an
 Ask bar that runs `ed docs ask` and jumps to the section it picks.
 
-`ed docs ask` uses Jev when a TypeSafe key is saved in Settings > Jev, and a
+`ed docs ask` uses Jev when a TypeSafe key is saved in Jev settings, and a
 local search over command names, titles, headings and summaries otherwise. It
 never needs the app or the background agent to answer: when Jev is off, missing,
 out of credits or slow, the local search answers instead.

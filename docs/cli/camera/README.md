@@ -148,7 +148,7 @@ the pause shortcut does not restart it. Choose **Go live** or run
 
 For the other pause styles, `resume` goes live again. The global shortcut
 ⌃⌥⌘V pauses behind a card or goes live again from any app, and you can change it
-in Settings under Shortcuts.
+under Shortcuts in Virtual Camera settings, the Settings button in the page header.
 
 ## Output
 

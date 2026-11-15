@@ -37,13 +37,19 @@ has `"applied": false`. The confirmed result has `"applied": true`.
 Turning Wi-Fi on and turning airplane mode off do not require confirmation.
 Brightness, volume and keyboard lighting accept whole numbers from 0 through
 100. Mute, Wi-Fi, Bluetooth, airplane mode and Do Not Disturb accept `on` or
-`off`. Caffeinate accepts `on` or `off` when the GNOME Caffeine extension is
-active on a Linux target.
+`off`. Caffeinate accepts `on` or `off` on `local`, where it holds a macOS power
+assertion, and on a Linux target when the GNOME Caffeine extension is active.
 
 ## Discovery and availability
 
-`status` reports only controls the target can implement. It checks Linux tools
-such as `brightnessctl`, `wpctl`, `nmcli`, `bluetoothctl`, `rfkill` and
+`status` reports only controls the target can implement. For `local`, this Mac
+is controlled natively without any extra tools: Core Audio for volume and mute,
+CoreWLAN for Wi-Fi, the system Bluetooth, display and keyboard backlight
+frameworks for those controls, and a power assertion for Caffeinate. The
+Edith Machines engine holds that assertion, so the app and `ed` see the same
+state, and it ends when Edith quits. No `blueutil`, `brightness` or
+`mac-brightnessctl` install is needed. For remote targets, `status` checks Linux
+tools such as `brightnessctl`, `wpctl`, `nmcli`, `bluetoothctl`, `rfkill` and
 `gsettings`, plus the matching macOS facilities. Caffeinate supports both the
 current `cli-toggle` and older `toggle-state` GNOME Caffeine keys. Windows uses
 native CIM, Core Audio, network-adapter, Plug and Play, and notification settings
@@ -53,8 +59,9 @@ availability error.
 
 Some Linux controls require a stored sudo password. Edith reads the same
 Keychain entry used by the app and passes it on standard input to `sudo -S`.
-The password is never placed in arguments or output. Local macOS Wi-Fi changes
-use the system authorization prompt.
+The password is never placed in arguments or output. The sudo password applies
+to remote targets only; `local` changes need no password or authorization
+prompt.
 
 ## JSON
 

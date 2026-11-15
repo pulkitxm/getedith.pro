@@ -2,8 +2,10 @@
 
 `ed system` reports on the Mac you are typing on: a live CPU, memory, load and
 network sample, and the volumes that are mounted. It reads the machine directly
-through `sysctl`, the Mach host statistics, `/bin/ps` and `pmset`, so nothing
-here talks to the Edith app and nothing here needs it running. Reach for it when
+through `sysctl`, the Mach host statistics and the IOKit power source API.
+When you ask for processes it also runs the built-in `/bin/ps`, the only reader
+that sees CPU and memory for processes owned by other users and the system.
+Nothing here talks to the Edith app and nothing here needs it running. Reach for it when
 you want the numbers the app's This Mac view shows without opening a window, or
 when you want them on stdout as JSON.
 
@@ -44,11 +46,13 @@ Neither command looks anything up by name and neither talks to the app, so 3 and
   kilobytes, so do your own maths there if you want binary units.
 - At most 30 processes exist to be reported. The sampler keeps the top 30 by
   CPU, so `--processes 50` gives you 30 rows and no warning.
-- `cpuPercent` in the process rows comes from `ps` and is summed across cores,
-  so a busy process reads above 100. `cpu.totalPercent` for the machine is
+- `cpuPercent` in the process rows is the process's CPU time over the time
+  since the previous process reading (or since it started, on the first
+  reading), summed across cores, so a busy process reads above 100. `cpu.totalPercent` for the machine is
   capped at 100 across all cores. The two are not on the same scale.
-- The process list is `/bin/ps -axo pid=,user=,%cpu=,%mem=,rss=,comm=` sorted by
-  CPU descending, and `name` is the last path component of `command`.
+- The process list comes from `proc_listallpids` and `proc_pidinfo`, sorted by
+  CPU descending; `command` is the executable path and `name` its last path
+  component. It is only read when `--processes` is above 0.
 - Network counters skip `lo0` entirely, and an interface that moved no bytes
   during the window is left out of `interfaces` rather than listed at zero. The
   `rxBps` and `txBps` totals exclude interfaces judged virtual, which is
@@ -58,8 +62,8 @@ Neither command looks anything up by name and neither talks to the app, so 3 and
   `cpu.stealPercent` and `tasks.runnable`, are part of the shared sample shape
   and are always zero or empty for this Mac. They are filled in by the collector
   `ed machines metrics` runs on a Linux machine.
-- `tasks.total` is the number of processes `ps` returned, so it counts every
-  process on the machine and not just the ones `--processes` shows.
+- `tasks.total` counts every process on the machine and not just the ones
+  `--processes` shows.
 - `--json --follow` writes one compact document per line, forever, and repeats
   the whole `host` object on every line. That is deliberate: each line stands
   alone, so `jq -c`, `head` and a pipe into another process all work without

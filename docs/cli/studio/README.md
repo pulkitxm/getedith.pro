@@ -53,8 +53,8 @@ its Cancel button does. `ed studio reveal report.pdf` and
 ## What is in Studio
 
 - **PDF:** merge, split, remove and reorder pages, rotate, pages per sheet,
-  page size, crop, compress, grayscale, OCR, repair, flatten, decompress and
-  linearize (with qpdf), PDF to JPG, JPG to PDF, PDF to Word, PowerPoint, Excel,
+  page size, crop, compress, grayscale, OCR, repair, flatten, PDF to JPG, JPG to
+  PDF, PDF to Word, PowerPoint, Excel,
   text, Markdown and PDF/A, watermark, page numbers, metadata, protect, unlock,
   redact and compare. The PDF editor adds text, shapes, drawings, highlights,
   notes, images, signatures, form fields, redaction boxes, crop areas and a
@@ -64,7 +64,7 @@ its Cancel button does. `ed studio reveal report.pdf` and
   remove metadata, extract text and make icons. The image editor adds crop and
   straighten, adjustments, filters, text, drawing, shapes, stickers, blur and
   frames.
-- **Video and audio** (with FFmpeg): compress, convert, trim, split, merge, GIF,
+- **Video and audio:** compress, convert, trim, split, merge, GIF,
   extract audio, frames, mute, rotate, crop, resize, speed, reverse, add music,
   volume, watermark, subtitles, loop, frame rate, slideshows, stabilize,
   denoise, fades, color and social formats, plus the audio versions of these.
@@ -79,10 +79,20 @@ its Cancel button does. `ed studio reveal report.pdf` and
 
 ## Engines
 
-Video and audio tools use FFmpeg, and four PDF tools use qpdf. Tools that need a
-missing engine say so in Studio with an install button, and `ed studio tools`
-marks them. Install either with `ed tools install ffmpeg` or `ed tools install
-qpdf`.
+Most video and audio tools run natively with AVFoundation and need nothing
+installed: trim, convert to MP4, MOV or M4V, compress, mute, extract audio to
+M4A or WAV, merge, rotate, crop, resize, speed, fade, GIF, frames, slideshows,
+and audio trim, convert to M4A, WAV, AIFF or Apple Lossless, compress, volume,
+fade, speed and merge. Media is probed with AVFoundation; ffprobe is never used.
+
+FFmpeg is only needed for formats AVFoundation cannot read or write (WebM, MKV,
+AVI, MP3, FLAC, Opus and OGG output, or such inputs) and for the remaining
+filter tools: split, reverse, add music, video volume, watermark, subtitles,
+loop, frame rate, stabilize, denoise, color, social formats, audio reverse,
+silence removal, audio denoise and audio to video. Studio shows an Install
+FFmpeg button only on those, and `ed studio tools` marks them. Install it with
+`ed tools install ffmpeg`. Without FFmpeg, audio edits on an MP3 save as M4A.
+No PDF tool needs an external program.
 
 ## Where results go
 
@@ -93,7 +103,7 @@ saves `report-compressed 2.pdf`.
 
 ## Where to go next
 
-- [`ed tools`](../tools/README.md), for installing FFmpeg and qpdf
+- [`ed tools`](../tools/README.md), for installing FFmpeg
 - [All `ed` commands](../README.md)
 
 - [Audio marker regions](./audio-markers.md)

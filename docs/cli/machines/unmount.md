@@ -48,8 +48,8 @@ ed machines umount tuf --json
 The document describes the mount that was released, so it is the same shape
 `mount` printed when it went up.
 
-`umount` is tried first and `diskutil unmount force` second, which is what gets
-a mount down when a shell is still sitting in it. The mount point is then
+Edith calls `unmount(2)` first and forces it second, which is what gets a mount
+down when a shell is still sitting in it. The mount point is then
 removed if it is empty and inside `~/Edith`, so the folders do not pile up; a
 mount point you chose with `--at` is left where it is.
 

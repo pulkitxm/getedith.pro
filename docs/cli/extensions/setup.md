@@ -25,8 +25,8 @@ JSON includes `dryRun`, `changed`, `plannedTools`, `installedTools`,
 `report.verified: false`.
 
 Only `requiredTools` are planned or installed. `optionalTools` remain visible in
-`info`, readiness checks, and extension settings, but they never block core
-onboarding. Install one explicitly with `ed tools install <id>`.
+`info`, readiness checks, and extension settings, but they never block
+setup. Install one explicitly with `ed tools install <id>`.
 
 ```
 ed extensions setup quinjet --dry-run --json

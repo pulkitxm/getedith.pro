@@ -219,7 +219,7 @@ Preflight requires exactly one audible independent track, no audible clip audio,
 source/output zero, unity rate/gain, no loops, fades, envelopes or joins, and the
 complete source duration matching both track and video. Sample rate/channels must
 match without resampling. Partial `--start-frame`/`--end-frame` delivery is rejected.
-MP4 supports H.264/HEVC, MOV supports ProRes; detected FFmpeg and ffprobe are required.
+MP4 supports H.264/HEVC, MOV supports ProRes; detected FFmpeg is required (no ffprobe).
 
 Full-stream priming, final partial packets, skip records and padding are supported;
 duration need not divide evenly into 1024-sample packets. Ambiguous timing, gaps,

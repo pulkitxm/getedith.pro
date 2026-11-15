@@ -265,9 +265,12 @@ tabs, and 1 when only some running tabs receive the line.
   `controlSocket` on every machine record, which is what makes the app and `ed`
   share one connection.
 - A stored password or passphrase is handed to ssh through `SSH_ASKPASS`, which
-  points back at the `ed` binary itself with the keychain account in the
-  environment. The secret never appears on a command line, and a host key
-  confirmation prompt is answered by declining rather than by leaking it.
+  points back at the Edith executable with the keychain service and account in
+  the environment. Edith answers only when `/usr/bin/ssh` was started by Edith
+  itself, or by an `sshfs` mount reconnecting after it detached, and only for a
+  Machines password or passphrase item. The secret never appears on a command
+  line, and a host key confirmation prompt is answered by declining rather than
+  by leaking it.
 - An `ssh config` machine is dialled by alias alone. Its `port`, `username` and
   key are on the record and shown in the listing, but ssh never sees them;
   `~/.ssh/config` decides. Edit that file, not the machine, when an alias

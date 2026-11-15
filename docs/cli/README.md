@@ -63,7 +63,7 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed studio`](./studio/README.md) | Studio: edit, convert and compress images, PDFs, video, audio and documents |
 | [`ed calendar`](./calendar/README.md) | Your agenda |
 | [`ed camera`](./camera/README.md) | Edith Camera: framing, looks, backgrounds, overlays, scenes and pausing for any video app |
-| [`ed audio`](./audio/README.md) | Per-app volume for whatever is playing, the notch mixer |
+| [`ed audio`](./audio/README.md) | Per-app volume for whatever is playing |
 | [`ed presenter`](./presenter/README.md) | Manual presenter mode at runtime |
 | [`ed herdr`](./herdr/README.md) | Live Herdr sessions on this Mac and your SSH machines |
 | [`ed quinjet`](./quinjet/README.md) | Discover, inspect and launch Quinjet review workspaces locally or on a configured machine |
@@ -78,12 +78,11 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed apps`](./apps/README.md) | Running applications, and quitting them |
 | [`ed keyboard`](./keyboard/README.md) | Locking the keyboard so you can clean the keys |
 | [`ed tools`](./tools/README.md) | The command line tools Edith can install for you |
-| [`ed shelf`](./shelf/README.md) | The notch shelf's staged files |
-| [`ed browser`](./browser/README.md) | The notch browser: tabs, navigation, Chrome profiles, and detach |
+| [`ed shelf`](./shelf/README.md) | Files parked on the Shelf |
 | [`ed cleaner`](./cleaner/README.md) | Scanning and reclaiming disk space |
 | [`ed brew`](./brew/README.md) | Searching and managing Homebrew formulae and casks |
 | [`ed maintenance`](./maintenance/README.md) | Verified app installs, updates, inventory, and review-first removal |
-| [`ed seo`](./seo/README.md) | Site audits: projects, page selection, Lighthouse, and saved runs |
+| [`ed seo`](./seo/README.md) | Site audits: projects, page selection, page scores, and saved runs |
 | [`ed code-stats`](./code-stats/README.md) | Your GitHub mirror, refresh schedule, identities, and code report |
 | [`ed companion`](./companion/README.md) | Local memory health, status, Markdown ingest and episodes |
 

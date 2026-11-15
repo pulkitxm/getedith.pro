@@ -15,7 +15,7 @@ H.264 and HEVC use MP4; ProRes uses MOV. The same flags are available through
 `edith_studio_edit_render`. The selected independent track's processed audio
 reference takes precedence over its original source. Its source may be an
 audio-only file or a video container, but must contain exactly one AAC stream.
-FFmpeg and ffprobe must be available through Studio engine detection.
+FFmpeg must be available through Studio engine detection; ffprobe is not used.
 
 Preflight runs before creating delivery files. Copy requires:
 
@@ -45,9 +45,9 @@ codec configuration, multiple audio streams and unaccounted preroll are rejected
 Video is rendered through the existing native pipeline into temporary video-only
 media. FFmpeg then remuxes that native video with the approved soundtrack using
 stream copy. A shared rational movie timescale preserves source sample timing.
-Before atomic publication, ffprobe compares every packet's SHA-256, PTS, DTS,
-duration and skip/padding metadata, plus codec configuration, sample rate,
-channels, timebase and presentation bounds. Native verification also checks the
+Before atomic publication, native AVAssetReader verification compares every
+packet's SHA-256, PTS, DTS, duration and skip/padding metadata, plus codec
+configuration, sample rate, channels, timebase and presentation bounds. Native verification also checks the
 video frame count and canvas. The final report includes `audioPassthrough` with
 the source hash, packet count, timebase and `packetDataAndTimingVerified: true`.
 

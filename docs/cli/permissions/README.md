@@ -39,9 +39,9 @@ full list as the hint.
 | `fullDisk` | Privacy & Security > Full Disk Access | Scan folders that macOS protects in Disk Map | optional for `blitztree` |
 | `screenRecording` | Privacy & Security > Screen Recording | Detect shared content, sample colours, and fold the live desktop | required by `focusDim`, `hinge`, `presenter`, `colorPicker` |
 | `applicationAudio` | Privacy & Security > Screen & System Audio Recording, granted on first use | Audio Mixer per-app volume sliders | optional for `audioMixer` |
-| `camera` | Privacy & Security > Camera | The Virtual Camera feed and preview, and the Notch Shelf camera preview | required by `virtualCamera`, optional for `notchShelf` |
-| `bluetooth` | Privacy & Security > Bluetooth, granted on first use | Notch Shelf device connection alerts | optional for `notchShelf` |
-| `automation` | Edith opens no pane, granted on first use | Notch Shelf controlling external playback | optional for `notchShelf` |
+| `camera` | Privacy & Security > Camera | The Virtual Camera feed and preview | required by `virtualCamera` |
+| `bluetooth` | Privacy & Security > Bluetooth, granted on first use | Device connection checks | not listed by any extension |
+| `automation` | Edith opens no pane, granted on first use | Music controlling external playback | not listed by any extension |
 
 For the seven that can be requested, the `reason` string in `--json` is the same
 sentence the Permissions pane shows under each row, so the CLI and the UI cannot

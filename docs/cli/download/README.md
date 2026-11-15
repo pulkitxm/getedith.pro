@@ -18,8 +18,9 @@ when the window closes. Interrupted jobs can be retried after an agent restart.
 | Video (`video`) | yt-dlp and FFmpeg | Best available video and audio, merged to MP4 when merging is needed |
 | Audio (`audio`) | yt-dlp and FFmpeg | Audio extracted to M4A |
 
-Install yt-dlp, FFmpeg and Deno from the extension's setup controls. Install the
-optional gallery-dl tool for photos and entire posts:
+Downloads needs yt-dlp and FFmpeg. Deno lets yt-dlp read YouTube pages, and
+gallery-dl adds photos and entire posts; both are optional. Install them from
+Settings > Tools or with:
 
 ```sh
 ed tools install yt-dlp
@@ -78,8 +79,8 @@ are ignored so their output paths and postprocessing commands cannot alter a job
 
 All commands accept `--json`. `ed downloads` and `ed dl` are aliases;
 `ed download` defaults to `ls`. Queue mutations require the background agent;
-saved history can be read offline. Updates for Homebrew-managed tools should use
-Homebrew rather than the tool's standalone self-updater.
+saved history can be read offline. `ed tools update yt-dlp` updates the copy
+Edith installed, or a Homebrew copy with `brew upgrade`.
 
 ```sh
 ed download add 'https://www.instagram.com/p/example/' --kind post --browser firefox

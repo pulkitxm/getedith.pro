@@ -50,8 +50,8 @@ pasteboard. `⌥`-return copies whatever is selected instead, so an application
 row hands you its path rather than launching it, and either way the bar
 dismisses.
 
-The shortcut is `⌥space` unless you have rebound it in Settings > Shortcuts,
-which writes `bifrostHotKeyCode`, `bifrostHotKeyMods` and `bifrostHotKeyLabel`.
+The shortcut is `⌥space` unless you have rebound it under Shortcuts in Launcher
+settings, which writes `bifrostHotKeyCode`, `bifrostHotKeyMods` and `bifrostHotKeyLabel`.
 The bar opens where `bifrostPopupAt` says: `center` by default, or `cursor`,
 `statusItem`, `window` or `lastPosition`.
 

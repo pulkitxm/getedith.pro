@@ -31,7 +31,7 @@ line for you. Each limits poll checks `settings.json` and runs the same install 
 `ed usage statusline install`, which also repairs a command that points at a
 moved or wrong Edith. It does nothing when Claude Code has no settings folder yet,
 when the file does not parse, or in a development build. `ed usage statusline
-remove`, or Disconnect in Settings, turns the automatic connection off until you
+remove`, or Disconnect in Usage settings, turns the automatic connection off until you
 run `install` or press Connect again. The command written into Claude Code's
 settings is the `ed` launcher inside the app, so Claude Code never starts the app
 window.

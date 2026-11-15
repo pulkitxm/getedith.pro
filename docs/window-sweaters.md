@@ -8,7 +8,7 @@ never changed.
 
 ## Turn it on
 
-Enable Window Borders in Settings under Labs, or run
+Turn on Window Borders in the Library under Labs, or run
 `ed extensions enable windowSweaters`. The extension id stays `windowSweaters` so
 existing settings and scripts keep working.
 

@@ -38,7 +38,7 @@ ed color copy 1 --format rgb --json
 ```
 
 The command uses the same formatters and pasteboard operation as clicking a
-Recent Colors swatch in Settings or selecting one from the menu bar context
+Recent Colors swatch in Color Picker settings or selecting one from the menu bar context
 menu. It does not need Edith running. An empty history exits 4 with a prompt to
 pick a colour. An index outside the current history or an unknown format exits
 3 without changing the pasteboard.

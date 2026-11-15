@@ -25,7 +25,7 @@ system query failure produces `failed` with runtime phase `error`.
 | Agent Usage | bundled collector plus at least one verified provider executable | refresh lock and decoded `usage.json` daily samples | `ed usage refresh`; `ed usage --json` |
 | Herdr | Herdr presence on this Mac or a configured machine | collected sessions and per-host errors | `ed herdr ls --json`; `ed extensions verify herdr` |
 | Quinjet | verified Quinjet executable, terminal and theme values, and cmux when selected | terminal integration can be resolved | `ed tools install quinjet`; `ed config set quinjetTerminal embedded` |
-| Site Audit | local project storage and optional Lighthouse CLI | saved projects and bounded run history | `ed extensions verify seoAudit`; `ed extensions doctor seoAudit` |
+| Site Audit | local project storage and built-in page scores | saved projects and bounded run history | `ed extensions verify seoAudit`; `ed extensions doctor seoAudit` |
 | Code Stats | `git`, the optional `gh` CLI, and the mirror folder, reporting a disconnected drive as degraded | mirrored repositories and the stored report | `ed extensions doctor codeStats`; `ed code-stats status` |
 | System | built-in running-application module | regular applications visible through AppKit | `ed apps ls --json`; `ed app relaunch` |
 | App Updates | built-in app and package inspection | readable application and package sources | `ed extensions verify appMaintenance`; `ed tools install homebrew` |
@@ -38,7 +38,7 @@ system query failure produces `failed` with runtime phase `error`.
 | Music | configured library path exists and is a directory | recursive supported-track count and optional yt-dlp version | `ed music rescan`; `ed tools install yt-dlp` |
 | Calendar | live EventKit authorization | readable calendar count | `ed permissions request calendar`; `ed calendar ls --json` |
 | Virtual Camera | live AVFoundation camera authorization and a connected camera | the Edith Camera device is visible to CoreMediaIO | `ed permissions request camera`; `ed camera status --json` |
-| Notch Shelf | decodable shelf index and, when Audio Mixer is enabled, macOS 14.4 or later | parked item count and missing backing files; Audio Mixer is omitted on unsupported systems | `ed shelf ls --json`; `ed permissions settings applicationAudio` |
+| Shelf | decodable shelf index | parked item count and missing backing files | `ed shelf ls --json`; `ed shelf purge` |
 | Clipboard | decodable JSONL index | entry count and missing blob payloads | `ed clipboard stats --json`; `ed clipboard ls --json` |
 | Keystroke Highlight | enabled extension and active or paused state | listen-only keyboard event monitor while active | `ed config set keystrokeHighlightActive true`; `ed permissions request inputMonitoring` |
 | Focus Dim | finite intensity and animation values plus a valid display mode | active display count | `ed config ls --group focusdim --json`; `ed permissions refresh` |

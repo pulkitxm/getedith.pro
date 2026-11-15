@@ -33,11 +33,15 @@ present. JSON previews include `action`, `targets`, `applied`, `changed`, and
 | `ed app rollback` | Go back to the previous Edith version that worked. |
 | `ed app clear-updates` | Clear recorded update history. |
 | `ed app reveal` | Show a section and optional tab. |
+| `ed app pin <id>` | Pin an extension page to the sidebar. |
+| `ed app unpin <id>` | Take an extension page off the sidebar. |
+| `ed app pins` | List the sidebar pins, or restore the profile pins. |
 | `ed app route` | Print the current window route. |
 | `ed app navigate` | Change the route without bringing the app forward. |
 | `ed app back` | Return to the previous route. |
 | `ed app forward` | Advance through route history. |
 | `ed app snapshot` | Save rendered open windows as PNG files. |
+| `ed app notch` | Show the notch state, or open and close it. |
 
 ## Commands
 
@@ -57,11 +61,15 @@ present. JSON previews include `action`, `targets`, `applied`, `changed`, and
 - [`ed app rollback`](./rollback.md)
 - [`ed app clear-updates`](./clear-updates.md)
 - [`ed app reveal`](./reveal.md)
+- [`ed app pin`](./pin.md)
+- [`ed app unpin`](./unpin.md)
+- [`ed app pins`](./pins.md)
 - [`ed app route`](./route.md)
 - [`ed app navigate`](./navigate.md)
 - [`ed app back`](./back.md)
 - [`ed app forward`](./forward.md)
 - [`ed app snapshot`](./snapshot.md)
+- [`ed app notch`](./notch.md)
 
 ## Exit codes
 

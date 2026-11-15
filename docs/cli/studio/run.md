@@ -64,8 +64,6 @@ Every tool id `ed studio run` accepts, in the order `ed studio tools` lists them
 | `pdf.ocr` | OCR PDF | Make scanned PDFs searchable and selectable with on-device text recognition. |
 | `pdf.repair` | Repair PDF | Rebuild a damaged PDF and recover as much of it as possible. |
 | `pdf.flatten` | Flatten PDF | Burn comments, drawings and form fields into the page so they cannot be edited. |
-| `pdf.decompress` | Decompress PDF | Expand compressed streams so the PDF can be inspected or edited by hand. |
-| `pdf.linearize` | Optimize for web | Linearize a PDF so browsers show the first page before the rest downloads. |
 | `pdf.to-images` | PDF to JPG | Turn each page into an image, or pull out every image inside the PDF. |
 | `pdf.from-images` | JPG to PDF | Make a PDF from photos and scans with the page size and margins you want. |
 | `pdf.to-word` | PDF to Word | Turn a PDF into an editable DOCX with headings, paragraphs and images. |

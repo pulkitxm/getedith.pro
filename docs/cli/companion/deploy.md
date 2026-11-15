@@ -40,12 +40,11 @@ A machine that cannot run it yet is refused with the reason and the fix, so
 nothing half-starts. The tier is derived from the Mac processor: Apple silicon
 uses the Apple Metal overlay and Intel uses CPU.
 
-Deploying creates the directory and looks for companion source in
-`EDITH_COMPANION_SOURCE`, `~/Desktop/Edith/apps/companion`, then
-`~/edith/apps/companion`. When found, it streams a tarball that excludes
-`target` and `.git` into the destination on every deploy. When no local source
-is found, an existing destination must already contain `Cargo.toml` or deploy
-fails before Compose starts.
+Deploying creates the directory and streams the companion source tarball that
+ships inside the Memory package into it on every deploy. A build without that
+tarball keeps an existing destination that already contains `Cargo.toml`, and
+otherwise fails before Compose starts. Compose runs through the runtime detected
+on the host: `podman compose` on Podman, `docker compose` on Docker and Colima.
 
 The CLI then overwrites its carried Compose files and Dockerfile, writes `.env`
 with mode controlled by `umask 077`, and includes the current configuration and

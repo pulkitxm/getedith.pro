@@ -77,7 +77,8 @@ hint: try a sum such as `ed bifrost calc "2 + 2"`
 
 The bar always searches the application index, the calculator, unit and currency
 conversion, clipboard history and file search. Everything else is a switch, off
-or on in Settings, Extensions, Bifrost, and readable from the command line:
+or on in Launcher settings (the Settings button on Launcher in the Library), and
+readable from the command line:
 
 ```sh
 ed config ls --group bifrost --json
@@ -193,9 +194,9 @@ placeholder sits bare, inside double quotes or inside single quotes.
   machines you have configured. Contents searching and any narrowed kind go
   through ripgrep when it is installed, an empty query lists what you used this
   week through Spotlight's `mdfind`, and everything falls back to `mdfind` when
-  ripgrep is missing. A machine scope runs the same ripgrep query over SSH and
-  lists what it finds there; those rows name their machine and carry no local
-  preview.
+  ripgrep is missing. A machine scope runs the same ripgrep query over SSH, or
+  `find` and `grep` when the machine has no ripgrep, and lists what it finds
+  there; those rows name their machine and carry no local preview.
 - **The bar learns what you meant.** Picking a result records the query you
   typed as well as what you opened, so once you have opened WhatsApp from `w`,
   `w` puts it first next time. A lesson from a longer query still helps a

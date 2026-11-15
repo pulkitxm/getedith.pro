@@ -159,7 +159,7 @@ returns `closedSessionID`, `selectedSessionID` and `remaining`.
 | 3 | The machine, worktree or native session was not found |
 | 4 | Quinjet, cmux, the selected machine or the running Edith page was unavailable |
 
-A missing Quinjet executable includes the Homebrew install command. A failed
+A missing Quinjet executable includes a hint to run `ed tools install quinjet`. A failed
 Quinjet command includes its diagnostic. Malformed JSON suggests updating
 Quinjet and retrying.
 

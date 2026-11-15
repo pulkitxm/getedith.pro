@@ -1,15 +1,23 @@
 # Quinjet
 
 Quinjet reviews pull requests and follows live workspace changes from an Edith
-panel tab. Enable it in Settings under Extensions, or run:
+panel tab. Turn it on in the Library, or run:
 
 ```sh
 ed extensions enable quinjet
 ed tools install quinjet
 ```
 
-The extension needs the `quinjet` executable on Edith's assembled PATH. Verify
-the installation without opening the app:
+The extension needs the `quinjet` executable. When it is missing, the Quinjet
+page shows an Install Quinjet button and nothing else to do: Edith uses Homebrew
+when it is present and otherwise downloads the verified release binary into
+Edith's tools folder (see [Tools](./tools.md)). `ed tools install quinjet` runs
+the same installer from a terminal.
+
+The optional GitHub CLI adds the pull request widget. When it is missing, the
+widget offers Install GitHub CLI; when it is signed out, it offers Sign in to
+GitHub, which opens Settings > Tools and starts the browser sign in with a
+one-time code. No terminal is involved in either case. Verify the installation:
 
 ```sh
 ed tools ls --json | jq '.[] | select(.id == "quinjet")'
@@ -31,7 +39,8 @@ ed config set quinjetTheme app
 ed config set quinjetTheme tokyo-night
 ```
 
-If Quinjet is missing, retry `ed tools install quinjet` or run
-`brew install pulkitxm/tap/quinjet`. If cmux is unavailable, switch the terminal
+If Quinjet is missing, press Install Quinjet on the page, or retry
+`ed tools install quinjet`. A remote machine without Quinjet needs its own copy;
+the page names the usual way to get it for that platform. If cmux is unavailable, switch the terminal
 back to `embedded`. Disable and re-enable the extension only to control its
 visibility. It does not uninstall the command line tool or erase these settings.

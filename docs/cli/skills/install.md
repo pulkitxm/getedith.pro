@@ -25,9 +25,9 @@ Options:
 | `--json` | flag | off | Emits the plan, or the result, as JSON. |
 
 Without `--agent`, the command uses detected agents whose saved install-sheet
-selection is on. The preview names the skill and those agents. `--yes` runs
-`npx --yes skills@1.5.24 add` the same way the install sheet does, then checks
-that each agent received the skill.
+selection is on. The preview names the skill and those agents. `--yes` downloads
+the skill and writes it into each agent folder the same way the install sheet
+does, then checks that each agent received the complete skill.
 
 `--json` preview:
 

@@ -1,6 +1,6 @@
 # `ed shelf add`
 
-Copies a file onto the shelf.
+Puts a copy of a file on the Shelf, the file tray in the notch.
 
 Usage:
 
