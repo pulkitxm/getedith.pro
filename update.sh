@@ -3,10 +3,10 @@ set -euo pipefail
 
 readonly bundle_identifier="com.pulkit.edith"
 readonly expected_team="PUWDA36B2R"
-readonly release_prefix="https://github.com/pulkitxm/edith-releases/releases/"
+readonly release_prefix="https://github.com/pulkitxm/getedith.pro/releases/"
 readonly appcast_url="${release_prefix}latest/download/appcast.xml"
-readonly download_api_prefix="https://edith.pulkit.page/api/v1/download/"
-readonly release_download_pattern='^https://github\.com/pulkitxm/edith-releases/releases/download/[A-Za-z0-9._-]+/Edith\.dmg$'
+readonly download_api_prefix="https://getedith.pro/api/v1/download/"
+readonly release_download_pattern='^https://github\.com/pulkitxm/getedith\.pro/releases/download/[A-Za-z0-9._-]+/Edith\.dmg$'
 readonly support_root="$HOME/Library/Application Support/Edith"
 readonly backups_dir="$support_root/backups"
 readonly extensions_dir="$support_root/Extensions"
@@ -44,8 +44,8 @@ usage() {
 Update Edith to the latest version.
 
 Usage:
-  curl -fsSL https://edith.pulkit.page/update_app_to_latest.sh | bash
-  curl -fsSL https://edith.pulkit.page/update_app_to_latest.sh | bash -s -- --yes
+  curl -fsSL https://getedith.pro/update_app_to_latest.sh | bash
+  curl -fsSL https://getedith.pro/update_app_to_latest.sh | bash -s -- --yes
   bash update.sh [--dry-run] [--yes] [--rollback]
 
 Options:

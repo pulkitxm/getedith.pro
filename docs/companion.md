@@ -67,6 +67,39 @@ named `edith-companion`, so its containers appear as Edith's own Companion group
 the Docker view. Moving or removing the machine entry breaks control of that
 deployment until it is added again or a different stack is adopted.
 
+## API access
+
+Every API route, including health, exports, mutations and chat, requires a bearer
+credential. Guided setup generates a random 32-byte token, saves it in the Mac's
+Keychain and sends it to the backend in its private `.env` file. Existing stacks
+must be redeployed through setup to receive the credential.
+
+For manual deployments, set `COMPANION_API_TOKEN` to 64 random lowercase hex
+characters, for example the output of `openssl rand -hex 32`. Set the same value
+as `EDITH_COMPANION_API_TOKEN` in the client environment, with
+`EDITH_COMPANION_URL` selecting that server. Keep those values out of source
+control and shell history. The native client sends the credential only to the
+configured endpoint, over HTTPS or loopback through an SSH tunnel, and refuses
+redirects. The API binds to loopback when run directly; Compose explicitly binds
+inside its container while publishing its port on loopback.
+
+The service admits 600 authenticated requests per minute per process and returns
+429 with `Retry-After` above that limit. Counters reset on restart. Every request
+also needs the current host license access token in
+`X-Edith-License-Authorization`. The native host provides it to the companion
+extension only while its license session is admitted. The backend checks it with
+the fixed website licensing authority, with at most 30 seconds of successful
+caching bounded by token expiry. Missing or inactive licenses return 403;
+licensing outages return 503. Both responses include the support email.
+
+The backend requires online license checks even while the native host has a
+valid offline entitlement. Scheduled background work waits for a successful
+current license check before starting. Keep the licensed host connected to run
+scheduled work; an already admitted job can finish. Deploy the website
+`license/authorize` endpoint before rebuilding the host, extension and backend.
+Authorization checks are retained as website abuse evidence; cached local
+requests and private memory contents are not sent as central usage telemetry.
+
 ## Models and external services
 
 PostgreSQL with pgvector stores indexed data, Redis provides service state, Ollama

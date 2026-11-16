@@ -9,7 +9,7 @@ ed app links [--json]
 The fixed ids are `creator`, `community:bug` (Report a bug), `community:feature`
 (Request a feature) and `community:discussions` (Discussions). Extension
 lifecycle guides add ids in the form `extension-doc:<extension>:<document>`.
-Community and guide links go through `https://edith.pulkit.page/api/v1`, which
+Community and guide links go through `https://getedith.pro/api/v1`, which
 redirects to the public pages. Plain output shows id, label, and URL.
 JSON is an array whose rows have `id`, `label`, and `url`.
 

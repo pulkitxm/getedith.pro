@@ -17,7 +17,7 @@ Three real properties are shown:
 
 ```json
 {
-  "$id": "https://edith.pulkit.page/schema/config.json",
+  "$id": "https://getedith.pro/schema/config.json",
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "additionalProperties": false,
   "description": "Every setting the Edith UI exposes, as accepted by `ed config import`. Keys map one to one onto the preferences the app reads at runtime.",

@@ -24,7 +24,7 @@ ed usage export --card daily --output today.png --range today
 ed usage export --json | jq -r '.files[]'
 ```
 
-The image footer links to `edith.pulkit.page`. Exported cards never show
+The image footer links to `getedith.pro`. Exported cards never show
 repository names, folder paths, chat titles or dollar costs.
 
 When `--json` is present, stdout is one object:
