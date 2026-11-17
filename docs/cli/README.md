@@ -78,6 +78,7 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed running-apps`](./running-apps/README.md) | Running applications, and quitting them |
 | [`ed keyboard`](./keyboard/README.md) | Locking the keyboard so you can clean the keys |
 | [`ed tools`](./tools/README.md) | The command line tools Edith can install for you |
+| [`ed flags`](./flags/README.md) | The feature flags this Mac uses and the beta toggle |
 | [`ed shelf`](./shelf/README.md) | Files parked on the Shelf |
 | [`ed cleaner`](./cleaner/README.md) | Scanning and reclaiming disk space |
 | [`ed brew`](./brew/README.md) | Searching and managing Homebrew formulae and casks |
