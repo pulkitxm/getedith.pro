@@ -38,6 +38,7 @@ to the `herdr` CLI, not to the Edith window.
 | `ed herdr space ls` | List open space windows |
 | `ed herdr space terminal` | Open a terminal in a space window |
 | `ed herdr space split` | Split the focused pane in a space window |
+| `ed herdr background` | Keep the sessions Edith starts running after Edith quits |
 | `ed herdr close-tab` | Close one tab after `--yes` |
 | `ed herdr close-others` | Close every tab except one after `--yes` |
 | `ed herdr close-right` | Close tabs to the right after `--yes` |
@@ -72,6 +73,7 @@ do not need that window.
 - [`ed herdr close-others`](./close-others.md)
 - [`ed herdr close-right`](./close-right.md)
 - [`ed herdr close-all`](./close-all.md)
+- [`ed herdr background`](./background.md)
 - [Terminals in agent tabs](./terminals.md)
 
 ## Exit codes
@@ -82,7 +84,7 @@ do not need that window.
 | 2 | The command line was wrong: an unknown flag, `command` with no pane, or `defaults set` with options the model cannot take |
 | 3 | `--machine` named no configured machine, `command` named no pane, or `models` / `defaults set` named a kind with no launch options |
 | 1 | `send` named one pane and Herdr did not take the message |
-| 4 | `send --when-finished` or `hooks` could not reach the background agent |
+| 4 | `send --when-finished` or `hooks` could not reach the background agent, or `background` could not run a session under launchd |
 
 Listing never exits 1 or 4. A down SSH machine is an error string on
 that host and `reachable: false`, not an unavailable CLI. Plain output prints
