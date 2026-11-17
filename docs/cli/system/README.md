@@ -84,7 +84,7 @@ Neither command looks anything up by name and neither talks to the app, so 3 and
 
 - [`ed machines`](../machines/README.md) for the same sample taken on another machine
   over SSH, including the disk, steal and task fields this page reports as zero.
-- [`ed cleaner`](../cleaner/README.md) for acting on what `ed system disks` tells you
+- [`ed bifrost`](../bifrost/README.md) for acting on what `ed system disks` tells you
   about free space.
 - [`ed extensions`](../extensions/README.md) for the menu bar CPU and memory readout.
 - [The `ed` command line](../README.md) for the rest of the reference.

@@ -110,7 +110,7 @@ Progress is the rest of what stderr carries. A command that would otherwise sit
 silent while it works reports through `CLIProgress`, which paints a header, a
 row per phase as it lands, a summary, and a spinner for the work in flight that
 is rewritten in place and cleared when that work ends. `ed usage refresh` uses
-all of it, phases and summaries included. `ed cleaner scan`, `ed cleaner clean`, `ed machines files get`, `ed machines files put` and `ed app
+all of it, phases and summaries included. `ed bifrost scan`, `ed bifrost clean`, `ed machines files get`, `ed machines files put` and `ed app
 relaunch` use the spinner alone to name what they are on, with the two transfers
 counting bytes against the total. None of it touches stdout, and it is switched
 off whole rather than trimmed when there is nobody to watch it: `--json` turns
@@ -281,7 +281,7 @@ ed config describe <key>  the type, the allowed values and the default, before y
 ed extensions ls          extension ids, and which are on
 ed permissions ls         permission ids, and what the app last observed
 ed usage sources          the agents that produced the usage history
-ed cleaner categories     the cache categories the cleaner knows
+ed bifrost categories     the cache categories the cleaner knows
 ed tools ls               the command line tools extensions use, and whether they are installed
 ed app actions            the one-shot actions, what each needs, and whether it can run now
 ```
@@ -316,7 +316,7 @@ usage error. The words `on`, `off`, `true`, `false`, `yes`, `no`, `1`, `0`,
 
 Options that repeat collect their values: `--source` and `--machine` on `ed
 usage summary`, `daily` and `models` narrow to several agents, and `--root` on
-`ed cleaner scan` and `clean` sweeps several folders. Everything else takes its
+`ed bifrost scan` and `clean` sweeps several folders. Everything else takes its
 last value.
 
 Numbers are checked twice. The parser rejects text that is not a number, which
@@ -377,7 +377,7 @@ same way without saying so.
 `--yes` means the same thing everywhere it appears, on nine commands: `ed
 machines rm`, `ed machines power reboot`, `ed machines power shutdown`, `ed
 machines files rm`, `ed machines docker volume-rm`, `ed machines docker prune`,
-`ed cleaner clean`, `ed apps quit` and `ed music rm`. Where it is required,
+`ed bifrost clean`, `ed apps quit` and `ed music rm`. Where it is required,
 leaving it out makes the command report what it would have done, change nothing,
 and exit 0, so a missing `--yes` is never an error to handle.
 
@@ -434,7 +434,7 @@ is a local question that needs no permission and no round trip.
 | `ed usage machines ls`, `enable`, `disable` | no | the machine directory and one defaults key |
 | `ed usage machines collect`, `forget` | no | the collector runs over SSH from this process, and the fold back into `usage.json` is the same in-process pipeline `ed usage refresh` runs |
 | `ed system stats`, `ed system disks` | no | the same sampler, run in this process |
-| `ed clipboard`, `ed color`, `ed shelf`, `ed download`, `ed cleaner` | no | stores under Application Support and the shared defaults suite |
+| `ed clipboard`, `ed color`, `ed shelf`, `ed download`, `ed bifrost` | no | stores under Application Support and the shared defaults suite |
 | `ed app info`, `ed app paths`, `ed app links`, `ed app open-path`, `ed app open-link` | no | bundle metadata, known filesystem locations, and fixed or cached links |
 | `ed apps ls`, `ed app actions`, `ed app updates`, `ed app clear-updates` | no | the process table, `PATH`, and a log file; clearing previews unless `--yes` is present |
 | `ed tools ls`, `install`, `update`, `remove` | yes, the app itself | the app owns the tools folder, the install ledger and the status file extensions read; `remove` previews unless `--yes` is present |

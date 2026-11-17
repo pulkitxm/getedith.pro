@@ -1,4 +1,4 @@
-# `ed bifrost convert`
+# `ed beacon convert`
 
 Converts between units and prints both sides, exactly as typing the same
 sentence into the bar would.
@@ -6,7 +6,7 @@ sentence into the bar would.
 Usage:
 
 ```
-ed bifrost convert <sentence> [--json]
+ed beacon convert <sentence> [--json]
 ```
 
 Arguments and options:
@@ -19,7 +19,7 @@ Arguments and options:
 The plain response is the sentence resolved, both sides named in full:
 
 ```
-$ ed bifrost convert "12 km in miles"
+$ ed beacon convert "12 km in miles"
 12 kilometers = 7.456454307 miles
 ```
 
@@ -44,7 +44,7 @@ What the parser accepts:
 - A unit with no number at all, which is read as one: `km to mi` is
   `1 km to mi`.
 - An expression in place of the number, evaluated by the same evaluator
-  [`ed bifrost calc`](./calc.md) uses: `2 * 3 km in m` is 6,000 metres.
+  [`ed beacon calc`](./calc.md) uses: `2 * 3 km in m` is 6,000 metres.
 - Plurals, symbols and both spellings: `metre` and `meter`, `feet` and `ft`,
   `secs` and `s`.
 
@@ -60,23 +60,23 @@ Exit codes:
 | --- | --- |
 | 0 | The conversion resolved. |
 | 2 | The command line was invalid, usually the sentence missing entirely. |
-| 3 | The sentence is not a conversion Bifrost understands. |
+| 3 | The sentence is not a conversion Beacon understands. |
 
 Crossing dimensions is a not-found rather than an error of its own, and so is a
 unit nobody has heard of or a sentence with no target at all:
 
 ```
-$ ed bifrost convert "12 km in kilograms"
-error: 12 km in kilograms is not a conversion Bifrost understands
-hint: try `ed bifrost convert "12 km in miles"`
+$ ed beacon convert "12 km in kilograms"
+error: 12 km in kilograms is not a conversion Beacon understands
+hint: try `ed beacon convert "12 km in miles"`
 ```
 
 Quote the sentence: it is one positional argument and it has spaces in it. The
-command needs neither Edith nor the extension, touches no state, and never
-writes to the pasteboard.
+command runs through the installed Beacon extension, touches no state, and
+never writes to the pasteboard.
 
 ## Where to go next
 
-- [`ed bifrost calc`](./calc.md), for arithmetic rather than units
-- [`ed bifrost`](./README.md), the rest of this group
+- [`ed beacon calc`](./calc.md), for arithmetic rather than units
+- [`ed beacon`](./README.md), the rest of this group
 - [All `ed` commands](../README.md)

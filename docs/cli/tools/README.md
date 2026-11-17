@@ -33,7 +33,7 @@ able to start.
 | `gallery-dl` | gallery-dl | Music, Downloads | `brew install gallery-dl`, installing Homebrew first when it is missing |
 | `tectonic` | Tectonic | LaTeX | the `tectonic-<version>-<arch>-apple-darwin.tar.gz` from the latest `tectonic-typesetting/tectonic` release |
 | `latexmk` | TeX Live | LaTeX | not installable; detected when `latexmk` is present |
-| `ripgrep` | ripgrep | Bifrost | `brew install ripgrep` when Homebrew is present, otherwise the `ripgrep-<version>-<arch>-apple-darwin.tar.gz` from `BurntSushi/ripgrep` |
+| `ripgrep` | ripgrep | Beacon | `brew install ripgrep` when Homebrew is present, otherwise the `ripgrep-<version>-<arch>-apple-darwin.tar.gz` from `BurntSushi/ripgrep` |
 | `sshfs` | sshfs | Machines | the signed FUSE-T and sshfs packages from `macos-fuse-t`, opened in Installer one after the other |
 
 ## Where tools go

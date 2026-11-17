@@ -1,11 +1,11 @@
-# `ed bifrost clear`
+# `ed beacon clear`
 
 Forgets the frequently opened ledger, the record of what you pick in the bar.
 
 Usage:
 
 ```
-ed bifrost clear [--json]
+ed beacon clear [--json]
 ```
 
 Options:
@@ -17,8 +17,8 @@ Options:
 There are no positional arguments. The plain response counts what went:
 
 ```
-$ ed bifrost clear
-cleared 37 frequently opened applications
+$ ed beacon clear
+cleared 37 ranking entries
 ```
 
 The JSON response has one stable field:
@@ -32,13 +32,10 @@ The JSON response has one stable field:
 `cleared` is the number of entries the ledger held, not the number of times you
 opened them. Clearing an already empty ledger is a success that reports `0`.
 
-The ledger lives at the `bifrostUsage` key of the shared defaults suite
-(`com.pulkit.edith.shared`) as a JSON-encoded list of
-`{target, count, lastUsedAt}`. It is what ranks an empty query, what nudges a
-frequent application above an equally good match, and the only part of Bifrost
-that reflects your habits. It is backed up with your settings, so it survives a
-reinstall, and this is the only way to empty it from the command line. There is
-no per-application forget.
+The ledger is stored in the extension's settings. Clearing removes selection
+history and learned query associations. Favorites and aliases remain intact.
+To forget one item, use Reset learned ranking in its Command-K Actions menu.
+The reported count includes ranking records, not just distinct applications.
 
 The command posts `settingsChanged`, so an open bar drops what it was showing
 for an empty query straight away. The post is fire and forget, so the command
@@ -51,13 +48,13 @@ Exit codes:
 | 0 | The ledger was cleared, including when it was already empty. |
 | 2 | The command line was invalid. |
 
-It cannot exit 3 or 4. The command is not gated on the extension and does not
-need Edith running, because it only writes a defaults key, and the index itself
-is untouched: what Bifrost can find does not change, only what it puts first.
+The command is served by Beacon through Edith's extension CLI. The host and
+extension must be available. Clearing ranking does not change the application
+index, saved libraries, favorites or aliases.
 
 ## Where to go next
 
-- [`ed bifrost ls`](./ls.md), to see the index the ledger ranks
-- [`ed bifrost`](./README.md), the rest of this group
+- [`ed beacon ls`](./ls.md), to see the index the ledger ranks
+- [`ed beacon`](./README.md), the rest of this group
 - [`ed config`](../config/README.md), for the settings that are not this ledger
 - [All `ed` commands](../README.md)

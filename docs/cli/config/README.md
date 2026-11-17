@@ -256,7 +256,7 @@ not here cannot be set, and `import` skips it.
 | `systemAppsSort` | string | `memory` | shared | Running apps sort column. |
 | `systemAppsSortAsc` | bool | `false` | shared | Sort running apps ascending. |
 
-### `cleaner`
+### `bifrost`
 
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |

@@ -65,7 +65,7 @@ removed 2 items, 1 left
 ```
 
 Behaviour: `rm` deletes the shelf's copy outright. It does not go to the Trash,
-unlike `ed music rm` and `ed cleaner clean`, and it is not recoverable, so the
+unlike `ed music rm` and `ed bifrost clean`, and it is not recoverable, so the
 copy is gone even though whatever you originally added is untouched. A copy
 that is already missing is not an error: the index entry is dropped and the
 command still exits 0.

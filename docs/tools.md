@@ -42,7 +42,7 @@ search order.
 | Deno | Downloads, Music | the verified release zip |
 | gallery-dl | Downloads, Music | Homebrew, installing Homebrew first when it is missing |
 | Tectonic | LaTeX | the verified release archive |
-| ripgrep | Bifrost | Homebrew when present, otherwise the verified release archive |
+| ripgrep | Beacon | Homebrew when present, otherwise the verified release archive |
 | sshfs | Machines | the signed FUSE-T and sshfs installer packages |
 | TeX Live | LaTeX | detected only; it is a multi-gigabyte installer Edith does not run |
 
@@ -96,6 +96,6 @@ they ship inside that extension's package instead of being installed:
 
 Keep Awake holds a power assertion through IOKit instead of running
 `caffeinate`. Process and battery readings, Lid Awake's sleep state, mounts,
-Bifrost's system actions, This Mac's controls in Machines, App Store update
+Beacon's system actions, This Mac's controls in Machines, App Store update
 checks, archive reading, skills installs and Studio's media probing all use
 macOS frameworks directly, so none of them asks you to install anything.

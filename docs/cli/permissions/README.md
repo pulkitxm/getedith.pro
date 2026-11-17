@@ -36,7 +36,7 @@ full list as the hint.
 | `notifications` | Notifications | Usage alerts and app update notifications | optional for `usage`, `appMaintenance` |
 | `accessibility` | Privacy & Security > Accessibility | Keyboard Clean, clipboard instant paste, and typing an emoji into the frontmost app | optional for `keyboardClean`, `clipboard`, `emoji` |
 | `inputMonitoring` | Privacy & Security > Input Monitoring | Block key presses while Keyboard Clean locks the keyboard | optional for `keyboardClean` |
-| `fullDisk` | Privacy & Security > Full Disk Access | Scan folders that macOS protects in Disk Map | optional for `blitztree` |
+| `fullDisk` | Privacy & Security > Full Disk Access | Scan folders that macOS protects in Disk Map | optional for `bifrost` |
 | `screenRecording` | Privacy & Security > Screen Recording | Detect shared content, sample colours, and fold the live desktop | required by `focusDim`, `hinge`, `presenter`, `colorPicker` |
 | `applicationAudio` | Privacy & Security > Screen & System Audio Recording, granted on first use | Audio Mixer per-app volume sliders | optional for `audioMixer` |
 | `camera` | Privacy & Security > Camera | The Virtual Camera feed and preview | required by `virtualCamera` |

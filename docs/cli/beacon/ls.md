@@ -1,12 +1,12 @@
-# `ed bifrost ls`
+# `ed beacon ls`
 
-Lists the applications Bifrost has indexed, either in full or ranked against a
+Lists the applications Beacon has indexed, either in full or ranked against a
 query exactly as the bar ranks them.
 
 Usage:
 
 ```
-ed bifrost ls [--search <query>] [--limit <n>] [--json]
+ed beacon ls [--search <query>] [--limit <n>] [--json]
 ```
 
 Options:
@@ -17,12 +17,12 @@ Options:
 | `--limit` | integer | 50 | Prints at most this many applications; `0` means no limit. |
 | `--json` | flag | off | Emits one JSON array on stdout. |
 
-`ed bifrost list` is an alias, and `ed bifrost` with no subcommand runs this one.
+`ed beacon list` is an alias, and `ed beacon` with no subcommand runs this one.
 
 The plain response is one line per application, the name then its path:
 
 ```
-$ ed bifrost ls --search chrome
+$ ed beacon ls --search chrome
 Google Chrome  /Applications/Google Chrome.app
 ```
 
@@ -58,21 +58,22 @@ An index that does not exist is a not-found, and an index that exists but has
 nothing matching the query is an empty success:
 
 ```
-$ ed bifrost ls
+$ ed beacon ls
 error: no applications are indexed yet
-hint: run `ed bifrost reindex` with Edith running
+hint: run `ed beacon reindex` with Edith running
 
-$ ed bifrost ls --search zzzz
+$ ed beacon ls --search zzzz
 no application matches
 ```
 
-The command reads the cache at `~/Library/Caches/Edith/bifrost-index.json` and
-never scans the disk itself, so it is fast, works with Edith closed, and is only
-as current as the last rebuild.
+The command reads the cache under the extension's data root and never scans
+the disk itself. It is served by the installed extension through Edith's CLI
+and is only as current as the last rebuild. Use `search` for aliases, utilities,
+library entries and other launcher result types.
 
 ## Where to go next
 
-- [`ed bifrost reindex`](./reindex.md), when something new is missing
+- [`ed beacon reindex`](./reindex.md), when something new is missing
 - [`ed apps`](../apps/README.md), for the applications that are actually running
-- [`ed bifrost`](./README.md), the rest of this group
+- [`ed beacon`](./README.md), the rest of this group
 - [All `ed` commands](../README.md)

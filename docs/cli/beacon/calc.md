@@ -1,4 +1,4 @@
-# `ed bifrost calc`
+# `ed beacon calc`
 
 Evaluates an expression and prints the number, exactly as typing it into the bar
 would.
@@ -6,7 +6,7 @@ would.
 Usage:
 
 ```
-ed bifrost calc <expression> [--json]
+ed beacon calc <expression> [--json]
 ```
 
 Arguments and options:
@@ -20,7 +20,7 @@ The plain response is the number alone, ungrouped, so it can be piped straight
 into something else:
 
 ```
-$ ed bifrost calc "12 * 8 + 4"
+$ ed beacon calc "12 * 8 + 4"
 100
 ```
 
@@ -59,7 +59,7 @@ Exit codes:
 | --- | --- |
 | 0 | The expression evaluated. |
 | 2 | The command line was invalid, usually the expression missing entirely. |
-| 3 | The expression is not one Bifrost can evaluate. |
+| 3 | The expression is not one Beacon can evaluate. |
 
 A bare number is deliberately a not-found, because the bar only offers an answer
 when there is something to work out, and so are division by zero, the square
@@ -67,18 +67,18 @@ root of a negative number, an unknown function and anything that is not an
 expression at all:
 
 ```
-$ ed bifrost calc 5
-error: 5 is not an expression Bifrost can evaluate
-hint: try a sum such as `ed bifrost calc "2 + 2"`
+$ ed beacon calc 5
+error: 5 is not an expression Beacon can evaluate
+hint: try a sum such as `ed beacon calc "2 + 2"`
 ```
 
 Both `*` and spaces mean something to your shell, so quote the expression. The
-command needs neither Edith nor the extension, touches no state, and never
-writes to the pasteboard; copying is what the bar itself does when you press
+command runs through the installed Beacon extension, touches no state, and
+never writes to the pasteboard; copying is what the bar itself does when you press
 return on the answer.
 
 ## Where to go next
 
-- [`ed bifrost convert`](./convert.md), for units rather than arithmetic
-- [`ed bifrost`](./README.md), the rest of this group
+- [`ed beacon convert`](./convert.md), for units rather than arithmetic
+- [`ed beacon`](./README.md), the rest of this group
 - [All `ed` commands](../README.md)

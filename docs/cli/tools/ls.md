@@ -68,14 +68,14 @@ homebrew    installed   5.0.1       homebrew  homebrew, appMaintenance
 herdr       missing                           herdr
 quinjet     installed   0.0.86      homebrew  quinjet
 gh          installed   2.104.0     homebrew  latex, codeStats, quinjet
-git         installed   2.50.1      system    codeStats, cleaner
+git         installed   2.50.1      system    codeStats, bifrost
 yt-dlp      installed   2026.10.26  edith     music, downloads
 ffmpeg      installed   8.0.1       homebrew  music, studio, downloads
 deno        missing                           music, downloads
 gallery-dl  missing                           music, downloads
 tectonic    missing                           latex
 latexmk     detectOnly                        latex
-ripgrep     installed   15.2.0      homebrew  bifrost
+ripgrep     installed   15.2.0      homebrew  beacon
 sshfs       missing                           machines
 ```
 

@@ -117,7 +117,7 @@ Keyboard controls work while a website or its text field has focus:
 
 | Shortcut | Action |
 | --- | --- |
-| Control+Tab / Control+Shift+Tab | Next / previous workspace tab, including Profiles |
+| Option+Tab / Option+Shift+Tab | Next / previous workspace tab, including Profiles |
 | Command+Option+Arrow | Focus the pane in that direction, matching Agent Sessions |
 | Option+Backtick / Option+Shift+Backtick | Focus next / previous pane, matching Agent Sessions |
 | Command+Shift+Return | Maximize / restore the focused pane |

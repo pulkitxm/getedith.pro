@@ -30,7 +30,7 @@ The reserved list that wins over a machine name is every top level command and
 alias: `guide`, `schema`, `version`, `completions`, `install`, `uninstall`,
 `config`, `app`, `extensions`, `permissions`, `usage`, `system`, `music`,
 `nowplaying`, `np`, `calendar`, `tools`, `apps`, `download`, `downloads`, `dl`,
-`clipboard`, `color`, `colour`, `shelf`, `cleaner` and `machines`, plus `help`
+`clipboard`, `color`, `colour`, `shelf`, `bifrost` and `machines`, plus `help`
 and `__complete`. A machine called `usage` is unreachable by the shorthand and
 has to be named explicitly, as `ed machines exec usage -- ...` or
 `ed machines show usage`.

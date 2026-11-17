@@ -1,40 +1,19 @@
-# Disk Map
+# Bifrost Disk Map
 
-Enable **Disk Map** in Extensions, then open **Mac Utilities > Disk Map**.
-The scanner and UI ship with Edith. No separate app, CLI, Rust installation or
-download is required.
+Enable **Bifrost** in Library, open its page and choose **Disk Map**.
 
 ```sh
-ed extensions enable blitztree
-ed app reveal blitztree
+ed extensions enable bifrost
+ed app reveal bifrost
+ed bifrost map ~/Downloads --json
 ```
 
-## Explore disk space
+Choose a folder to measure it. Treemap and Rings show the largest immediate children, sized by allocated space. Click a folder to scan inside it, go back to the previous folder, or rescan. The engine owns the scan when switching tabs; Cancel stops it. Bifrost does not automatically start background scans.
 
-Choose a folder to start a scan. Click a folder in the treemap or the lists to
-scan inside it. Back returns to the previous folder. Rescan refreshes the current
-folder; Cancel stops the scanner. Leaving the page also cancels an active scan.
-Nothing scans automatically on launch or when the extension is enabled.
+Lists contain at most 200 entries. Largest files, directories and cleanup candidates use a 50 MB threshold. Search full paths, filter by displayed size, hide dot-named entries, and switch size ordering to name ordering. Filters operate on the bounded scan report. Drill into a folder to inspect more entries.
 
-Switch between Treemap and Rings to visualize the current folder. Both show the
-60 largest immediate children, sized by allocated bytes,
-with an Other block for unlisted space and folder metadata. Each list contains at
-most 200 entries. Largest files and folders use a 50 MB threshold. Lists overlap
-and must not be added together. Cleanup candidates use Edith's developer-cache
-catalog, with project markers for Cargo, Next.js and Python environments. Nested
-candidates and the Trash are excluded. Reveal in Finder lets you inspect items
-before deciding what to remove. The Trash button asks for confirmation, verifies
-that the selected item still matches the scan, moves it to the macOS Trash and
-rescans the folder. It never empties the Trash or permanently deletes files.
+The page shows logical and allocated bytes, folders and elapsed time. Hard links count once. Symlinks are not traversed, scans stay on one volume, and cloud-only directories and protected paths are skipped. Coverage warnings report read errors and skipped entries. Protected paths are managed in the Restore tab and apply to every removal route.
 
-The native scanner walks filesystem metadata on a background task. It keeps
-bounded result lists and a directory stack instead of retaining every file.
-Hard-linked file bytes count once, attributed to the first encountered name.
-Directory symlinks are listed but not traversed; a selected root symlink is
-resolved. Scans stay on one volume and skip cloud-only directories. Partial scans
-show their error and skipped-directory counts.
+Reveal in Finder before choosing Trash. The current preview and file identity are checked before moving an item. Restore recorded items in the Restore tab or with `ed bifrost history` and `ed bifrost restore`. Bifrost does not empty Trash. Allocated bytes are not guaranteed recoverable space because APFS clones, snapshots and open files can retain blocks.
 
-Allocated bytes are disk footprint, not guaranteed recoverable space. APFS clones,
-snapshots and open files affect recovery. Full Disk Access for Edith is optional
-and can make protected folders readable. Scan reports stay in memory and are not
-uploaded or synced.
+See the [Bifrost CLI guide](cli/bifrost/README.md) and [research notes](bifrost-research.md).
