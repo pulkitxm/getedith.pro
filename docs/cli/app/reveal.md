@@ -8,8 +8,8 @@ ed app reveal [<section>] [--tab <tab>] [--list] [--json]
 
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
-| `<section>` | `home`, `usage`, `herdr`, `quinjet`, `companion`, `plugins`, `machines`, `docs`, `appMaintenance`, `homebrew`, `bifrost`, `system`, `calendar`, `studio`, `timeLapse`, `virtualCamera`, `music`, `downloads`, `socialManager`, `database`, `codeStats`, `seoAudit`, `latex`, `attention`, `extensions`, `settings`, `about` | none | The page to show. An extension page is named by its extension id and opens whether or not it is pinned to the sidebar; `extensions` is Library and `about` is About Edith. An extension without a page opens its Library entry. Without it the window comes up where it already was, and the answer names that section. |
-| `--tab` | section-specific | none | A tab inside the section. `bifrost` has `cleanup`, `map`, `files`, `restore`; `appMaintenance` has `updates`, `remove`, `history`; `companion` has `chat`, `capture`, `desk`, `library`, `mind`, `setup`, `settings`; `settings` has `general`, `surfaces`, `permissions`, `data`, `storage`, `shortcuts`, `icloud`, `updates`, and in the Developer profile also `agentActivity`, `agent`, `jev`, `terminal`, `mcp`. |
+| `<section>` | `home`, `usage`, `agents`, `codeReview`, `memory`, `plugins`, `machines`, `docs`, `appUpdates`, `homebrew`, `cleaner`, `runningApps`, `calendar`, `studio`, `screenRecorder`, `virtualCamera`, `music`, `downloads`, `socialManager`, `database`, `codeStats`, `siteAudit`, `latex`, `attention`, `extensions`, `settings`, `about` | none | The page to show. An extension page is named by its extension id and opens whether or not it is pinned to the sidebar; `extensions` is Library and `about` is About Edith. An extension without a page opens its Library entry. Without it the window comes up where it already was, and the answer names that section. |
+| `--tab` | section-specific | none | A tab inside the section. `cleaner` has `cleanup`, `map`, `files`, `restore`; `appUpdates` has `updates`, `remove`, `history`; `memory` has `chat`, `capture`, `desk`, `library`, `mind`, `setup`, `settings`; `settings` has `general`, `surfaces`, `permissions`, `data`, `storage`, `shortcuts`, `icloud`, `updates`, and in the Developer profile also `agentActivity`, `agent`, `jev`, `terminal`, `mcp`. |
 | `--list` | flag | off | Print every page id and title that can be revealed. Does not change the window. |
 | `--json` | flag | off | Emit JSON on stdout. |
 
@@ -18,7 +18,7 @@ ed app reveal [<section>] [--tab <tab>] [--list] [--json]
 ```json
 {
   "action": "reveal",
-  "section": "companion",
+  "section": "memory",
   "tab": "chat"
 }
 ```
@@ -27,17 +27,17 @@ Examples:
 
 ```
 ed app reveal
-ed app reveal companion
+ed app reveal memory
 ed app reveal docs
-ed app reveal companion --tab settings
+ed app reveal memory --tab settings
 ed app reveal settings --tab permissions
 ed app reveal settings --tab updates
 ed app reveal machines --json
-ed app reveal companion/chat
+ed app reveal memory/chat
 ```
 
 A value that contains `/` is a full route. The first segment is still the
-section, and `appMaintenance`, `companion` or `settings` also take their tab
+section, and `appUpdates`, `memory` or `settings` also take their tab
 from the second segment. [`ed app navigate`](./navigate.md) moves to the same
 route without bringing the window forward.
 

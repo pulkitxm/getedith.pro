@@ -4,7 +4,7 @@ Quinjet reviews pull requests and follows live workspace changes from an Edith
 panel tab. Turn it on in the Library, or run:
 
 ```sh
-ed extensions enable quinjet
+ed extensions enable codeReview
 ed tools install quinjet
 ```
 
@@ -21,7 +21,7 @@ one-time code. No terminal is involved in either case. Verify the installation:
 
 ```sh
 ed tools ls --json | jq '.[] | select(.id == "quinjet")'
-ed extensions info quinjet --json
+ed extensions info codeReview --json
 ```
 
 Choose `embedded` to run workspaces inside Edith. Choose `cmux` to open them in

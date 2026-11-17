@@ -8,8 +8,8 @@ ed docs show <page-or-command> [--json]
 ```
 
 ```sh
-ed docs show herdr/ls.md
-ed docs show herdr ls
+ed docs show agents/ls.md
+ed docs show agents ls
 ed docs show ed machines docker prune --json
 ```
 
@@ -29,12 +29,12 @@ its group page that describes it, and `anchor` names that section.
 {
   "anchor": null,
   "anchors": [
-    { "anchor": "ed-herdr-ls", "level": 1, "title": "ed herdr ls" },
+    { "anchor": "ed-agents-ls", "level": 1, "title": "ed agents ls" },
     { "anchor": "options", "level": 2, "title": "Options" }
   ],
-  "markdown": "# `ed herdr ls`\n...",
-  "path": "herdr/ls.md",
-  "title": "ed herdr ls"
+  "markdown": "# `ed agents ls`\n...",
+  "path": "agents/ls.md",
+  "title": "ed agents ls"
 }
 ```
 

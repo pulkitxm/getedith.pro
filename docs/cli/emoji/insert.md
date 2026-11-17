@@ -49,7 +49,7 @@ The JSON response has two stable fields:
 ```json
 {
   "emoji": "👍🏽",
-  "operation": "emoji.insert"
+  "operation": "emojiPicker.insert"
 }
 ```
 

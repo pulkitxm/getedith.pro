@@ -19,7 +19,7 @@ ed app pin <id> [--json]
   "id": "usage",
   "changed": true,
   "pinned": true,
-  "pins": ["herdr", "usage"]
+  "pins": ["agents", "usage"]
 }
 ```
 

@@ -33,10 +33,10 @@ full list as the hint.
 | Id | Where it lives in System Settings | What Edith needs it for | Used by |
 | --- | --- | --- | --- |
 | `calendar` | Privacy & Security > Calendars | Read and show your schedule in Calendar | required by `calendar` |
-| `notifications` | Notifications | Usage alerts and app update notifications | optional for `usage`, `appMaintenance` |
-| `accessibility` | Privacy & Security > Accessibility | Keyboard Clean, clipboard instant paste, and typing an emoji into the frontmost app | optional for `keyboardClean`, `clipboard`, `emoji` |
+| `notifications` | Notifications | Usage alerts and app update notifications | optional for `usage`, `appUpdates` |
+| `accessibility` | Privacy & Security > Accessibility | Keyboard Clean, clipboard instant paste, and typing an emoji into the frontmost app | optional for `keyboardClean`, `clipboard`, `emojiPicker` |
 | `inputMonitoring` | Privacy & Security > Input Monitoring | Block key presses while Keyboard Clean locks the keyboard | optional for `keyboardClean` |
-| `fullDisk` | Privacy & Security > Full Disk Access | Scan folders that macOS protects in Disk Map | optional for `bifrost` |
+| `fullDisk` | Privacy & Security > Full Disk Access | Scan folders that macOS protects in Disk Map | optional for `cleaner` |
 | `screenRecording` | Privacy & Security > Screen Recording | Detect shared content, sample colours, and fold the live desktop | required by `focusDim`, `hinge`, `presenter`, `colorPicker` |
 | `applicationAudio` | Privacy & Security > Screen & System Audio Recording, granted on first use | Audio Mixer per-app volume sliders | optional for `audioMixer` |
 | `camera` | Privacy & Security > Camera | The Virtual Camera feed and preview | required by `virtualCamera` |

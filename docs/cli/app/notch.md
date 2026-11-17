@@ -24,7 +24,7 @@ order the notch ranks them: urgency, then priority, then the most recent.
   "phase": "live",
   "display": "notch",
   "top": {
-    "provider": "notchShelf",
+    "provider": "shelf",
     "key": "files",
     "urgency": "low",
     "badge": "2 files",

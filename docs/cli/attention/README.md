@@ -45,7 +45,7 @@ Mac is idle.
 Categories come from your rules first, then from a built-in catalog of common apps
 and sites, then from Jev when a key is configured. Rules can match bundle
 identifiers (with a trailing `*`), domains, URL prefixes, title keywords and Edith
-context such as `page=herdr` or `machine=build-box`, and the most specific match
+context such as `page=agents` or `machine=build-box`, and the most specific match
 wins.
 
 ## Where to go next

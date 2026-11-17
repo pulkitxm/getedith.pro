@@ -33,7 +33,7 @@ Service Management, an extension repository, or a verified executable.
 
 ```
 ed extensions status
-ed extensions status quinjet
+ed extensions status codeReview
 ed extensions status calendar --json
 ed extensions status --json | jq '.[] | select(.verified == false)'
 ```

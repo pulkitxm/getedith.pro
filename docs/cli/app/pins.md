@@ -17,7 +17,7 @@ ed app pins [--reset] [--json]
 {
   "customized": true,
   "pins": [
-    { "id": "herdr", "shown": true },
+    { "id": "agents", "shown": true },
     { "id": "music", "shown": false }
   ]
 }

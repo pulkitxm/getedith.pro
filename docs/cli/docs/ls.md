@@ -10,7 +10,7 @@ ed docs ls [--group <group>] [--json]
 
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
-| `--group <group>` | a folder under `docs/cli`, such as `herdr` or `machines-docker` | every group | Only the pages in that group |
+| `--group <group>` | a folder under `docs/cli`, such as `agents` or `machines-docker` | every group | Only the pages in that group |
 | `--json` | flag | off | Emit JSON on stdout |
 
 The human form is a two column table, `PATH` and `TITLE`. A group that does not
@@ -22,10 +22,10 @@ exist exits 3.
 {
   "pages": [
     {
-      "command": "ed herdr ls",
-      "group": "herdr",
-      "path": "herdr/ls.md",
-      "title": "ed herdr ls"
+      "command": "ed agents ls",
+      "group": "agents",
+      "path": "agents/ls.md",
+      "title": "ed agents ls"
     }
   ]
 }

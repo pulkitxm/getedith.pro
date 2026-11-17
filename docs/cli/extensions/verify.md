@@ -18,7 +18,7 @@ running helper do not hide corrupt storage, a missing service, invalid
 configuration, or an empty content source.
 
 ```
-ed extensions verify quinjet
+ed extensions verify codeReview
 ed extensions verify calendar --json
 ed extensions verify machines --json | jq '{verified, state, remediation}'
 ```

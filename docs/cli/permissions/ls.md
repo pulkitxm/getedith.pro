@@ -108,10 +108,10 @@ accessibility    granted                 system,clipboard
 inputMonitoring  granted                 system
 fullDisk         no
 screenRecording  granted                 focusDim,hinge,presenter,colorPicker
-applicationAudio on first use            notchShelf
-camera           granted                 notchShelf
-bluetooth        on first use            notchShelf
-automation       on first use            notchShelf
+applicationAudio on first use            shelf
+camera           granted                 shelf
+bluetooth        on first use            shelf
+automation       on first use            shelf
 
 $ ed permissions ls --attention
 PERMISSION  STATE            USED BY

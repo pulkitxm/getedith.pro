@@ -1,6 +1,6 @@
 # App Updates
 
-App Updates combines an App Update Center, verified single-app disk image installation, and review-first removal. Turn it on in Library, then open **App Updates** from the sidebar or Library. The page has three tabs: Updates, Remove and History (`ed app reveal appMaintenance --tab remove`). Homebrew and Cleaner are separate extensions with their own pages.
+App Updates combines an App Update Center, verified single-app disk image installation, and review-first removal. Turn it on in Library, then open **App Updates** from the sidebar or Library. The page has three tabs: Updates, Remove and History (`ed app reveal appUpdates --tab remove`). Homebrew and Cleaner are separate extensions with their own pages.
 
 ## Manage Homebrew packages
 

@@ -25,7 +25,7 @@ The JSON response has two stable fields:
 
 ```json
 {
-  "operation": "emoji.pick",
+  "operation": "emojiPicker.pick",
   "requested": true
 }
 ```
@@ -62,7 +62,7 @@ The extension is checked first, before the app, so an off extension is reported
 as an off extension even when Edith is closed:
 
 ```
-ed extensions enable emoji
+ed extensions enable emojiPicker
 ed emoji pick
 ```
 

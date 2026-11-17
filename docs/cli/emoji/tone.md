@@ -89,5 +89,5 @@ at its base character.
 
 - [`ed emoji insert`](./insert.md), which applies this tone
 - [`ed emoji`](./README.md), the rest of this group
-- [`ed config`](../config/README.md), for `emojiSkinTone` and the rest of the `emoji` group
+- [`ed config`](../config/README.md), for `emojiSkinTone` and the rest of the `emojiPicker` group
 - [All `ed` commands](../README.md)

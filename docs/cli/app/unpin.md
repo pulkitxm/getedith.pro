@@ -19,7 +19,7 @@ ed app unpin <id> [--json]
   "id": "usage",
   "changed": true,
   "pinned": false,
-  "pins": ["herdr"]
+  "pins": ["agents"]
 }
 ```
 

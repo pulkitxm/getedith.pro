@@ -1,41 +1,80 @@
 # `ed bifrost`
 
-Bifrost combines Cleanup, Disk Map and File review. It uses native filesystem APIs and the existing `ed` interface. No separate Rust program or background cleanup daemon is required.
+`ed bifrost` controls Bifrost, Edith's keyboard launcher. It opens the bar,
+previews search results, inspects the application index and evaluates expressions.
+The extension identifier is `bifrost`; its displayed name is Bifrost.
 
-| Command | Purpose |
+| Command | What it does |
 | --- | --- |
-| [`scan`](./scan.md) | Inspect cache and project categories. |
-| [`categories`](./categories.md) | Show every rule, path and default selection. |
-| [`clean`](./clean.md) | Preview or move an explicit selection to Trash. |
-| [`drives`](./drives.md) | List available volumes. |
-| `worktrees --root <folder>` | Inspect worktree size, age and git status. |
-| [`map <folder> --json`](./map.md) | Export allocated and logical sizes, coverage and ranked entries. |
-| [`review <folder> --json`](./review.md) | Find large, old and duplicate files and installers. |
-| [`protect [path]`](./protect.md) | Add a persistent protection, or list existing protections. |
-| `protect <path> --remove` | Remove a protection. |
-| [`history --json`](./history.md) | List recorded Trash locations and restore identifiers. |
-| [`restore <receipt-id> [--yes]`](./restore.md) | Preview a restore, then apply it without overwriting files. |
+| [`ed bifrost open [query]`](./open.md) | Opens the bar with an optional query |
+| [`ed bifrost search <query>`](./search.md) | Previews results without executing them |
+| [`ed bifrost ls`](./ls.md) | Lists or searches indexed applications |
+| [`ed bifrost calc <expression>`](./calc.md) | Evaluates arithmetic |
+| [`ed bifrost convert <sentence>`](./convert.md) | Converts units |
+| [`ed bifrost reindex`](./reindex.md) | Rebuilds the application index |
+| [`ed bifrost clear`](./clear.md) | Resets learned ranking, retaining favorites and aliases |
 
-## File review
+All commands accept `--json`. `ed bifrost` defaults to `ls`; `list` is an alias
+for `ls`. Commands are served by the installed extension through Edith's CLI.
+Use a development slot's bundled `ed` when checking a local package.
+
+The application index scans the standard application folders without Spotlight.
+It is cached under the extension's data root and refreshed on first use or when
+opening the bar after five minutes. `reindex` requests a fresh scan and returns
+before it completes. Use `ls` after indexing finishes.
+
+## Sources
+
+Bifrost includes applications, math, unit/currency conversion, developer utilities,
+web keywords and explicit file paths. Clipboard and file search are separate modes.
+Additional sources are configurable in Bifrost settings:
+
+| Source | Setting | Default |
+| --- | --- | --- |
+| Edith integration actions | `beaconSourceIntegrations` | On |
+| Browser bookmarks | `beaconSourceBookmarks` | Off |
+| Quicklinks | `beaconSourceQuicklinks` | On |
+| Snippets | `beaconSourceSnippets` | On |
+| Shell commands | `beaconSourceShellCommands` | On |
+| Apple Shortcuts | `beaconSourceAppleShortcuts` | On |
+| Window actions | `beaconSourceWindowActions` | On |
+| System actions | `beaconSourceSystemActions` | On |
+| Running apps | `beaconSourceRunningApplications` | On |
+| Open windows | `beaconSourceOpenWindows` | Off |
 
 ```sh
-ed bifrost review ~/Downloads --minimum-mb 10 --older-than-days 30 --json
-ed bifrost review ~/Documents --minimum-mb 0 --exclude ~/Documents/Keep
-ed bifrost review ~/Downloads --extension dmg --extension pkg --no-duplicates
+ed config ls --group bifrost --json
+ed config set beaconSourceBookmarks true
+ed bifrost search "base64 hello" --json
 ```
 
-`--hidden` includes hidden files. Review scans stay on one filesystem and skip cloud-only entries, packages and symbolic links. By default, at most 50,000 entries are visited and 2 GB of content is hashed per scan. Adjust these limits with `--maximum-entries` and `--hash-budget-mb`. `--minimum-mb 0 --maximum-mb 0` finds empty files. The report explicitly identifies limited scans and read errors. Narrow the scope to investigate further.
+Window actions and automatic snippet insertion require Accessibility. Without it,
+a snippet copies to the clipboard. Safari bookmarks may require Full Disk Access.
+The Clipboard and Machines integrations require their respective providers.
 
-Duplicate groups use full SHA-256 content hashes after matching logical size. Hard-link aliases count once. No files start selected. The File review screen can select duplicate copies while retaining one copy; deletion refuses a group without an unchanged remaining copy. Size and age filters also restrict duplicate comparison, so groups are relative to that scan.
+Give one a keyword and it becomes a prefix: type `gh edith` and the bar runs the
+quicklink keyed `gh` with `edith` as `{query}`, skipping every other result. A
+keyword on its own is just a search. Values going into a web URL are
+percent-encoded, and snippets and file quicklinks get them as typed. Shell
+commands never see the text itself: each placeholder becomes a quoted reference
+to an environment variable (`EDITH_BEACON_1`, `EDITH_BEACON_2`, ...) holding
+the value, so clipboard text such as `; rm -rf ~` stays data whether the
+placeholder sits bare, inside double quotes or inside single quotes.
 
-## Removal and restoration
+## Libraries and ranking
 
-Protected paths apply across all Bifrost removal routes. Protecting a child also prevents removal of its containing folder. The filesystem identity is checked before moving a reviewed item. Symbolic-link parent replacements are rejected.
+Quicklinks, snippets and shell commands are editable in settings and support local
+JSON import/export. Plain Raycast Quicklinks and Snippets JSON can be imported.
+Supported placeholders are `{query}`, `{argument}`, `{clipboard}`, `{selection}`,
+`{date}`, `{time}` and `{uuid}`. A format after a colon customizes dates and times.
+Shell placeholder values are passed through environment variables rather than
+interpolated as executable input.
 
-Trash history records at most 500 receipts; the screen offers search and pages of 50 and the CLI lists all retained receipts. Restore uses an exclusive filesystem rename and refuses an occupied original path. Missing or changed Trash items must be handled in Finder. Bifrost never empties Trash. Bytes moved are not bytes immediately freed, and APFS shared blocks and snapshots can reduce eventual recovery.
+Command-K on a result offers favorites, exact aliases, copy and applicable file
+actions. Ranking learns successful selections and decays over time. Read-only
+`search` does not teach ranking, open links or copy values.
 
-## Navigation
+See `docs/bifrost.md` for examples,
+provider requirements and the current coverage limits.
 
-Enable Bifrost in Library and open its page. Cleanup offers categories and worktree controls. Disk Map offers treemap and rings, largest-item lists, search, size filtering and hidden-entry controls. Files offers review presets, sorting, file selection and report export. Restore offers persistent protected paths and Trash history.
-
-[All commands](../README.md).
+[All terminal commands](../README.md)

@@ -148,9 +148,9 @@ on the first deployment.
 Enable Companion and keep Edith running before invoking its worker:
 
 ```sh
-ed invoke companion companion.status --json '{}'
-ed invoke companion companion.health --json '{"refresh":true}'
-ed invoke companion companion.search --json '{"query":"synthetic note","limit":10}'
+ed invoke memory memory.status --json '{}'
+ed invoke memory memory.health --json '{"refresh":true}'
+ed invoke memory memory.search --json '{"query":"synthetic note","limit":10}'
 ```
 
 Deployment, stack controls, export, import, and erase remain in the Companion UI. See the [public invocation reference](cli/invoke/README.md) for worker availability and request limits.

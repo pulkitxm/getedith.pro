@@ -9,8 +9,7 @@ never changed.
 ## Turn it on
 
 Turn on Window Borders in the Library under Labs, or run
-`ed extensions enable windowSweaters`. The extension id stays `windowSweaters` so
-existing settings and scripts keep working.
+`ed extensions enable windowBorders`.
 
 **Borders on** shows or hides every border without disabling the extension. Your
 choices are kept while borders are off.

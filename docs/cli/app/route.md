@@ -14,7 +14,7 @@ ed app route [--json]
 
 ```json
 {
-  "route": "companion/chat",
+  "route": "memory/chat",
   "canGoBack": true,
   "canGoForward": false
 }

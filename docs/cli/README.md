@@ -65,13 +65,13 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed camera`](./camera/README.md) | Edith Camera: framing, looks, backgrounds, overlays, scenes and pausing for any video app |
 | [`ed audio`](./audio/README.md) | Per-app volume for whatever is playing |
 | [`ed presenter`](./presenter/README.md) | Manual presenter mode at runtime |
-| [`ed herdr`](./herdr/README.md) | Live Herdr sessions on this Mac and your SSH machines |
-| [`ed quinjet`](./quinjet/README.md) | Discover, inspect and launch Quinjet review workspaces locally or on a configured machine |
+| [`ed agents`](./agents/README.md) | Live Herdr sessions on this Mac and your SSH machines |
+| [`ed code-review`](./code-review/README.md) | Discover, inspect and launch Quinjet review workspaces locally or on a configured machine |
 | [`ed database`](./database/README.md) | Saved database connections and capability reports through the authenticated local broker |
 | [`ed clipboard`](./clipboard/README.md) | Clipboard history: read, copy, pin and prune |
 | [`ed attention`](./attention/README.md) | Application, website, music, focus and distraction insight |
 | [`ed color`](./color/README.md) | Launching the colour picker and reading its swatch history |
-| [`ed beacon`](./beacon/README.md) | The launcher bar: the application index behind it, and the sums and unit conversions it answers |
+| [`ed bifrost`](./bifrost/README.md) | The launcher bar: the application index behind it, and the sums and unit conversions it answers |
 | [`ed emoji`](./emoji/README.md) | Opening the emoji picker, listing what this Mac can render, typing one, and the default skin tone |
 | [`ed skills`](./skills/README.md) | The Edith skill library: preview, copy, and install into detected agents |
 | [`ed download`](./download/README.md) | The download queue and the tools that back it |
@@ -79,12 +79,12 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed keyboard`](./keyboard/README.md) | Locking the keyboard so you can clean the keys |
 | [`ed tools`](./tools/README.md) | The command line tools Edith can install for you |
 | [`ed shelf`](./shelf/README.md) | Files parked on the Shelf |
-| [`ed bifrost`](./bifrost/README.md) | Scanning and reclaiming disk space |
+| [`ed cleaner`](./cleaner/README.md) | Scanning and reclaiming disk space |
 | [`ed brew`](./brew/README.md) | Searching and managing Homebrew formulae and casks |
 | [`ed maintenance`](./maintenance/README.md) | Verified app installs, updates, inventory, and review-first removal |
 | [`ed seo`](./seo/README.md) | Site audits: projects, page selection, page scores, and saved runs |
 | [`ed code-stats`](./code-stats/README.md) | Your GitHub mirror, refresh schedule, identities, and code report |
-| [`ed companion`](./companion/README.md) | Local memory health, status, Markdown ingest and episodes |
+| [`ed memory`](./memory/README.md) | Local memory health, status, Markdown ingest and episodes |
 
 ## Other machines
 

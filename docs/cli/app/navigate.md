@@ -8,14 +8,14 @@ ed app navigate <route> [--json]
 
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
-| `<route>` | route | none | Where to go, such as `companion/chat` or `machines/<id>/docker`. |
+| `<route>` | route | none | Where to go, such as `memory/chat` or `machines/<id>/docker`. |
 | `--json` | flag | off | Emit JSON on stdout. |
 
 `--json` shape:
 
 ```json
 {
-  "route": "companion/chat",
+  "route": "memory/chat",
   "canGoBack": true,
   "canGoForward": false
 }
@@ -24,7 +24,7 @@ ed app navigate <route> [--json]
 Examples:
 
 ```
-ed app navigate companion/chat
+ed app navigate memory/chat
 ed app navigate docs --json
 ```
 

@@ -94,7 +94,7 @@ probing state.
 - Local file, text, position and removal commands do not need the Shelf to be
   running, so you can park and read files even when the notch is hidden.
   `share` needs the Shelf turned on. Turn it on in the Library or with
-  `ed extensions enable notchShelf`.
+  `ed extensions enable shelf`.
 - `purge` uses `notchShelfKeepDuration` unless you name `forever`, `oneHour`,
   `oneDay`, `oneWeek` or `oneMonth`. It previews exact file paths by default
   and removes them only with `--yes`. The running shelf uses the same expiry

@@ -29,8 +29,8 @@ Only `requiredTools` are planned or installed. `optionalTools` remain visible in
 setup. Install one explicitly with `ed tools install <id>`.
 
 ```
-ed extensions setup quinjet --dry-run --json
-ed extensions setup quinjet --install-tools
+ed extensions setup codeReview --dry-run --json
+ed extensions setup codeReview --install-tools
 ed extensions setup calendar --json
 ```
 

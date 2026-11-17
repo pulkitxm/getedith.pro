@@ -214,13 +214,13 @@ not here cannot be set, and `import` skips it.
 | `machinesNotifyDiskFull` | bool | none | shared | Notify when a machine's disk crosses the threshold, or a filesystem stops responding. |
 | `machinesDiskThreshold` | number | `90` | shared | Disk usage percentage that triggers the disk alert. |
 
-### `herdr`
+### `agents`
 
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |
 | `tabHerdrEnabled` | bool | `false` | shared | Herdr extension: live sessions on this Mac and SSH machines. |
 
-### `companion`
+### `memory`
 
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |
@@ -256,7 +256,7 @@ not here cannot be set, and `import` skips it.
 | `systemAppsSort` | string | `memory` | shared | Running apps sort column. |
 | `systemAppsSortAsc` | bool | `false` | shared | Sort running apps ascending. |
 
-### `bifrost`
+### `cleaner`
 
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |

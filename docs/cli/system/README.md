@@ -76,7 +76,7 @@ Neither command looks anything up by name and neither talks to the app, so 3 and
   samples every two seconds and refreshes its volume and battery half on every
   fifteenth tick, about every thirty seconds; `ed system disks` reads it fresh
   on every call.
-- The `systemStats` extension, the CPU and memory readout in the menu bar, is
+- The `menuBarStats` extension, the CPU and memory readout in the menu bar, is
   unrelated to these commands. `ed system` never consults it, and both commands
   work with every extension turned off.
 
@@ -84,7 +84,7 @@ Neither command looks anything up by name and neither talks to the app, so 3 and
 
 - [`ed machines`](../machines/README.md) for the same sample taken on another machine
   over SSH, including the disk, steal and task fields this page reports as zero.
-- [`ed bifrost`](../bifrost/README.md) for acting on what `ed system disks` tells you
+- [`ed cleaner`](../cleaner/README.md) for acting on what `ed system disks` tells you
   about free space.
 - [`ed extensions`](../extensions/README.md) for the menu bar CPU and memory readout.
 - [The `ed` command line](../README.md) for the rest of the reference.

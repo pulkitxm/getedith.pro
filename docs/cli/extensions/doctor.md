@@ -21,7 +21,7 @@ availability.
 
 ```
 ed extensions doctor
-ed extensions doctor herdr
+ed extensions doctor agents
 ed extensions doctor --json | jq '.[] | select(.state.phase == "failed")'
 ```
 

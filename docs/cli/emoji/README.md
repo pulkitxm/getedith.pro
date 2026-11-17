@@ -56,7 +56,7 @@ only ones that can exit 4, and the three that only touch defaults never do:
 ```
 $ ed emoji pick
 error: the Emoji Picker extension is off
-hint: run `ed extensions enable emoji`, then retry
+hint: run `ed extensions enable emojiPicker`, then retry
 ```
 
 A not-found is always 3, and always carries the list or the next command to try:
@@ -100,7 +100,7 @@ hint: categories: smileys-emotion, people-body, animals-nature, food-drink, trav
 - **The frequency ledger is a stored value, not a setting.** It lives at the
   `emojiUsage` key of the `com.pulkit.edith.shared` defaults suite as a
   JSON-encoded list of `{character, count, lastUsedAt}`. So
-  `ed config ls --group emoji` lists the seven `emoji` settings and never the
+  `ed config ls --group emojiPicker` lists the seven `emojiPicker` settings and never the
   ledger, `ed config unset` has nothing to unset here, and neither
   `ed config export` nor Edith's settings backup carries your habits to another
   Mac. `ed emoji clear` is the only way to empty it from the command line.
@@ -172,6 +172,6 @@ hint: categories: smileys-emotion, people-body, animals-nature, food-drink, trav
 
 - [`ed color`](../color/README.md), the other picker Edith puts on a hotkey
 - [`ed extensions`](../extensions/README.md), to turn the emoji picker on or off
-- [`ed config`](../config/README.md), for the seven `emoji` settings behind it
+- [`ed config`](../config/README.md), for the seven `emojiPicker` settings behind it
 - [`ed permissions`](../permissions/README.md), for the Accessibility access that typing wants
 - [All `ed` commands](../README.md)
