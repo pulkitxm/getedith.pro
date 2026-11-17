@@ -100,5 +100,5 @@ content, so use a separate build with synthetic data for shareable evidence.
 
 - [`ed permissions`](../permissions/README.md) for macOS grants.
 - [`ed extensions`](../extensions/README.md) for downloads and enabled features.
-- [`ed apps`](../apps/README.md) for controlling other applications.
+- [`ed running-apps`](../running-apps/README.md) for controlling other applications.
 - [All command groups](../README.md).

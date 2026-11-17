@@ -4,7 +4,7 @@ Two properties make this system worth having and are also, together, the thing t
 manage: it knows you deeply, and it is warm. Either alone is harmless. Combined and
 unmanaged they compound into agreement without reality testing. So the passes below
 are not polish, they are load bearing. Back to
-[how the companion works](./concepts.md).
+[how Memory works](./concepts.md).
 
 ## Why "don't be sycophantic" does nothing
 
@@ -86,5 +86,5 @@ not a persisted conversation.
 - [`ed memory eval`](./eval.md), running the suite
 - [`ed memory personas`](./personas.md), the lenses these passes belong to
 - [Asking and chatting](./concepts-chat.md), the pipeline they sit inside
-- [How the companion works](./concepts.md), the hub
+- [How Memory works](./concepts.md), the hub
 - [All `ed` commands](../README.md)

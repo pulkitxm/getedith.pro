@@ -1,10 +1,10 @@
 # `ed memory machines`
 
-The companion backend's own machine inventory and multi-host placement planner.
+The Memory backend's own machine inventory and multi-host placement planner.
 Every machine is asked what it is rather than assumed to be anything, a
 capability tier is derived from the answer, and you can override it.
 
-This registry is stored in the companion database. It is separate from Edith's
+This registry is stored in the Memory database. It is separate from Edith's
 `ed machines` fleet, [`ed memory hosts`](./hosts.md), the locally saved
 deployment record, and [`ed memory deploy`](./deploy.md). These commands
 plan topology but do not start, stop or move the currently deployed stack.

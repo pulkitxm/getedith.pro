@@ -1,6 +1,6 @@
 # `ed memory why`
 
-Prints the whole chain behind anything the companion believes: the evidence episodes,
+Prints the whole chain behind anything Memory believes: the evidence episodes,
 what argues against it, the prompt version that produced it, how its confidence
 moved, and how it was checked against the record. When the system says something
 about you that feels wrong, this is how you find out whether it is wrong or you are.

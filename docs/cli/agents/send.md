@@ -42,7 +42,7 @@ with `herdr agent get` every two seconds on this Mac and every ten seconds on
 SSH machines, and sends once the agent has worked and is back at its prompt.
 `--in` and `--at` send at that moment even if the agent is mid-turn. Herdr
 then queues the text or skips it, and the result is kept for a day so
-`ed agents hooks` and the Herdr page can show it. It is sent at most once: if
+`ed agents hooks` and the Agents page can show it. It is sent at most once: if
 Edith restarts in the middle of sending, it is not sent again. A new message
 for the same agent replaces the waiting one. The message is dropped when the
 agent closes or a different agent takes over the pane.

@@ -1,6 +1,6 @@
 # `ed memory deploy`
 
-Chooses the machine that runs the companion, brings the stack up there, and
+Chooses the machine that runs Memory, brings the stack up there, and
 remembers the choice so everything else knows where it lives.
 
 Usage:
@@ -30,17 +30,17 @@ Examples:
 
 ```
 $ ed memory deploy "TUF Wired"
-the companion running on TUF Wired, cpu, reached on port 4820
+Memory running on TUF Wired, cpu, reached on port 4820
 
 $ ed memory deploy "TUF Wired" --adopt
-the companion running on TUF Wired, cpu, reached on port 4820
+Memory running on TUF Wired, cpu, reached on port 4820
 ```
 
 A machine that cannot run it yet is refused with the reason and the fix, so
 nothing half-starts. The tier is derived from the Mac processor: Apple silicon
 uses the Apple Metal overlay and Intel uses CPU.
 
-Deploying creates the directory and streams the companion source tarball that
+Deploying creates the directory and streams the Memory source tarball that
 ships inside the Memory package into it on every deploy. A build without that
 tarball keeps an existing destination that already contains `Cargo.toml`, and
 otherwise fails before Compose starts. Compose runs through the runtime detected

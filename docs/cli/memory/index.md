@@ -13,7 +13,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 `--json` shape:
 

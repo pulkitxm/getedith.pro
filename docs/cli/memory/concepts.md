@@ -1,4 +1,4 @@
-# How the companion works
+# How Memory works
 
 [`ed memory`](./README.md) documents the commands; this page is the
 machinery behind them, one line per concept. Back to
@@ -61,8 +61,8 @@ Two pipelines carry everything:
 - A stream filter drops `<think>` blocks and half-streamed markers.
 - Citations are policed: an episode the reasoner was not shown is dropped,
   and `verbatim` is verified structurally or demoted to `paraphrase`.
-- Every turn logs retrieval telemetry; replies are never re-ingested, so the
-  companion learns only from you, not from itself.
+- Every turn logs retrieval telemetry; replies are never re-ingested, so
+  Memory learns only from you, not from itself.
 
 ## Thinking
 
@@ -71,7 +71,7 @@ Two pipelines carry everything:
 - Observations: independent records from GitHub, imported calendars, music and
   video history, plus Edith usage, deduped by key. Notion stays on the authored
   side and becomes episodes instead. Observations exist so corroboration can
-  check against records you did not write as companion memory.
+  check against records you did not write as memory.
 - Corroboration judges testable claims against observations within 96 hours
   either side; no records means `unclear`, never `contradicted`.
 - Reflection distills beliefs from recent episodes; embedding similarity

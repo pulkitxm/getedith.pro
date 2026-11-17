@@ -52,7 +52,7 @@ already saved revision. Recompile does the same from the toolbar. The editor
 loads an existing PDF when opened and loads the new PDF when its build finishes.
 Build status and View PDF build show progress or compiler failures. Refresh PDF
 retries preview loading; Builds & PDF artifacts opens GitHub. PDF previews never write repository artifacts to disk.
-Use Review in Quinjet for changed files, highlighted unified or split diffs,
+Use Review changes for changed files, highlighted unified or split diffs,
 file filtering, checks, and merge controls. The native review screen reads GitHub
 directly and keeps its data in memory, so it works without a checkout.
 Merge options offer a squash merge with branch deletion or a squash merge after
@@ -98,4 +98,4 @@ PDF was compiled in the running app.
 
 ![Source editor and compiled PDF](latex/editor.png)
 
-![Native Quinjet pull request review](latex/review.png)
+![Native pull request review](latex/review.png)

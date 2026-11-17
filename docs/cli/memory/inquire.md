@@ -1,6 +1,6 @@
 # `ed memory inquire`
 
-The questions the companion wants to ask you, ranked by the size of the hole they
+The questions Memory wants to ask you, ranked by the size of the hole they
 would fill rather than picked at random.
 
 Usage:

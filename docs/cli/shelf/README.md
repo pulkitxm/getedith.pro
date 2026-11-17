@@ -95,7 +95,7 @@ probing state.
   running, so you can park and read files even when the notch is hidden.
   `share` needs the Shelf turned on. Turn it on in the Library or with
   `ed extensions enable shelf`.
-- `purge` uses `notchShelfKeepDuration` unless you name `forever`, `oneHour`,
+- `purge` uses `shelfKeepDuration` unless you name `forever`, `oneHour`,
   `oneDay`, `oneWeek` or `oneMonth`. It previews exact file paths by default
   and removes them only with `--yes`. The running shelf uses the same expiry
   executor when it starts and expands.
@@ -103,7 +103,7 @@ probing state.
   notch) lives in Notch settings, the Settings button on Notch in the Library.
   Whether a tool's activity appears is the Show in notch switch in that tool's
   own settings. Dragging files to the notch opens its drop tray, which keeps
-  them on the Shelf. The only Shelf setting is `notchShelfKeepDuration`, how
+  them on the Shelf. The only Shelf setting is `shelfKeepDuration`, how
   long parked files stay before `purge` removes them, under Files in Shelf
   settings.
 - The table flattens control characters out of a name, so a filename

@@ -1,6 +1,6 @@
 # `ed memory chat`
 
-Talks with the companion. Retrieval grounds the reply in your own episodes, the
+Talks with Memory. Retrieval grounds the reply in your own episodes, the
 reply streams to stdout as the model produces it, and validated citations print
 after it. Every exchange persists, so a conversation can be continued later
 from any machine.
@@ -18,7 +18,7 @@ Options:
 | `--conversation` | conversation id | new conversation | Continues that conversation with its history in context. |
 | `--persona` | persona id | `friend` | Answers through that lens; [`ed memory personas`](./personas.md) lists them. |
 | `--json` | flag | off | Suppresses streaming and emits one JSON document at the end. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 Before starting the stream, `--persona` is checked against the live persona
 list when that list can be fetched. An unknown id exits 1 and names the known

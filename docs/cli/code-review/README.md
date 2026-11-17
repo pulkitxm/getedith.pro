@@ -1,11 +1,11 @@
 # `ed code-review`
 
 Discover and open Quinjet review workspaces through the same client, worktree
-selection and launch-request builder as Edith's Quinjet page. Discovery can run
+selection and launch-request builder as Edith's Code Review page. Discovery can run
 against this Mac or one configured SSH machine.
 
 `ed code-review` defaults to `ed code-review projects`. A local or remote Quinjet CLI
-must be installed and able to return its current JSON format. The Edith Quinjet
+must be installed and able to return its current JSON format. The Edith Code Review
 extension does not have to be enabled.
 
 ## At a glance
@@ -54,7 +54,7 @@ shell-quoted command. It never starts a process or sends AppleScript.
 `ed code-review launch` crosses the standalone execution boundary. The default
 starts an interactive Quinjet process attached to the same standard input and
 output. `--cmux` asks cmux to create a workspace instead. It does not create or
-control a tab in Edith's native Quinjet page.
+control a tab in Edith's native Code Review page.
 
 ```sh
 ed code-review open ~/code/edith
@@ -76,8 +76,8 @@ Both commands accept these options:
 | `--json` | flag | off | Emit stable JSON on stdout |
 
 The app's terminal and theme menus persist through
-`ed config set quinjetTerminal embedded` and `ed config set quinjetTheme <name>`.
-Set `quinjetTheme` to `app` to send Edith's active light and dark palettes to
+`ed config set codeReviewTerminal embedded` and `ed config set codeReviewTheme <name>`.
+Set `codeReviewTheme` to `app` to send Edith's active light and dark palettes to
 Quinjet automatically. A named Quinjet theme remains an explicit override and
 the app discovers available names from the installed Quinjet version.
 
@@ -88,7 +88,7 @@ and prints the cmux-targeted Quinjet command without asking cmux to run it.
 ## Native sessions
 
 Native session commands use bounded request and reply IPC with the running main
-app. The Quinjet extension must be enabled and its page must be open. Run
+app. The Code Review extension must be enabled and its page must be open. Run
 `ed app reveal codeReview` before using them. A silent or older app exits 4 instead
 of waiting indefinitely.
 
@@ -166,5 +166,5 @@ Quinjet and retrying.
 ## Where to go next
 
 - [`ed machines`](../machines/README.md) for configured SSH machines
-- [`ed extensions`](../extensions/README.md) to show the Quinjet page in Edith
+- [`ed extensions`](../extensions/README.md) to show the Code Review page in Edith
 - [All `ed` commands](../README.md)

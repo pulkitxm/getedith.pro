@@ -31,7 +31,7 @@ There are no positional arguments.
 
 `id` is the mount point, which is also what you would pass to `--root` to sweep
 that volume. `name` is the volume name macOS reports, falling back to the last
-path component. `totalBytes` is capacity, not free space; `ed system disks` is
+path component. `totalBytes` is capacity, not free space; `ed menu-bar-stats disks` is
 where free space lives. `external` is true when the volume is removable or is
 not an internal one, so a Thunderbolt SSD and a USB stick both read as
 external.

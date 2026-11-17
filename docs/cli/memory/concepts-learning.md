@@ -1,8 +1,8 @@
 # The learning loop: claims, observations and beliefs
 
-Part of [how the companion works](./concepts.md), under
+Part of [how Memory works](./concepts.md), under
 [`ed memory`](./README.md) in [the CLI reference](../README.md). Chat
-reads your memory; this page is about how the companion **thinks about** it:
+reads your memory; this page is about how Memory **thinks about** it:
 the nightly pipeline that extracts what you asserted, checks it against
 external records, and distills durable beliefs about how you work.
 
@@ -52,8 +52,8 @@ episode is processed once. Convergence happens one layer up, at beliefs.
 ## Observations: what the world recorded
 
 An **observation** is an externally recorded event, and it obeys one hard
-provenance rule: observations never come from anything you wrote for the
-companion. You can tell it you shipped; only the record can show it. That
+provenance rule: observations never come from anything you wrote for
+Memory. You can tell it you shipped; only the record can show it. That
 separation is the entire point, because it gives corroboration something you
 cannot accidentally, or conveniently, author yourself.
 
@@ -92,7 +92,7 @@ verdict with a short note:
 One asymmetry is built in deliberately: **absence of records always reads as
 `unclear`, never as `contradicted`.** No commits around "I shipped it" might
 mean you did not ship, or that the work lives in a private repo the
-connector cannot see. The companion refuses to convict on missing evidence;
+connector cannot see. Memory refuses to convict on missing evidence;
 a malformed or overconfident model reply is also coerced to `unclear`. The
 verdict, note and the exact observation ids the judge saw are stored, so
 every verdict is auditable. `ed memory claims` shows each claim wearing
@@ -126,7 +126,7 @@ similarity against active beliefs.
 
 So repetition builds stability, drift produces an auditable chain of
 revisions, and novelty grows the set. Beliefs are never deleted; the Mind
-tab shows superseded ones dimmed, a visible history of the companion
+tab shows superseded ones dimmed, a visible history of Memory
 changing its mind.
 
 ## The nightly run itself
@@ -142,7 +142,7 @@ core memory, rewrite lens notes and rank questions.
 
 Missing connector tokens record successful skipped sync steps. A missing
 reasoner records a successful `reasoning` skip after baselines and ends the run
-there, so a partly configured companion still syncs and indexes every night.
+there, so a partly configured Memory still syncs and indexes every night.
 Other failures are recorded per step and make the overall run unsuccessful,
 while later independent steps still get a chance to run. Each run stores its
 start, finish, overall result and per-step outcomes in `nightly_runs`;
@@ -153,7 +153,7 @@ waits for it.
 Because extraction and reflection work in bounded batches (10 and 20
 episodes), a large backlog is digested over successive nights rather than in
 one giant, failure-prone pass: the design assumes a steady trickle of new
-memory, which is how the companion "keeps adding stuff" without ever
+memory, which is how Memory "keeps adding stuff" without ever
 reprocessing everything.
 
 ## Reading on

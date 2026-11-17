@@ -1,8 +1,8 @@
 # Asking and chatting: how memory becomes answers
 
-Part of [how the companion works](./concepts.md), under
+Part of [how Memory works](./concepts.md), under
 [`ed memory`](./README.md) in [the CLI reference](../README.md). This page
-explains what happens between your question and the companion's reply: how
+explains what happens between your question and Memory's reply: how
 memories are selected, how the language model is briefed, how the reply
 streams in, and how citations are checked so the answer cannot quietly make
 things up.
@@ -154,7 +154,7 @@ plus one `retrievals` row per retrieved chunk recording channel scores, final
 rank and whether it ended up cited. That trail is the raw material for
 evaluating and tuning retrieval later.
 
-Two deliberate absences complete the picture. The companion's replies are
+Two deliberate absences complete the picture. Memory's replies are
 never ingested back as memory, so it learns only from you, never from
 itself; a wrong answer cannot become tomorrow's evidence. And ask writes no
 conversation or memory records. It only writes retrieval telemetry.

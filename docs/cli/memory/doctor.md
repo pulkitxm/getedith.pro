@@ -13,7 +13,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 `--json` shape:
 
@@ -35,12 +35,12 @@ human-readable `detail` from the backend, and a `severity`:
 
 | Severity | Meaning |
 | --- | --- |
-| `blocker` | The companion cannot do its job without it. |
+| `blocker` | Memory cannot do its job without it. |
 | `degraded` | One capability is lost, the rest still works. |
 | `optional` | Off by choice; nothing is broken. |
 
 `ok` is true when no `blocker` check is failing, so an unconfigured reranker
-does not make the companion unhealthy while an unconfigured reasoning provider
+does not make Memory unhealthy while an unconfigured reasoning provider
 does. `degraded` is true when any check at all is failing, including optional
 ones. `/v1/health` answers 200 when `ok` and 503 otherwise.
 

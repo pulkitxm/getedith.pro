@@ -22,10 +22,10 @@ able to start.
 
 | `id` | Name | Used by | How `install` gets it |
 | --- | --- | --- | --- |
-| `homebrew` | Homebrew | Homebrew, App Maintenance | the signed `Homebrew.pkg` from the latest `Homebrew/brew` release, opened in Installer |
+| `homebrew` | Homebrew | Homebrew, App Updates | the signed `Homebrew.pkg` from the latest `Homebrew/brew` release, opened in Installer |
 | `herdr` | Herdr | Agents | the `herdr-macos-*` binary from the latest `herdrdev/herdr` release |
-| `quinjet` | Quinjet | Quinjet | `brew install pulkitxm/tap/quinjet` when Homebrew is present, otherwise the `quinjet-macos-*` binary from `pulkitxm/quinjet` |
-| `gh` | GitHub CLI | LaTeX, Code Stats, Quinjet | `brew install gh` when Homebrew is present, otherwise the official `gh_<version>_macOS_*.zip` from `cli/cli` |
+| `quinjet` | Quinjet | Code Review | `brew install pulkitxm/tap/quinjet` when Homebrew is present, otherwise the `quinjet-macos-*` binary from `pulkitxm/quinjet` |
+| `gh` | GitHub CLI | LaTeX, Code Stats, Code Review | `brew install gh` when Homebrew is present, otherwise the official `gh_<version>_macOS_*.zip` from `cli/cli` |
 | `git` | Git | Code Stats, Cleaner | Apple's Command Line Tools installer |
 | `yt-dlp` | yt-dlp | Music, Downloads | always the `yt-dlp_macos` binary from the latest `yt-dlp/yt-dlp` release |
 | `ffmpeg` | FFmpeg | Music, Studio, Downloads | `brew install ffmpeg`, installing Homebrew first when it is missing |

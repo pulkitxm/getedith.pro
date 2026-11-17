@@ -1,13 +1,13 @@
-# Memory: what the companion actually stores
+# Memory: what it actually stores
 
-Part of [how the companion works](./concepts.md), under
+Part of [how Memory works](./concepts.md), under
 [`ed memory`](./README.md) in [the CLI reference](../README.md). This page
 explains what "memory" means here, where every byte lives, and why the design
 is append-only. No machine-learning background is assumed.
 
 ## Memory is a database, not a brain
 
-When the companion "remembers" something, no model is being trained and
+When Memory "remembers" something, no model is being trained and
 nothing is being memorised by the language model. Memory is ordinary data in an ordinary
 database: rows in Postgres and files on disk. The intelligence only shows up
 later, at read time, when a language model is handed a small selection of
@@ -21,7 +21,7 @@ That split has practical consequences:
   and a file you can open. Nothing is hidden inside model weights.
 - Deleting or exporting memory is a database operation, not a retraining:
   `ed memory export`, `import`, `erase` and `wipe` are those operations.
-- Swapping the language model (the "reasoner") changes how well the companion
+- Swapping the language model (the "reasoner") changes how well Memory
   talks about your memory, but never changes the memory itself.
 
 ## The ladder: five kinds of record
@@ -64,7 +64,7 @@ is unique, which is the whole deduplication mechanism.
 An **episode** answers "what happened, and when?". It stores the readable
 text (`body_original`), a kind, a title, the language, and two timestamps:
 `occurred_at`, when the content happened in
-your life, and `ingested_at`, when the companion received it. Search,
+your life, and `ingested_at`, when Memory received it. Search,
 chunking, claims and reflection all operate on episodes; they never go back
 to the raw file.
 
@@ -84,20 +84,20 @@ or be superseded as new evidence arrives:
 - Episodes are immutable. There is no update endpoint and no update SQL.
 - If you edit a note on disk and drop it again, its text hashes differently,
   so it becomes a brand-new source and episode. The old version stays.
-- Beliefs are never deleted by the companion itself. When it changes its mind,
+- Beliefs are never deleted by Memory itself. When it changes its mind,
   the old belief is marked `superseded` and linked to its replacement, so you
   can see what it used to think and when.
 - Conversations can be deleted (`ed memory forget`), because chat history
   is your convenience data, not the memory of record.
 
-Append-only is a rule for the companion, not a cage for you. The memory is
+Append-only is a rule for Memory, not a cage for you. The memory is
 yours, so deletion is always yours to order: `ed memory erase` removes one
 episode and everything derived from it, and `ed memory wipe` empties the
 whole store. `ed memory export` writes everything into a bundle that
 `ed memory import` restores, so leaving, backing up, or moving machines
 never needs database surgery.
 
-Why build it this way? Because the companion's job is to remember what you
+Why build it this way? Because Memory's job is to remember what you
 wrote **then**, not what you later wished you had written. A diary you can
 silently rewrite is not evidence of anything. Append-only also makes the
 engineering safer: immutable rows cannot be corrupted by a half-finished
@@ -111,7 +111,7 @@ fixed-size number, here 256 bits written as 64 hex characters. The same input
 always produces the same output, and any change to the input, even one
 character, produces a completely different output. Finding two different
 inputs with the same output is computationally out of reach, so in practice
-the hash is a unique fingerprint of the content. The companion hashes the
+the hash is a unique fingerprint of the content. Memory hashes the
 text of Markdown files and the raw bytes of PDF, audio, image and video files,
 and treats
 "same fingerprint" as "same memory".

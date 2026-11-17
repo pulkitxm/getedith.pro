@@ -1,9 +1,9 @@
 # Ingestion: from a dropped file to an episode
 
-Part of [how the companion works](./concepts.md), under
+Part of [how Memory works](./concepts.md), under
 [`ed memory`](./README.md) in [the CLI reference](../README.md). This page
 follows a file through the front door: how it is fingerprinted, deduplicated,
-preserved, read, dated and titled, for each of the five media the companion
+preserved, read, dated and titled, for each of the five media Memory
 accepts.
 
 ## The ways in
@@ -35,7 +35,7 @@ The `sources` table has a uniqueness rule on that fingerprint, so the check
 is one lookup: if a source with this hash already exists, the answer is
 `duplicate` and the request stops there. Nothing is written, no episode is
 created, and re-dropping your whole notes folder is therefore harmless and
-cheap. This also defines identity: the companion does not care about
+cheap. This also defines identity: Memory does not care about
 filenames or paths, only content. The same note under two names is one
 memory; the same name with edited content is two.
 
@@ -73,7 +73,7 @@ date: 2026-08-03
 Long unstructured mornings before any screen time...
 ```
 
-The companion reads it with a deliberately small scanner, not a full YAML
+Memory reads it with a deliberately small scanner, not a full YAML
 parser: one `key: value` per line, optional single or double quotes around
 the value, everything else ignored.
 
@@ -109,7 +109,7 @@ Audio goes to whisper.cpp, an open-source speech-to-text engine running as
 its own container. Speech-to-text is a machine-learning model that converts a
 waveform into text; whisper also reports which language was spoken, the total
 duration, and a list of **segments**, each a phrase with start and end
-timestamps. The companion calls it with temperature 0, which means "always
+timestamps. Memory calls it with temperature 0, which means "always
 pick the most likely word, never sample creatively", so the same recording
 always transcribes the same way.
 
@@ -157,7 +157,7 @@ the CLI before timing out.
 
 ## Step four, spoken media: signals
 
-Right after a voice or video episode commits, the companion computes **signals**,
+Right after a voice or video episode commits, Memory computes **signals**,
 simple numeric observations about the delivery of your speech, straight from
 the segment timings, no ML involved:
 

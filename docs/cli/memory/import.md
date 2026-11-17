@@ -14,13 +14,13 @@ ed memory import <path> [--json] [--endpoint <url>]
 | --- | --- | --- | --- |
 | `<path>` | file or directory | required | The `bundle.json`, or the export directory holding it. |
 | `--json` | flag | off | Emit JSON on stdout. |
-| `--endpoint` | URL | resolution order | Companion API base URL. |
+| `--endpoint` | URL | resolution order | Memory API base URL. |
 
 Examples:
 
 ```
-ed memory import ~/backups/companion
-ed memory import ~/backups/companion/bundle.json --json
+ed memory import ~/backups/memory
+ed memory import ~/backups/memory/bundle.json --json
 ```
 
 `--json` reports inserted and skipped rows plus media restoration:
@@ -32,12 +32,12 @@ pendingEpisodes}`.
 Importing merges rather than replaces: every record keeps the id it was
 exported with, records that already exist are skipped, and nothing is deleted,
 so running the same import twice changes nothing the second time. Settings are
-only filled in where the companion has none, so a configured reasoner is never
+only filled in where Memory has none, so a configured reasoner is never
 clobbered by a restore. A `media/` directory beside the bundle is restored
-file by file after the rows land. Episodes arrive unembedded and the companion
+file by file after the rows land. Episodes arrive unembedded and Memory
 starts indexing them in the background; the command reports how many are
-queued. A file that is not a companion export, or one written by a newer
-companion, is refused before anything is touched.
+queued. A file that is not a Memory export, or one written by a newer
+backend, is refused before anything is touched.
 
 The backend also rejects malformed source hashes and source URIs that are
 absolute or escape the vault. Media filenames that do not match

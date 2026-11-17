@@ -74,6 +74,6 @@ library entries and other launcher result types.
 ## Where to go next
 
 - [`ed bifrost reindex`](./reindex.md), when something new is missing
-- [`ed apps`](../apps/README.md), for the applications that are actually running
+- [`ed running-apps`](../running-apps/README.md), for the applications that are actually running
 - [`ed bifrost`](./README.md), the rest of this group
 - [All `ed` commands](../README.md)

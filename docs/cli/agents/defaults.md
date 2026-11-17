@@ -1,7 +1,7 @@
 # `ed agents defaults`
 
 The model, effort and fast mode Edith passes whenever it starts an agent of a
-given kind. The Agent Launch Settings sheet on the Herdr page edits the same
+given kind. The Agent Launch Settings sheet on the Agents page edits the same
 values.
 
 ```
@@ -62,7 +62,7 @@ entry it saved.
 The human `ls` form is a table, `KIND`, `MODEL`, `EFFORT`, `FAST`, `FLAGS`. An
 unknown kind exits 3.
 
-The values live in the `herdrLaunchDefaults` setting, which `ed config get`
+The values live in the `agentsLaunchDefaults` setting, which `ed config get`
 shows and settings backups carry.
 
 ## Where to go next

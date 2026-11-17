@@ -18,7 +18,7 @@ exits 0. `list` is an alias for `ls`.
 
 ## `--json` shape
 
-A top-level object with `hosts` and `agents`. Host keys are `error`, `herdr`,
+A top-level object with `hosts` and `agents`. Host keys are `agentsEngine`, `error`,
 `id`, `local` and `name`. Agent keys are `command`, `cwd`, `id`, `kind`,
 `local`, `machine`, `machineName`, `pane`, `session`, `status`, `title` and
 `workspace`. Object keys are sorted. `error` is `null` when the host answered.
@@ -43,8 +43,8 @@ A top-level object with `hosts` and `agents`. Host keys are `error`, `herdr`,
   ],
   "hosts": [
     {
+      "agentsEngine": false,
       "error": "herdr is not on PATH",
-      "herdr": false,
       "id": "local",
       "local": true,
       "name": "This Mac"
@@ -54,7 +54,7 @@ A top-level object with `hosts` and `agents`. Host keys are `error`, `herdr`,
 ```
 
 `status` is one of `blocked`, `working`, `unknown`, `done`, `idle`. `kind` is
-the label the Herdr page uses: Claude Code, Codex, OpenCode, Cursor Agent,
+the label the Agents page uses: Claude Code, Codex, OpenCode, Cursor Agent,
 Copilot CLI, or the raw Herdr name if it is none of those.
 
 The human form is a five column table, `MACHINE`, `KIND`, `STATUS`, `PANE`,

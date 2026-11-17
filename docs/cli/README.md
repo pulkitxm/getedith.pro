@@ -57,7 +57,7 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed lid-awake`](./lid-awake/README.md) | Closed-lid sessions, battery auto-pause and live state |
 | [`ed permissions`](./permissions/README.md) | Inspecting and requesting Edith's macOS permissions |
 | [`ed usage`](./usage/README.md) | Agent usage: limits, cost, tokens, projects, sources, and machine attribution |
-| [`ed system`](./system/README.md) | CPU, memory, load, network and mounted volumes |
+| [`ed menu-bar-stats`](./menu-bar-stats/README.md) | CPU, memory, load, network and mounted volumes |
 | [`ed music`](./music/README.md) | Playback control and the local music library |
 | [`ed latex`](./latex/README.md) | LaTeX source projects, checked edits, PDF compilation, and GitHub pull requests |
 | [`ed studio`](./studio/README.md) | Studio: edit, convert and compress images, PDFs, video, audio and documents |
@@ -72,17 +72,17 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed attention`](./attention/README.md) | Application, website, music, focus and distraction insight |
 | [`ed color`](./color/README.md) | Launching the colour picker and reading its swatch history |
 | [`ed bifrost`](./bifrost/README.md) | The launcher bar: the application index behind it, and the sums and unit conversions it answers |
-| [`ed emoji`](./emoji/README.md) | Opening the emoji picker, listing what this Mac can render, typing one, and the default skin tone |
+| [`ed emoji-picker`](./emoji-picker/README.md) | Opening the emoji picker, listing what this Mac can render, typing one, and the default skin tone |
 | [`ed skills`](./skills/README.md) | The Edith skill library: preview, copy, and install into detected agents |
 | [`ed download`](./download/README.md) | The download queue and the tools that back it |
-| [`ed apps`](./apps/README.md) | Running applications, and quitting them |
+| [`ed running-apps`](./running-apps/README.md) | Running applications, and quitting them |
 | [`ed keyboard`](./keyboard/README.md) | Locking the keyboard so you can clean the keys |
 | [`ed tools`](./tools/README.md) | The command line tools Edith can install for you |
 | [`ed shelf`](./shelf/README.md) | Files parked on the Shelf |
 | [`ed cleaner`](./cleaner/README.md) | Scanning and reclaiming disk space |
 | [`ed brew`](./brew/README.md) | Searching and managing Homebrew formulae and casks |
-| [`ed maintenance`](./maintenance/README.md) | Verified app installs, updates, inventory, and review-first removal |
-| [`ed seo`](./seo/README.md) | Site audits: projects, page selection, page scores, and saved runs |
+| [`ed app-updates`](./app-updates/README.md) | Verified app installs, updates, inventory, and review-first removal |
+| [`ed site-audit`](./site-audit/README.md) | Site audits: projects, page selection, page scores, and saved runs |
 | [`ed code-stats`](./code-stats/README.md) | Your GitHub mirror, refresh schedule, identities, and code report |
 | [`ed memory`](./memory/README.md) | Local memory health, status, Markdown ingest and episodes |
 
@@ -107,7 +107,7 @@ ed guide                         the built-in manual
 ed config ls                     every setting and its current value
 ed lid-awake on --for 30m --yes  keep running with the lid closed for 30 minutes
 ed usage limits --json           the numbers behind the rate-limit rings
-ed system stats --follow         this Mac, sampled continuously
+ed menu-bar-stats stats --follow         this Mac, sampled continuously
 ed machines ls                   the computers Edith can reach
 ed tuf docker ps                 run anything on one of them
 ```

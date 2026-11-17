@@ -1,6 +1,6 @@
 # `ed memory reason`
 
-Shows or changes how the companion reasons. Settings persist on the backend and
+Shows or changes how Memory reasons. Settings persist on the backend and
 hot-swap into the running service, so no restart or `.env` edit is needed; the
 environment remains the fallback for anything never set here.
 
@@ -36,7 +36,7 @@ returned.
 `ed memory reason test` sends one tiny completion through the active
 provider and reports the round-trip: `{ok, model, latencyMs}` under `--json`,
 exit `1` with the provider's error when the backend reports failure. Failure to
-reach the companion API itself exits `4`.
+reach the Memory API itself exits `4`.
 
 ## Where to go next
 

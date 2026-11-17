@@ -1,6 +1,6 @@
 # Tools
 
-Some extensions drive a command line program: Agents runs Herdr, Quinjet runs
+Some extensions drive a command line program: Agents runs Herdr, Code Review runs
 Quinjet, Downloads and Music run yt-dlp, Code Stats reads repositories with Git.
 Edith installs these for you. You never copy a command into Terminal.
 
@@ -13,14 +13,14 @@ Edith installs these for you. You never copy a command into Terminal.
   installed are grouped at the top and can be removed from the row's menu.
 - **Extension pages** show an inline Install button where a missing tool blocks
   something, for example Install Herdr on an empty Agents page, Install Quinjet on
-  the Quinjet project picker, Install Git and Install GitHub CLI in Code Stats,
+  the Code Review project picker, Install Git and Install GitHub CLI in Code Stats,
   Install Homebrew on the Homebrew page, Install sshfs on a machine's Tools tab
   and Install FFmpeg in Studio. The button runs the same installer as Settings >
   Tools and shows the same progress. Details on an error opens Settings > Tools.
 - **Library** shows a Needs line on an extension's detail with each tool's
   state and an Install button for the missing ones.
 - **GitHub sign in**: when the GitHub CLI is installed but signed out, Code
-  Stats and the Quinjet widget show Sign in to GitHub. It opens Settings > Tools
+  Stats and the Code Review widget show Sign in to GitHub. It opens Settings > Tools
   and starts the browser sign in; Edith shows the one-time code with a Copy
   button and opens the GitHub device page.
 
@@ -34,8 +34,8 @@ search order.
 | --- | --- | --- |
 | Homebrew | Homebrew, App Updates | the signed `Homebrew.pkg`, opened in Installer, which asks for your password once |
 | Herdr | Agents | the verified release binary |
-| Quinjet | Quinjet | Homebrew when present, otherwise the verified release binary |
-| GitHub CLI | Quinjet, LaTeX, Code Stats | Homebrew when present, otherwise the official release zip |
+| Quinjet | Code Review | Homebrew when present, otherwise the verified release binary |
+| GitHub CLI | Code Review, LaTeX, Code Stats | Homebrew when present, otherwise the official release zip |
 | Git | Code Stats, Cleaner | Apple's Command Line Tools installer |
 | yt-dlp | Downloads, Music | the verified release binary |
 | FFmpeg | Studio, Downloads, Music | Homebrew, installing Homebrew first when it is missing |
@@ -48,7 +48,7 @@ search order.
 
 Coding agents such as Claude Code, Codex or Gemini are yours to install. The New
 Agent popup marks the ones that are not on this Mac with "Not on this Mac".
-Container runtimes for Companion are also yours: the setup sheet shows a Get
+Container runtimes for Memory are also yours: the setup sheet shows a Get
 Docker button that opens the Docker Desktop download page.
 
 ## The Edith tools folder
@@ -88,7 +88,7 @@ they ship inside that extension's package instead of being installed:
   and Linux on arm64 and x86_64, fetched at packaging time against a recorded
   SHA-256 digest, with the macOS ones signed with Edith's identity. Clipboard
   sync uploads the binary that matches the remote machine instead of using npm.
-- **Companion service source**. The Memory package carries the Companion
+- **Memory service source**. The Memory package carries the Memory
   service as `companion-source.tar.gz`, so deployment needs no repository
   checkout. Compose runs through the runtime detected on the host.
 

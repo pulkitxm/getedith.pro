@@ -20,7 +20,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 | `--full` | flag | off | For Notion, ignores the saved watermark and reconciles every page. GitHub ignores this flag. |
 
 GitHub `--json` shape:

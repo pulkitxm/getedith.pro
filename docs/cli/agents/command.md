@@ -47,7 +47,7 @@ A pane that is not live, or a pane that matches more than once without
 `--machine` or `--session`, exits 3 with empty stdout. `--machine` that matches
 no configured machine also exits 3.
 
-This only prints the line. It does not attach. The Herdr page in Edith opens a
+This only prints the line. It does not attach. The Agents page in Edith opens a
 PTY with the same command.
 
 ## Where to go next

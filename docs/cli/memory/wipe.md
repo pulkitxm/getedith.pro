@@ -1,9 +1,9 @@
 # `ed memory wipe`
 
-Deletes the companion's entire memory: every episode, source, observation,
+Deletes Memory's entire memory: every episode, source, observation,
 belief, claim, fact, conversation, entity, hypothesis and the vault files
 behind them. The reasoner configuration, connector tokens and machine records
-survive, so the companion is empty but still set up.
+survive, so Memory is empty but still set up.
 
 Usage:
 
@@ -15,12 +15,12 @@ ed memory wipe [--yes] [--json] [--endpoint <url>]
 | --- | --- | --- | --- |
 | `--yes` | flag | off | Apply the preview. Without it the command lists the targets and changes nothing. |
 | `--json` | flag | off | Emit JSON on stdout. |
-| `--endpoint` | URL | resolution order | Companion API base URL. |
+| `--endpoint` | URL | resolution order | Memory API base URL. |
 
 Examples:
 
 ```
-ed memory export ~/backups/companion --include-media
+ed memory export ~/backups/memory --include-media
 ed memory wipe --yes
 ```
 

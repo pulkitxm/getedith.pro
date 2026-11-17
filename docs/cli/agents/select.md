@@ -1,6 +1,6 @@
 # `ed agents select`
 
-Shows one Herdr tab in the Edith window, the same way Command-number does.
+Shows one Agents tab in the Edith window, the same way Command-number does.
 
 [`ed agents`](./README.md)
 

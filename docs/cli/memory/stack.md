@@ -1,6 +1,6 @@
 # `ed memory stack`
 
-Starts, stops and inspects the companion stack on whichever machine
+Starts, stops and inspects the Memory stack on whichever machine
 [`ed memory deploy`](./deploy.md) put it on.
 
 Usage:
@@ -56,7 +56,7 @@ Takes `--wipe` to plan `down -v`, deleting the project's named volumes, and
 `--wipe` is irreversible. It removes Postgres memory, the vault, Ollama models,
 the speech model and the GPU reranker cache where present. Export with
 `ed memory export <dir> --include-media` first. The deployment record and
-local companion configuration survive, but the deleted volume contents do not.
+local Memory configuration survive, but the deleted volume contents do not.
 
 ## `ed memory stack restart`
 

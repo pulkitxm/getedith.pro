@@ -1,0 +1,64 @@
+# App Updates
+
+App Updates combines an App Update Center, verified single-app disk image installation, and review-first removal. Turn it on in Library, then open **App Updates** from the sidebar or Library. The page has three tabs: Updates, Remove and History (`ed app reveal appUpdates --tab remove`). Homebrew and Cleaner are separate extensions with their own pages.
+
+## Manage Homebrew packages
+
+The Packages section lists installed formulae and casks, finds available updates, and searches Homebrew metadata. It can install, upgrade, and uninstall one validated package at a time. Homebrew is optional, so app updates, disk image installation, and removal remain available without it.
+
+Edith invokes the local `brew` executable directly. When Homebrew is missing, the Updates page shows an Install Homebrew button that runs the shared installer from [Tools](./tools.md); app updates keep working without it. Package operations are noninteractive, bounded, cancellable, and use the same safety rules as the `ed brew` commands. See the [Homebrew package guide](./homebrew-manager.md) for the complete behavior.
+
+## Review application updates
+
+The Updates section checks installed apps through Homebrew casks and formulae, the Mac App Store (apps with an App Store receipt are looked up by bundle identifier in Apple's public catalog, so nothing extra needs to be installed), and HTTPS Sparkle or standard app feed URLs declared by the app bundle. Findings show the source, current and available versions, release information when supplied, confidence, check time, and how the app updates.
+
+Select any combination to build a batch plan. Edith explains how each app updates, requires confirmation, limits concurrent work to the configured bound, retries failures, records a result for every item, and supports cancellation. Homebrew installs Homebrew items. App Store items open their App Store page. Feed-based apps open so their own updater remains in control. You can reveal an app, ignore one version, snooze it for a day, or exclude the app. Hidden policies can be reset from update settings.
+
+Automatic refresh is off by default and only performs discovery when enabled. It never installs an update. Optional notifications only follow an automatic refresh. If Edith Automations is installed and enabled, the settings popover exposes `ed app-updates updates --json` as the safe scheduling hook. Closing App Updates cancels active discovery and update work.
+
+Update policy and per-item history are stored in `~/Library/Application Support/Edith/app-update-center.json`. Settings participate in Edith's settings backup. Use `ed app-updates backup-updates <path>` to make an explicit portable copy of policy and history.
+
+## Install from a disk image
+
+Choose **Install Disk Image** and select a `.dmg`. Edith mounts it read-only and accepts exactly one regular top-level application. It validates the bundle and executable, rejects Apple apps and Edith, verifies the code signature strictly (nested code and every architecture), and requires an accepted Gatekeeper assessment.
+
+The review sheet shows the verified app, version, bundle identifier, disk image, destination, and any existing app that would be replaced. Installation is explicit. The app is copied into a private staging directory and verified a second time before it moves into Applications. An existing app can only be replaced when its bundle identifier matches, the replacement toggle is selected, and its reviewed identity has not changed. The old app goes to the Trash.
+
+After installation, Edith ejects the mounted image. The downloaded `.dmg` only moves to the Trash after a successful eject and a final identity check. You can keep the image from the review sheet. Failed ejection or changed input leaves the image in place.
+
+## Remove an application
+
+Select an app to build a removal plan. Edith always shows the application bundle and every support item before enabling removal. Only exact bundle-identifier paths in these user Library folders are eligible:
+
+- Application Support
+- Caches
+- Preferences
+- Containers
+- Logs
+- Saved Application State
+- HTTPStorages and WebKit
+
+Every row can be unchecked or revealed in Finder. Confirmed rows move to the macOS Trash, so they remain recoverable until the Trash is emptied. Apple apps, Edith itself, symlinked bundles, nested application paths, display-name guesses, and files that change after review are rejected.
+
+No macOS permission is required to inventory apps, install into `~/Applications`, or remove user-owned files. Installing into `/Applications`, replacing administrator-owned apps, or removing administrator-owned files can be refused by macOS. App Updates reports the failure and never falls back to permanent deletion or privilege escalation.
+
+The command line exposes the same package, installer, inventory, scan, and removal operations:
+
+```bash
+ed brew ls --kind formula --outdated
+ed brew search firefox --kind cask
+ed brew install ripgrep --kind formula
+ed app-updates inventory
+ed app-updates updates
+ed app-updates update
+ed app-updates update --yes
+ed app-updates history --json
+ed app-updates backup-updates ~/Desktop/edith-updates.json
+ed app-updates install ~/Downloads/Example.dmg
+ed app-updates install ~/Downloads/Example.dmg --yes
+ed app-updates scan /Applications/Example.app
+ed app-updates remove /Applications/Example.app
+ed app-updates remove /Applications/Example.app --yes
+```
+
+Updates, installation, and removal are previews unless `--yes` is present. Installer previews eject the image without installing. Pass `--system` to target `/Applications`, `--replace` to confirm a reviewed replacement, or `--keep-image` to preserve the download. Pass `--only-app` during removal to leave every support item in place. Use `--json` for a stable machine-readable plan or result.

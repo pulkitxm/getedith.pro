@@ -1,6 +1,6 @@
 # `ed memory status`
 
-Reports how much the companion currently stores and when an episode was most
+Reports how much Memory currently stores and when an episode was most
 recently ingested.
 
 Usage:
@@ -14,7 +14,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 `--json` shape:
 

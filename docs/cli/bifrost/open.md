@@ -57,9 +57,11 @@ row hands you its path rather than launching it, and either way the bar
 dismisses.
 
 The shortcut is `⌥space` unless you have rebound it under Shortcuts in Bifrost
-settings, which writes `beaconHotKeyCode`, `beaconHotKeyMods` and `beaconHotKeyLabel`.
-The bar opens where `beaconPopupAt` says: `center` by default, or `cursor`,
-`statusItem`, `window` or `lastPosition`.
+settings, which writes `bifrostHotKeyCode`, `bifrostHotKeyMods` and `bifrostHotKeyLabel`.
+The bar always opens centered near the top of the screen under the pointer, at
+one fixed size that does not change while you type. Drag its search or footer
+strip to move it; it snaps back to center when dropped close to it, and the
+next open is centered again.
 
 Exit codes:
 

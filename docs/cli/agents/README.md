@@ -3,15 +3,15 @@
 Live Herdr sessions on this Mac and on the SSH machines Edith already knows.
 `ed agents` runs `herdr` locally and, over the shared SSH control socket, on
 every configured machine. Reach for it when you want a list of panes, or the
-exact attach line the Herdr page copies.
+exact attach line the Agents page copies.
 
-A missing `herdr` binary is not a failure. That host is listed with `herdr`
+A missing `herdr` binary is not a failure. That host is listed with `agentsEngine`
 false and an empty agent list. Each JSON host also reports `reachable`, so a
 connection failure is distinct from a machine that was reached without Herdr.
 Both cases keep the aggregate listing at exit 0. Unknown machines are the only
 not-found case.
 
-The Herdr extension does not have to be on for these commands to run. They talk
+The Agents extension does not have to be on for these commands to run. They talk
 to the `herdr` CLI, not to the Edith window.
 
 ## At a glance
@@ -103,11 +103,11 @@ the host error instead of describing the tool as missing.
 - PATH on the far side is prefixed with `$HOME/.local/bin`, `$HOME/.cargo/bin`,
   `/opt/homebrew/bin` and `/usr/local/bin` before `herdr` is called, which is
   where a curl-installed binary usually lives.
-- The extension switch is `tabHerdrEnabled`. Prefer
+- The extension switch is `tabAgentsEnabled`. Prefer
   `ed extensions enable agents` so the sidebar item appears.
 
 ## Where to go next
 
 - [`ed machines`](../machines/README.md) for the SSH directory these commands walk
-- [`ed extensions`](../extensions/README.md) to turn the Herdr page on
+- [`ed extensions`](../extensions/README.md) to turn the Agents page on
 - [All `ed` commands](../README.md)

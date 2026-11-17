@@ -18,7 +18,7 @@ GitHub Actions, and show a native review diff, without a local clone.
 | `ed latex edit PROJECT --revision REVISION --json` | Preview literal replacements supplied as JSON stdin. |
 | `ed latex compile PROJECT --json` | Rebuild the saved disk source or rerun its GitHub PDF build. |
 | `ed latex preview PROJECT --json` | Check PDF availability for the current revision. |
-| `ed latex review PROJECT --json` | PR metadata, diff, and checks for native Quinjet review. |
+| `ed latex review PROJECT --json` | PR metadata, diff, and checks for native pull request review. |
 | `ed latex merge PROJECT --json` | Preview a squash merge with branch deletion. |
 | `ed latex remove PROJECT --json` | Preview removing a library pointer, preserving its source. |
 

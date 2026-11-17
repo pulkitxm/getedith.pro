@@ -199,6 +199,6 @@ machines so the same repository still groups into one row.
   and off by id
 - [`ed permissions`](../permissions/README.md) for the grants the app needs before it
   can collect anything
-- [`ed system`](../system/README.md) for this Mac's metrics, the other read-only
+- [`ed menu-bar-stats`](../menu-bar-stats/README.md) for this Mac's metrics, the other read-only
   reporting group
 - [All `ed` commands](../README.md)

@@ -31,20 +31,20 @@ Additional sources are configurable in Bifrost settings:
 
 | Source | Setting | Default |
 | --- | --- | --- |
-| Edith integration actions | `beaconSourceIntegrations` | On |
-| Browser bookmarks | `beaconSourceBookmarks` | Off |
-| Quicklinks | `beaconSourceQuicklinks` | On |
-| Snippets | `beaconSourceSnippets` | On |
-| Shell commands | `beaconSourceShellCommands` | On |
-| Apple Shortcuts | `beaconSourceAppleShortcuts` | On |
-| Window actions | `beaconSourceWindowActions` | On |
-| System actions | `beaconSourceSystemActions` | On |
-| Running apps | `beaconSourceRunningApplications` | On |
-| Open windows | `beaconSourceOpenWindows` | Off |
+| Edith integration actions | `bifrostSourceIntegrations` | On |
+| Browser bookmarks | `bifrostSourceBookmarks` | Off |
+| Quicklinks | `bifrostSourceQuicklinks` | On |
+| Snippets | `bifrostSourceSnippets` | On |
+| Shell commands | `bifrostSourceShellCommands` | On |
+| Apple Shortcuts | `bifrostSourceAppleShortcuts` | On |
+| Window actions | `bifrostSourceWindowActions` | On |
+| System actions | `bifrostSourceSystemActions` | On |
+| Running apps | `bifrostSourceRunningApplications` | On |
+| Open windows | `bifrostSourceOpenWindows` | Off |
 
 ```sh
 ed config ls --group bifrost --json
-ed config set beaconSourceBookmarks true
+ed config set bifrostSourceBookmarks true
 ed bifrost search "base64 hello" --json
 ```
 
@@ -57,7 +57,7 @@ quicklink keyed `gh` with `edith` as `{query}`, skipping every other result. A
 keyword on its own is just a search. Values going into a web URL are
 percent-encoded, and snippets and file quicklinks get them as typed. Shell
 commands never see the text itself: each placeholder becomes a quoted reference
-to an environment variable (`EDITH_BEACON_1`, `EDITH_BEACON_2`, ...) holding
+to an environment variable (`EDITH_BIFROST_1`, `EDITH_BIFROST_2`, ...) holding
 the value, so clipboard text such as `; rm -rf ~` stays data whether the
 placeholder sits bare, inside double quotes or inside single quotes.
 

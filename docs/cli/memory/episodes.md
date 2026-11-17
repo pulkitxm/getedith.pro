@@ -14,7 +14,7 @@ Options:
 | --- | --- | --- | --- |
 | `--limit` | positive integer | `20` | Asks for this many recent episodes. The API caps it at 200. |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 `--json` shape:
 

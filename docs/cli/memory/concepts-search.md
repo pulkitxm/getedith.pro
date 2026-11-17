@@ -1,6 +1,6 @@
 # Chunks, embeddings and search
 
-Part of [how the companion works](./concepts.md), under
+Part of [how Memory works](./concepts.md), under
 [`ed memory`](./README.md) in [the CLI reference](../README.md). This page
 explains how stored text becomes findable by meaning: why episodes are cut
 into chunks, what an embedding actually is, and how the database finds the
@@ -10,7 +10,7 @@ nearest ones fast. It assumes no machine-learning background.
 
 Keyword search finds the word you typed. Ask "how did the auth work go?" and
 a keyword engine misses the note that says "shipped the session token
-refactor", because none of the words match. The companion's whole value is
+refactor", because none of the words match. Memory's whole value is
 answering questions in your words about notes in your words, so it searches
 by **meaning**: it turns both the question and every piece of memory into
 numbers such that similar meanings produce similar numbers, then finds the
@@ -40,7 +40,7 @@ Three properties worth noticing:
   own thoughts, so chunks tend to be self-contained.
 - **Zero overlap.** Many retrieval systems repeat the last few sentences of
   each chunk at the start of the next so a thought split across a boundary
-  is still findable. The companion does not; chunks are disjoint, and
+  is still findable. Memory does not; chunks are disjoint, and
   concatenating them reproduces the episode exactly. Simpler, cheaper,
   slightly worse at boundary-straddling thoughts.
 - **Characters, not tokens.** 1600 characters is roughly 250 to 400 English
@@ -60,18 +60,18 @@ auth work go?" end up close, even though they share almost no words, because
 the model has learned from usage that these phrases live in the same
 neighbourhood of meaning.
 
-Nothing mystical is stored: for every chunk, the companion keeps its text
+Nothing mystical is stored: for every chunk, Memory keeps its text
 plus its coordinates, a fixed-length list of numbers.
 
 ## The model, and its numbers
 
-The companion runs the embedding model locally through **Ollama**, a small
+Memory runs the embedding model locally through **Ollama**, a small
 server that downloads and runs open ML models on your own machine, so your
 notes never leave your infrastructure to be embedded. The model is
 `qwen3-embedding:0.6b`, a 0.6-billion-parameter embedding model that produces
 1024 numbers per text.
 
-The companion keeps only the **first 512** of those 1024 numbers. That
+Memory keeps only the **first 512** of those 1024 numbers. That
 sounds like throwing half the meaning away, but this family of models is
 trained with a technique called Matryoshka representation learning (named
 after the nesting dolls): the training deliberately front-loads meaning into
@@ -90,7 +90,7 @@ With every arrow the same length, "how similar are two texts?" becomes "how
 small is the angle between their arrows?". The standard measure is **cosine
 similarity**: 1.0 means the arrows point the same way (same meaning), 0
 means unrelated, and the database's `<=>` operator computes the equivalent
-cosine **distance** (smaller is closer). Every search in the companion, and
+cosine **distance** (smaller is closer). Every search in Memory, and
 also the belief life-cycle in [the learning loop](./concepts-learning.md),
 is this one operation: embed something, find the arrows with the smallest
 angle to it.
@@ -138,7 +138,7 @@ by chunk salience and a gentle recency curve whose half-life is roughly 180
 days. Old memory can still win; age never makes its score zero.
 
 If `RERANK_URL` is configured and there are more candidates than requested,
-the companion sends the fused pool to the configured reranker, default model
+Memory sends the fused pool to the configured reranker, default model
 `qwen3-reranker:0.6b`, and uses those relevance scores for final order. A
 missing reranker is an optional doctor check and leaves the fused order intact.
 A reranker failure also falls back to fusion rather than failing the search.

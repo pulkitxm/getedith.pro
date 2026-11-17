@@ -298,7 +298,7 @@ tabs, and 1 when only some running tabs receive the line.
   layouts.
 - [`ed machines terminal`](../machines-terminal/README.md) for terminal tabs already
   open in the Edith app.
-- [`ed system`](../system/README.md) for the same metrics report taken on this Mac.
+- [`ed menu-bar-stats`](../menu-bar-stats/README.md) for the same metrics report taken on this Mac.
 - [Conventions and contracts](../conventions.md) for the exit code table and the
   `--json` guarantee in full.
 - [The `ed` command line](../README.md) for the rest of the reference.

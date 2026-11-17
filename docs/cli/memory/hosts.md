@@ -1,9 +1,9 @@
 # `ed memory hosts`
 
-Lists every machine that could run the companion, this Mac first, and says what
+Lists every machine that could run Memory, this Mac first, and says what
 each one still needs. It answers the question "where would the containers run".
 
-This command talks to your machines, not to the companion API, so it works when
+This command talks to your machines, not to the Memory API, so it works when
 the backend is not running anywhere yet.
 
 Usage:

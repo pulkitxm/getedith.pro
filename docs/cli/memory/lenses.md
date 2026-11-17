@@ -1,7 +1,7 @@
 # `ed memory lenses`
 
 Prints each lens's short nightly note about how to be useful in its role. Shared
-memory still holds what the companion knows about you; lens notes do not fragment
+memory still holds what Memory knows about you; lens notes do not fragment
 that memory.
 
 Usage:

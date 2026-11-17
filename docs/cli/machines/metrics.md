@@ -192,7 +192,7 @@ The collector also emits a slower record carrying filesystems, temperatures,
 battery and GPU. `ed machines metrics` decodes and discards it, so those never
 appear here even though the app's Machines view shows them.
 
-`ed system stats` is the same report for the Mac you are typing on, in the same
+`ed menu-bar-stats stats` is the same report for the Mac you are typing on, in the same
 shape, so a script can treat local and remote the same way.
 
 ## Where to go next

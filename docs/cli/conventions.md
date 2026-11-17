@@ -76,14 +76,14 @@ program's own output.
 Two commands break the one-document rule on purpose, and only with `--follow`:
 
 ```
-ed system stats --json                     one pretty document, then exit
-ed system stats --json --follow            one compact document per line, until interrupted
+ed menu-bar-stats stats --json                     one pretty document, then exit
+ed menu-bar-stats stats --json --follow            one compact document per line, until interrupted
 ed machines metrics <machine> --json       one pretty document, then exit
 ed machines metrics <machine> --json --follow   one compact document per line
 ```
 
 Following flips the serialiser to its compact form, which is newline-delimited
-JSON, so `ed system stats --json --follow | jq .` reads a sample at a time
+JSON, so `ed menu-bar-stats stats --json --follow | jq .` reads a sample at a time
 instead of waiting for a document that never ends. The third `--follow`, on
 `ed usage refresh`, means something else: it attaches to a refresh already in
 flight, and still ends in one document.
@@ -265,7 +265,7 @@ is non-zero and to stdout when it is zero.
 
 A handful of commands do not wrap their body in `execute`: `ed schema`,
 `ed version`, `ed uninstall`, `ed config export`, `ed extensions ls`,
-`ed machines ls`, `ed system disks` and `ed permissions ls`. Their failures
+`ed machines ls`, `ed menu-bar-stats disks` and `ed permissions ls`. Their failures
 escape to the top level instead, where they get the identical treatment, so the
 difference is invisible from outside.
 
@@ -303,7 +303,7 @@ firing a command to find out whether it would have worked.
 
 Long options take their value as the next word or after an equals sign, so
 `--limit 5` and `--limit=5` are the same. Short forms exist only where they were
-declared, and there are only three: `-f` for `--follow` on `ed system stats`,
+declared, and there are only three: `-f` for `--follow` on `ed menu-bar-stats stats`,
 `ed machines metrics`, `ed machines docker logs` and `ed machines docker compose
 logs`; `-a` for `--all` on `ed machines docker ps` and `ed machines files ls`;
 and `-t` for `--tty` on `ed machines exec`.
@@ -377,13 +377,13 @@ same way without saying so.
 `--yes` means the same thing everywhere it appears, on nine commands: `ed
 machines rm`, `ed machines power reboot`, `ed machines power shutdown`, `ed
 machines files rm`, `ed machines docker volume-rm`, `ed machines docker prune`,
-`ed cleaner clean`, `ed apps quit` and `ed music rm`. Where it is required,
+`ed cleaner clean`, `ed running-apps quit` and `ed music rm`. Where it is required,
 leaving it out makes the command report what it would have done, change nothing,
 and exit 0, so a missing `--yes` is never an error to handle.
 
 Eight of the nine require it for anything at all. Only `ed machines files rm`
 gates its irreversible half: `--delete` needs `--yes`, while a plain removal
-moves to the Trash without asking. Every `ed apps quit` form is preview-only
+moves to the Trash without asking. Every `ed running-apps quit` form is preview-only
 without `--yes`.
 
 Secrets are never an argument value. `ed machines add` and `ed machines edit`
@@ -423,7 +423,7 @@ is a local question that needs no permission and no round trip.
 | `ed permissions request`, `ed permissions refresh` | menu bar | only the bundle can raise a TCC prompt or re-read its own state |
 | `ed permissions settings` | no | opens the matching System Settings pane locally and never relaunches Edith |
 | `ed usage limits --refresh` | menu bar | only the app polls the providers again; without `--refresh`, `limits` reads the file |
-| `ed apps quit --yes` | menu bar | applying a quit runs through the app-owned operation path and waits for acknowledgement; previews only read the process table |
+| `ed running-apps quit --yes` | menu bar | applying a quit runs through the app-owned operation path and waits for acknowledgement; previews only read the process table |
 | `ed music start`, `ed music seek` | menu bar | both drive Edith's own player, which lives in the helper |
 | `ed music play`, `pause`, `stop`, `toggle`, `next`, `previous`, `volume` | menu bar, only for Edith's own player | against Spotify or Apple Music these go through AppleScript and need only that app |
 | `ed machines files undo` | main window | the undo history belongs to an open Finder window and lives in memory |
@@ -433,10 +433,10 @@ is a local question that needs no permission and no round trip.
 | `ed usage refresh` | no | it runs the collection pipeline in this process, and attaches to the app's run when one is already going |
 | `ed usage machines ls`, `enable`, `disable` | no | the machine directory and one defaults key |
 | `ed usage machines collect`, `forget` | no | the collector runs over SSH from this process, and the fold back into `usage.json` is the same in-process pipeline `ed usage refresh` runs |
-| `ed system stats`, `ed system disks` | no | the same sampler, run in this process |
+| `ed menu-bar-stats stats`, `ed menu-bar-stats disks` | no | the same sampler, run in this process |
 | `ed clipboard`, `ed color`, `ed shelf`, `ed download`, `ed cleaner` | no | stores under Application Support and the shared defaults suite |
 | `ed app info`, `ed app paths`, `ed app links`, `ed app open-path`, `ed app open-link` | no | bundle metadata, known filesystem locations, and fixed or cached links |
-| `ed apps ls`, `ed app actions`, `ed app updates`, `ed app clear-updates` | no | the process table, `PATH`, and a log file; clearing previews unless `--yes` is present |
+| `ed running-apps ls`, `ed app actions`, `ed app updates`, `ed app clear-updates` | no | the process table, `PATH`, and a log file; clearing previews unless `--yes` is present |
 | `ed tools ls`, `install`, `update`, `remove` | yes, the app itself | the app owns the tools folder, the install ledger and the status file extensions read; `remove` previews unless `--yes` is present |
 | `ed music ls`, `mkdir`, `mv`, `rename`, `rm`, `rescan`, `shuffle`, `repeat`, `status`, `players` | no | the library is a folder of files and two defaults keys |
 | `ed machines`, and `ed <machine> <command...>` | no, except `files undo` | `/usr/bin/ssh` over a ControlMaster socket shared with the app |

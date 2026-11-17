@@ -1,6 +1,6 @@
 # Terminals in agent tabs
 
-Every tab on the Herdr page can carry its own terminals. They open in a panel
+Every tab on the Agents page can carry its own terminals. They open in a panel
 that floats over the bottom of the tab, so the agents underneath keep their
 size and never reflow, and the panel can be dragged up to cover the whole tab.
 
@@ -56,15 +56,15 @@ same keys.
 
 | Key | Values | Default | What it does |
 | --- | --- | --- | --- |
-| `herdrTerminalMouse` | `scroll`, `buttons` | `scroll` | `scroll` only sends the wheel. `buttons` also sends clicks and drags to apps that use the mouse. Pointer moves are never sent |
-| `herdrTerminalFontSize` | 9 to 24 | 13 | Text size |
-| `herdrTerminalStartFolder` | `agent`, `home` | `agent` | Where a new terminal starts |
-| `herdrTerminalStartupCommand` | any command | empty | Runs in every new terminal |
-| `herdrTerminalConfirmClose` | `true`, `false` | `true` | Ask before closing a terminal, or a tab, that is running something |
+| `agentsTerminalMouse` | `scroll`, `buttons` | `scroll` | `scroll` only sends the wheel. `buttons` also sends clicks and drags to apps that use the mouse. Pointer moves are never sent |
+| `agentsTerminalFontSize` | 9 to 24 | 13 | Text size |
+| `agentsTerminalStartFolder` | `agent`, `home` | `agent` | Where a new terminal starts |
+| `agentsTerminalStartupCommand` | any command | empty | Runs in every new terminal |
+| `agentsTerminalConfirmClose` | `true`, `false` | `true` | Ask before closing a terminal, or a tab, that is running something |
 
 ```
-ed config set herdrTerminalStartupCommand 'source .venv/bin/activate'
-ed config set herdrTerminalMouse buttons
+ed config set agentsTerminalStartupCommand 'source .venv/bin/activate'
+ed config set agentsTerminalMouse buttons
 ```
 
 ## Where to go next

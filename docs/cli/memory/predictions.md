@@ -1,6 +1,6 @@
 # `ed memory predictions`
 
-What the companion expects to happen, and what actually did. Each prediction belongs
+What Memory expects to happen, and what actually did. Each prediction belongs
 to a hypothesis, names exactly what record would confirm or deny it, and carries a
 window it must resolve inside.
 

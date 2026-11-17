@@ -13,7 +13,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 | `--limit` | 1 to 200 | 10 | How many to list. |
 
 `--json` shape:
@@ -45,7 +45,7 @@ $ ed memory runs --limit 1
 1. 2026-08-10T02:00:00Z  ok  sync_github, sync_notion, index, baselines, extract_claims, corroborate, reflect
 ```
 
-Behaviour: read-only. The companion runs the pipeline once a night at
+Behaviour: read-only. Memory runs the pipeline once a night at
 `COMPANION_REFLECT_AT` (02:00 by default) in the backend's local time, or
 continuously every `COMPANION_SCHEDULE_EVERY_SECONDS` when that testing
 override is at least 30 seconds. Missing connector tokens and a missing

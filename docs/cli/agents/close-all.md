@@ -1,6 +1,6 @@
 # `ed agents close-all`
 
-Closes every Herdr agent tab after a preview.
+Closes every agent tab after a preview.
 
 [`ed agents`](./README.md)
 

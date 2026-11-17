@@ -1,6 +1,6 @@
 # `ed agents terminal`
 
-Opens a terminal in a Herdr tab.
+Opens a terminal in an Agents tab.
 
 [`ed agents`](./README.md)
 

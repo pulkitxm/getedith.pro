@@ -13,7 +13,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 `--json` shape:
 
@@ -35,7 +35,7 @@ Behaviour: the reasoner reads up to ten episodes without claims and records
 each assertion with a type (`fact`, `intention`, `commitment`, `progress`,
 `self_assessment`, `prediction`, `preference`, `feeling`) and whether
 independent records could test it. A missing reasoning provider is a backend
-failure and exits 1. An unreachable companion endpoint exits 4.
+failure and exits 1. An unreachable Memory endpoint exits 4.
 
 ## Where to go next
 

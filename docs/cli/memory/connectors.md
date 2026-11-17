@@ -1,6 +1,6 @@
 # `ed memory connectors`
 
-Companion connectors bring in two kinds of material. GitHub and the file imports
+Memory connectors bring in two kinds of material. GitHub and the file imports
 produce observations: traces of what you did that do not come from you describing
 yourself. Notion is authored memory, so its pages go through ordinary Markdown
 ingestion and become episodes instead. Corroboration and calibration rely on the
@@ -20,7 +20,7 @@ ed memory connectors import <calendar|music|youtube> <file.json> [--json]
 token and prints only the last four characters of each. The token itself is never
 returned.
 
-`ed memory connectors set` stores a token on the companion, in the same settings
+`ed memory connectors set` stores a token on Memory, in the same settings
 table as the reasoner key, and hot-swaps it into the running service. Nothing is
 written to the CLI's local configuration and no restart or `.env` edit is needed.
 Pass an empty value to clear one. The same fields are in the app under Settings.

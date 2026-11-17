@@ -6,7 +6,7 @@ Previews and removes shelf items older than an expiry window.
 ed shelf purge [forever|oneHour|oneDay|oneWeek|oneMonth] [--yes] [--json]
 ```
 
-Without a window, the command reads `notchShelfKeepDuration` and falls back to
+Without a window, the command reads `shelfKeepDuration` and falls back to
 `forever`. Without `--yes`, it prints the exact file paths it would remove and
 does not change the files or index. Add `--yes` to apply the same expiry
 executor used by the running Shelf.

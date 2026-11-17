@@ -1,7 +1,7 @@
 # `ed agents hooks`
 
 Messages waiting to go out, from `ed agents send --when-finished`, `--in`,
-`--at`, or the Herdr page, plus the result of the ones that already went out.
+`--at`, or the Agents page, plus the result of the ones that already went out.
 The background agent owns them, so they keep working while the Edith window
 is closed.
 

@@ -1,6 +1,6 @@
 # `ed memory reflect`
 
-Asks the companion's reasoning provider to distill durable beliefs from recent episodes.
+Asks Memory's reasoning provider to distill durable beliefs from recent episodes.
 
 Usage:
 
@@ -13,7 +13,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 `--json` shape:
 
@@ -34,7 +34,7 @@ $ ed memory reflect
 considered 7 episodes, formed 2 beliefs (openai-compatible at http://ollama:11434/v1, model qwen3:1.7b)
 ```
 
-Behaviour: the companion reads its most recent episodes and asks the configured
+Behaviour: Memory reads its most recent episodes and asks the configured
 reasoner for two to five higher-order beliefs, each citing the episode ids it
 rests on. Candidates that cite unknown episodes, cite nothing, or restate an
 existing active belief are dropped. An OpenAI-compatible endpoint is selected

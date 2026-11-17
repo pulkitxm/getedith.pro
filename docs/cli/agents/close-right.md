@@ -1,6 +1,6 @@
 # `ed agents close-right`
 
-Closes Herdr tabs to the right of one tab, after a preview.
+Closes Agents tabs to the right of one tab, after a preview.
 
 [`ed agents`](./README.md)
 

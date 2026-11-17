@@ -218,15 +218,15 @@ not here cannot be set, and `import` skips it.
 
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |
-| `tabHerdrEnabled` | bool | `false` | shared | Herdr extension: live sessions on this Mac and SSH machines. |
+| `tabAgentsEnabled` | bool | `false` | shared | Agents extension: live sessions on this Mac and SSH machines. |
 
 ### `memory`
 
 | Key | Type | Default | Scope | What it controls |
 | --- | --- | --- | --- | --- |
-| `tabCompanionEnabled` | bool | `false` | shared | Show the Companion page. |
-| `companionEndpoint` | string | `http://127.0.0.1:4820` | shared | Companion API base URL the app and CLI talk to. |
-| `companionTab` | string: `chat`, `capture`, `desk`, `library`, `mind`, `setup`, `settings` | `chat` | shared | Companion screen shown on open. |
+| `tabMemoryEnabled` | bool | `false` | shared | Show the Memory page. |
+| `memoryEndpoint` | string | `http://127.0.0.1:4820` | shared | Memory API base URL the app and CLI talk to. |
+| `memoryTab` | string: `chat`, `capture`, `desk`, `library`, `mind`, `setup`, `settings` | `chat` | shared | Memory screen shown on open. |
 
 ### `finder`
 
@@ -253,8 +253,8 @@ not here cannot be set, and `import` skips it.
 | `lidAwakeSession` | string: `indefinite`, `fifteenMinutes`, `thirtyMinutes`, `oneHour`, `twoHours`, `untilLidReopens` | `indefinite` | shared | Session used when Lid Awake starts. |
 | `lidAwakeBatteryThreshold` | int | `0` | shared | Battery percentage below which Lid Awake pauses; 0 disables it. |
 | `lidAwakeActive` | bool, read only | `false` | shared | Whether Lid Awake is currently preventing lid-close sleep. |
-| `systemAppsSort` | string | `memory` | shared | Running apps sort column. |
-| `systemAppsSortAsc` | bool | `false` | shared | Sort running apps ascending. |
+| `runningAppsSort` | string | `memory` | shared | Running apps sort column. |
+| `runningAppsSortAsc` | bool | `false` | shared | Sort running apps ascending. |
 
 ### `cleaner`
 
@@ -330,7 +330,7 @@ not here cannot be set, and `import` skips it.
 | `notchEnabled` | bool | none | shared | Show the notch with live activity from the extensions you allow. Defaults to on, or off in the native window style. |
 | `notchSystemAlerts` | bool | `true` | shared | Show Edith's own alerts, such as a ready update, in the notch. |
 | `notchOpenOnHover` | bool | `false` | shared | Open the notch when the pointer rests on it. |
-| `notchShelfKeepDuration` | string | `forever` | shared | How long shelf items are kept: `forever`, `oneHour`, `oneDay`, `oneWeek` or `oneMonth`. |
+| `shelfKeepDuration` | string | `forever` | shared | How long shelf items are kept: `forever`, `oneHour`, `oneDay`, `oneWeek` or `oneMonth`. |
 | `notchShowOnExternal` | bool | `false` | shared | Show the notch on displays without a notch. |
 
 Every installed tool that can show notch activity also gets `<tool>ShowInNotch` (bool, default `true`) in its own group, for example `musicShowInNotch`.
@@ -381,7 +381,7 @@ Every installed tool that can show notch activity also gets `<tool>ShowInNotch` 
 | `presenterBlurMoney` | bool | none | shared | Blur spend figures. |
 | `presenterBlurUsage` | bool | none | shared | Blur usage percentages. |
 | `presenterBlurCalendar` | bool | none | shared | Blur calendar entries. |
-| `presenterBlurAgents` | bool | none | shared | Hide live Herdr titles and blur attached terminals. |
+| `presenterBlurAgents` | bool | none | shared | Hide live agent titles and blur attached terminals. |
 | `presenterBlurAttention` | bool | none | shared | Blur attention activity, titles and sites. |
 | `presenterBlurCamera` | bool | none | shared | Blur the virtual camera picture and personal backdrops. |
 | `presenterBlurStudio` | bool | none | shared | Blur Studio files, projects and previews. |
@@ -511,8 +511,8 @@ allowed list, the default where the catalogue declares one, and `x-group`,
 `"x-format": "comma-separated"`; a `stringList` is an array of strings.
 
 **Extensions are settings, with better manners.** `tabUsageEnabled`,
-`tabHerdrEnabled`,
-`tabSystemEnabled`, `tabMachinesEnabled`, `tabCompanionEnabled`,
+`tabAgentsEnabled`,
+`tabSystemEnabled`, `tabMachinesEnabled`, `tabMemoryEnabled`,
 `menuBarSystemStats`, `micMuteEnabled`, `lidAwakeEnabled`, `tabMusicEnabled`,
 `tabCalendarEnabled`, `clipboardEnabled`,
 `focusDimEnabled`, `presenterEnabled` and `colorPickerEnabled` are the same

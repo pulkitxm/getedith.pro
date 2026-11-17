@@ -15,7 +15,7 @@ ed memory erase <id> --yes [--json] [--endpoint <url>]
 | `<id>` | episode UUID | required | The episode to erase. |
 | `--yes` | flag | off | Actually delete. Without it the command refuses and nothing happens. |
 | `--json` | flag | off | Emit JSON on stdout. |
-| `--endpoint` | URL | resolution order | Companion API base URL. |
+| `--endpoint` | URL | resolution order | Memory API base URL. |
 
 Examples:
 
@@ -27,7 +27,7 @@ ed memory erase 4ec1e64d-cb19-48e5-baef-0f098498ce20 --yes
 Erasing cannot be undone, which is why `--yes` is mandatory: without it the
 command exits 2 and tells you to read the episode first. Beliefs formed from
 the episode survive, but the episode's id is removed from their evidence, so
-`ed memory why` stops citing it. An id the companion does not know exits 1
+`ed memory why` stops citing it. An id Memory does not know exits 1
 with `no such episode`. This is the one-record cousin of
 [`ed memory wipe`](./wipe.md); for a conversation rather than an episode,
 [`ed memory forget`](./forget.md) is the right verb.

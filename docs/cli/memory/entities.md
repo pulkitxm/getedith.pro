@@ -1,6 +1,6 @@
 # `ed memory entities`
 
-The people, projects, places, organisations and other named things the companion has
+The people, projects, places, organisations and other named things Memory has
 resolved, each with every spelling it has seen. Embeddings smear proper nouns, so
 entities are what keep one person from becoming two.
 

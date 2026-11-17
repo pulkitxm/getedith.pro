@@ -23,16 +23,16 @@ system query failure produces `failed` with runtime phase `error`.
 | --- | --- | --- | --- |
 | Attention | tracking is enabled with at least one selected source | application or browser tracking is configured | `ed attention summary --json`; `ed extensions verify attention` |
 | Agent Usage | bundled collector plus at least one verified provider executable | refresh lock and decoded `usage.json` daily samples | `ed usage refresh`; `ed usage --json` |
-| Herdr | Herdr presence on this Mac or a configured machine | collected sessions and per-host errors | `ed agents ls --json`; `ed extensions verify agents` |
-| Quinjet | verified Quinjet executable, terminal and theme values, and cmux when selected | terminal integration can be resolved | `ed tools install quinjet`; `ed config set quinjetTerminal embedded` |
+| Agents | Herdr presence on this Mac or a configured machine | collected sessions and per-host errors | `ed agents ls --json`; `ed extensions verify agents` |
+| Code Review | verified Quinjet executable, terminal and theme values, and cmux when selected | terminal integration can be resolved | `ed tools install quinjet`; `ed config set codeReviewTerminal embedded` |
 | Site Audit | local project storage and built-in page scores | saved projects and bounded run history | `ed extensions verify siteAudit`; `ed extensions doctor siteAudit` |
 | Code Stats | `git`, the optional `gh` CLI, and the mirror folder, reporting a disconnected drive as degraded | mirrored repositories and the stored report | `ed extensions doctor codeStats`; `ed code-stats status` |
-| System | built-in running-application module | regular applications visible through AppKit | `ed apps ls --json`; `ed app relaunch` |
+| System | built-in running-application module | regular applications visible through AppKit | `ed running-apps ls --json`; `ed app relaunch` |
 | App Updates | built-in app and package inspection | readable application and package sources | `ed extensions verify appUpdates`; `ed tools install homebrew` |
 | Machines | readable machine registry with valid names, hosts, and SSH ports | configured machine count | `ed machines ls --json`; `ed machines add --help` |
 | Database | bundled local broker | bounded startup and authenticated peer readiness | `ed extensions doctor database --json`; reopen Database after resolving the reported failure |
-| Companion | configured endpoint | backend health checks and optional dependency health | `ed memory doctor --json` |
-| CPU & Memory | built-in metrics module | CPU tick sample and physical memory availability | `ed system stats --json`; `ed app relaunch` |
+| Memory | configured endpoint | backend health checks and optional dependency health | `ed memory doctor --json` |
+| CPU & Memory | built-in metrics module | CPU tick sample and physical memory availability | `ed menu-bar-stats stats --json`; `ed app relaunch` |
 | Mic Mute | built-in Core Audio module | input device discovery and input stream count | `ed config ls --group micmute --json`; `ed app relaunch` |
 | Lid Awake | privileged helper registration and approval state | Service Management reports the helper enabled | `ed lid-awake status --json`; approve Login Items when requested |
 | Music | configured library path exists and is a directory | recursive supported-track count and optional yt-dlp version | `ed music rescan`; `ed tools install yt-dlp` |
@@ -43,7 +43,7 @@ system query failure produces `failed` with runtime phase `error`.
 | Keystroke Highlight | enabled extension and active or paused state | listen-only keyboard event monitor while active | `ed config set keystrokeHighlightActive true`; `ed permissions request inputMonitoring` |
 | Focus Dim | finite intensity and animation values plus a valid display mode | active display count | `ed config ls --group focusdim --json`; `ed permissions refresh` |
 | Presenter | at least one protected data category and coherent detector settings | manual protection or automatic detectors can operate | `ed presenter status --json`; `ed config ls --group presenter --json` |
-| Emoji Picker | bundled emoji catalog and valid picker settings | recent emoji usage | `ed emoji ls --json`; `ed permissions refresh` |
+| Emoji Picker | bundled emoji catalog and valid picker settings | recent emoji usage | `ed emoji-picker ls --json`; `ed permissions refresh` |
 | Color Picker | valid copy format, color profile, history limit, and decodable history | active display and saved sample count | `ed color ls --json`; `ed permissions refresh` |
 
 ## Agent workflow

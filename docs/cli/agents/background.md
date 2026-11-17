@@ -4,7 +4,7 @@ Keeps the Herdr sessions Edith starts running after Edith quits. Edith stops
 every process an extension starts when the extension stops, so a Herdr server
 that Edith launched used to end with Edith, and its agents with it. With
 background sessions on, Edith hands each session it starts to launchd instead.
-The Background section of the Herdr settings page edits the same setting.
+The Background section of the Agents settings page edits the same setting.
 
 ```
 ed agents background [status] [--json]
@@ -40,8 +40,8 @@ launchd.
 ## How a session runs
 
 Each session gets one LaunchAgent in `~/Library/LaunchAgents`, labelled
-`com.pulkit.edith.herdr.default` for the default session and
-`com.pulkit.edith.herdr.session-<name>` for a named one (a name with other
+`com.pulkit.edith.agents.default` for the default session and
+`com.pulkit.edith.agents.session-<name>` for a named one (a name with other
 characters becomes a short hash). The job:
 
 - runs `herdr [--session <name>] server`, so the server is the job's own
@@ -81,7 +81,7 @@ itself, which stops with Edith.
 | Code | When |
 | --- | --- |
 | 0 | The status printed, the setting changed, or the session is running |
-| 4 | The Herdr extension is not running, background sessions are off, Herdr is not installed, or macOS refused the job |
+| 4 | The Agents extension is not running, background sessions are off, Herdr is not installed, or macOS refused the job |
 
 Examples:
 

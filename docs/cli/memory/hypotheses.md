@@ -1,6 +1,6 @@
 # `ed memory hypotheses`
 
-The theories the companion holds about you, and how they are faring. A belief with no
+The theories Memory holds about you, and how they are faring. A belief with no
 prediction attached can never be wrong, so beliefs only ever accumulate; that is note
 taking, not thinking. A hypothesis is a belief with a testable consequence bolted on,
 which is what lets the system be wrong on its own account and find out.

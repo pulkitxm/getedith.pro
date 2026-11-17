@@ -1,7 +1,7 @@
 # `ed memory ingest`
 
-Scans Markdown, audio recordings, PDFs, photos and videos and posts them to the
-companion.
+Scans Markdown, audio recordings, PDFs, photos and videos and posts them to
+Memory.
 
 Usage:
 
@@ -20,7 +20,7 @@ Options:
 | Name | Type / values | Default | What it does |
 | --- | --- | --- | --- |
 | `--json` | flag | off | Emits one JSON document on stdout. |
-| `--endpoint` | URL | resolution order | Uses this Companion API base URL. |
+| `--endpoint` | URL | resolution order | Uses this Memory API base URL. |
 
 `--json` shape:
 

@@ -1,10 +1,10 @@
 # Reasoning it does on its own
 
 A system that summarises you well is not the same as one that thinks about you.
-This page is the difference: the four mechanisms that let the companion hold
+This page is the difference: the four mechanisms that let Memory hold
 theories, test them, notice when your account of yourself does not match what
 happened, and ask you about the holes it cannot fill on its own. Back to
-[how the companion works](./concepts.md).
+[how Memory works](./concepts.md).
 
 ## What you said is not what happened
 
@@ -116,5 +116,5 @@ answer, and it feeds straight back into the question ledger.
 - [The learning loop](./concepts-learning.md), the nightly run these hook into
 - [`ed memory hypotheses`](./hypotheses.md), the theories in practice
 - [`ed memory inquire`](./inquire.md), the question ledger in practice
-- [How the companion works](./concepts.md), the hub
+- [How Memory works](./concepts.md), the hub
 - [All `ed` commands](../README.md)

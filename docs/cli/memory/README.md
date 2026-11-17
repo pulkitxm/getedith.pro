@@ -1,6 +1,6 @@
 # `ed memory`
 
-`ed memory` talks to Edith's memory backend. The companion stores notes,
+`ed memory` talks to Edith's memory backend. Memory stores notes,
 recordings, photos, videos and PDFs as append-only episodes in Postgres, keeps
 original files in its vault, and deduplicates sources by their SHA-256 content
 hash.
@@ -10,7 +10,7 @@ Run the backend with Docker Compose from `apps/companion`, or let
 machine. The CLI reaches a remote deployment through a saved `ed machines`
 port forward.
 
-The endpoint resolution order is: `--endpoint`, `EDITH_COMPANION_URL`, the URL
+The endpoint resolution order is: `--endpoint`, `EDITH_MEMORY_URL`, the URL
 saved by the app, the localhost port saved by `ed memory deploy`, then
 `http://127.0.0.1:4820`. An invalid saved or supplied URL falls back to the
 deployed localhost port, or to port 4820 when there is no deployment record.
@@ -21,7 +21,7 @@ conversation requires confirmation in the app and a preview followed by
 `--yes` in the CLI.
 
 For the machinery behind these commands, start at
-[how the companion works](./concepts.md), the overview, then go deep:
+[how Memory works](./concepts.md), the overview, then go deep:
 [memory](./concepts-memory.md), [ingestion](./concepts-ingestion.md),
 [chunks, embeddings and search](./concepts-search.md),
 [asking and chatting](./concepts-chat.md),
@@ -49,7 +49,7 @@ For the machinery behind these commands, start at
 | `ed memory claims` | Lists extracted claims and their verdicts. |
 | `ed memory corroborate` | Checks testable claims against observations. |
 | `ed memory runs` | Lists background learning runs and per-step outcomes. |
-| `ed memory chat <message>` | Talks with the companion, streamed as it thinks. |
+| `ed memory chat <message>` | Talks with Memory, streamed as it thinks. |
 | `ed memory conversations` | Lists chats, or replays one by id. |
 | `ed memory forget <id>` | Previews deleting a conversation; `--yes` applies it. |
 | `ed memory export <dir>` | Saves remembered records as a restorable bundle; `--include-media` also saves originals. |
@@ -74,7 +74,7 @@ For the machinery behind these commands, start at
 | `ed memory eval` | Scores the friend layer against the cases it should fail. |
 | `ed memory standup <file>` | Records a standup; `--verify` also checks it against the record. |
 | `ed memory machines` | Where the stack runs, and what each machine can do. |
-| `ed memory hosts` | Machines that could run the companion, and what each one needs. |
+| `ed memory hosts` | Machines that could run Memory, and what each one needs. |
 | `ed memory deploy` | Choose the machine that runs it, and bring it up there. |
 | `ed memory stack` | Start, stop, restart, log and inspect the stack on its host. |
 | `ed memory baselines` | Your own delivery baselines, which every signal is measured against. |
@@ -138,7 +138,7 @@ For the machinery behind these commands, start at
 
 ## Concept pages
 
-- [How the companion works](./concepts.md)
+- [How Memory works](./concepts.md)
 - [Memory](./concepts-memory.md)
 - [Ingestion](./concepts-ingestion.md)
 - [Chunks, embeddings and search](./concepts-search.md)
@@ -154,11 +154,11 @@ For the machinery behind these commands, start at
 | `0` | Success, including a reachable doctor report whose `ok` is false. |
 | `1` | General failure. |
 | `2` | Bad usage, including a missing required path or a non-positive limit. |
-| `4` | The companion backend is unreachable, or indexing receives an embedding-service HTTP 502. |
+| `4` | The Memory backend is unreachable, or indexing receives an embedding-service HTTP 502. |
 
 ## Notes and gotchas
 
-`--endpoint` wins over `EDITH_COMPANION_URL`, which wins over the app's saved
+`--endpoint` wins over `EDITH_MEMORY_URL`, which wins over the app's saved
 endpoint, the deployed localhost port, and finally
 `http://127.0.0.1:4820`. A remote deployment normally creates and opens its
 forward during `ed memory deploy`. If that fails, run
