@@ -29,7 +29,7 @@ Examples:
 ed app reveal
 ed app reveal memory
 ed app reveal docs
-ed app reveal memory --tab settings
+ed app reveal memory --tab preferences
 ed app reveal settings --tab permissions
 ed app reveal settings --tab updates
 ed app reveal machines --json
