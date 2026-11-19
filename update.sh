@@ -14,6 +14,7 @@ readonly health_file="$support_root/update-health.json"
 readonly sandbox_dir="${EDITH_UPDATE_APP_DIR:-}"
 readonly launch_disabled="${EDITH_UPDATE_NO_LAUNCH:-0}"
 readonly health_timeout="${EDITH_UPDATE_HEALTH_TIMEOUT:-180}"
+readonly license_timeout="${EDITH_UPDATE_LICENSE_TIMEOUT:-1800}"
 readonly supervised_key="EDITH_UPDATE_SUPERVISED"
 
 dry_run=0
@@ -263,7 +264,9 @@ launch_app() {
       quit_app "$app"
     fi
     if [[ -z "$(running_pids "$app")" ]]; then
-      open --env "$supervised_key=1" "$app" >/dev/null 2>&1 || true
+      open --env "$supervised_key=1" \
+        --env "EDITH_UPDATE_HEALTH_TIMEOUT=$((license_timeout + health_timeout))" \
+        "$app" >/dev/null 2>&1 || true
     fi
     waited=0
     while ((waited < 15)); do
@@ -289,6 +292,37 @@ wait_for_cli() {
     "$cli" extensions ls --json >/dev/null 2>&1 && return 0
     sleep 1
     attempts=$((attempts - 1))
+  done
+  return 1
+}
+
+license_state() {
+  local status="$work_dir/license.json"
+  run_bounded 10 "$1/Contents/MacOS/ed" license status --json >"$status" 2>/dev/null || return 1
+  if [[ "$(plutil -extract licensed raw -o - "$status" 2>/dev/null || true)" == true ]]; then
+    printf 'licensed\n'
+  else
+    plutil -extract status raw -o - "$status" 2>/dev/null || printf 'locked\n'
+  fi
+}
+
+wait_for_license() {
+  local app="$1" ticks=0 unanswered=0 asked=0 state
+  while ((ticks < license_timeout)); do
+    [[ -n "$(running_pids "$app")" ]] || return 0
+    if state="$(license_state "$app")"; then
+      unanswered=0
+      [[ "$state" == licensed ]] && return 0
+      if [[ "$state" != unverified ]] && ((asked == 0)); then
+        say "Edith $latest_version needs your license key. Enter it in the Edith window to finish the update."
+        asked=1
+      fi
+    else
+      unanswered=$((unanswered + 1))
+      ((unanswered < 60)) || return 0
+    fi
+    sleep 1
+    ticks=$((ticks + 1))
   done
   return 1
 }
@@ -660,6 +694,12 @@ finish_running() {
   if ! launch_app "$app"; then
     health_problem="It didn't open"
     restore_after_failure "$app" "$build"
+  fi
+  if ! wait_for_license "$app"; then
+    forget_failure "$build"
+    say ""
+    say "Edith $latest_version is installed and waiting for your license key. Enter it in the Edith window to start using it."
+    exit 0
   fi
   if ((extension_count > 0)); then
     update_extensions "$app"
