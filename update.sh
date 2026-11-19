@@ -169,16 +169,11 @@ read_latest_release() {
     fail "The release information points somewhere unexpected, so nothing was changed."
 }
 
-redirect_target() {
-  curl --fail --silent --show-error --head --proto '=https' --tlsv1.2 \
-    --retry 3 --retry-delay 2 --connect-timeout 20 --max-time 60 \
-    --output /dev/null --write-out '%{redirect_url}' "$1"
-}
-
 resolve_download_url() {
   local url="$1"
-  if [[ "$url" == "$download_api_prefix"?* ]]; then
-    url="$(redirect_target "$url" 2>/dev/null)" || return 1
+  if [[ "$url" == "$download_api_prefix"* ]]; then
+    [[ "${url#"$download_api_prefix"}" == "v$latest_version" ]] || return 1
+    url="${release_prefix}download/v$latest_version/Edith.dmg"
   fi
   [[ "$url" =~ $release_download_pattern ]] || return 1
   printf '%s\n' "$url"
