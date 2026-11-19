@@ -82,6 +82,7 @@ report still exits 0, so read `verified`, `state.phase`, `state.runtimePhase`,
 | [`ed shelf`](./shelf/README.md) | Files parked on the Shelf |
 | [`ed cleaner`](./cleaner/README.md) | Scanning and reclaiming disk space |
 | [`ed brew`](./brew/README.md) | Searching and managing Homebrew formulae and casks |
+| [`ed cursors`](./cursors/README.md) | Cursor themes: listing packs, applying one, and restoring the macOS pointers |
 | [`ed app-updates`](./app-updates/README.md) | Verified app installs, updates, inventory, and review-first removal |
 | [`ed site-audit`](./site-audit/README.md) | Site audits: projects, page selection, page scores, and saved runs |
 | [`ed code-stats`](./code-stats/README.md) | Your GitHub mirror, refresh schedule, identities, and code report |
