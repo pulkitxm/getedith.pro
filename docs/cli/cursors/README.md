@@ -7,8 +7,8 @@
 | Command | What it does |
 | --- | --- |
 | [`ed cursors ls`](./ls.md) | Lists cursor packs, best matches first when you search. |
-| [`ed cursors show`](./show.md) | Shows one pack's family, colours, tags and whether it is applied. |
-| [`ed cursors apply`](./apply.md) | Downloads one pack, checks it, and applies it to every app. |
+| [`ed cursors show`](./show.md) | Shows one pack's family, colours, the colours you can change, tags and whether it is applied. |
+| [`ed cursors apply`](./apply.md) | Downloads one pack, optionally at another size or in your own colours, checks it, and applies it to every app. |
 | [`ed cursors reset`](./reset.md) | Previews restoring the macOS cursors, or does it with `--yes`. |
 | [`ed cursors status`](./status.md) | Reports the applied pack, whether macOS is drawing it, and the cache size. |
 

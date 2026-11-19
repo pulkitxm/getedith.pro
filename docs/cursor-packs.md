@@ -23,9 +23,10 @@ Edith never downloads every pack, and art is only delivered on demand:
 
 - The library lists every pack with its name, family, summary, tags, colours and checksums. Edith reads it when the page opens and keeps the last good copy, so the page still opens offline.
 - Card images come in pages. A page loads when one of its cards scrolls into view, the next page is fetched ahead of time, and a page is never requested twice at once.
-- A pack's cursors download only when you apply it or open its details.
+- A pack's cursors download only when you apply it or open it in the editor.
+- A customized pack (your own colours or size) is drawn by the service on demand from the `custom` route and downloaded only for the editor preview and when you apply it.
 
-Every answer from the service is bound to the request that asked for it and checked against the size and checksum from the library before Edith uses it. Everything Edith keeps on disk, including the library, card pages, downloaded packs and the copy of your original cursors, is stored encrypted for this Mac only, and art only exists unencrypted in memory while Edith shows or applies it. If a saved file cannot be read, Edith drops it and downloads it again when it is next needed. Edith keeps the applied pack and at most three recently used packs, and card pages up to 24 MB, dropping the oldest first.
+Every answer from the service is bound to the request that asked for it and checked against the size and checksum from the library before Edith uses it. Everything Edith keeps on disk, including the library, card pages, downloaded packs and the copy of your original cursors, is stored encrypted for this Mac only, and art only exists unencrypted in memory while Edith shows or applies it. If a saved file cannot be read, Edith drops it and downloads it again when it is next needed. Edith keeps the applied pack and at most three recently used packs, the applied customized pack and at most three recently applied customized packs, and card pages up to 24 MB, dropping the oldest first. Editor previews stay in memory and are never written to disk.
 
 Nothing in Edith exports pack art: the page, `ed cursors`, `ed invoke` and Edith's logs never return image data or the decrypted pack files.
 
@@ -39,9 +40,20 @@ Nothing in Edith exports pack art: the page, `ed cursors`, `ed invoke` and Edith
 
 Development builds read the service address from `EDITH_CURSOR_PACKS_URL` when it is an `https` address or `http` on `127.0.0.1` or `localhost`; release builds ignore it. `make dev-extension` passes it through when it relaunches the development build, so the local server (`bun cursor-packs/serve.ts` in `apps/web`) can be used with `EDITH_CURSOR_PACKS_URL=http://127.0.0.1:47341/api/v1/cursors/`. The licence is only ever sent to the production service.
 
+## Customizing a pack
+
+A design is a family, and each preset colour is one pack in it. A customization is a recipe: a base pack, zero or more colour overrides and a size.
+
+- The library lists each family's colour controls (`families[].controls`, at most four, such as Fill, Outline or Edge) and each pack's value for every control (`packs[].values`). A library without them still works: the editor then hides the colour rows and only the size can change.
+- The size is one of 0.75, 1, 1.25, 1.5, 1.75, 2, 2.5 or 3 times the normal 32 point pointer.
+- Colours that equal the preset are dropped, so a recipe that changes nothing is the plain preset and uses `packs/<id>`. Anything else asks `custom?base=<id>&size=<n>&c=<key>:<rrggbb>,...` with the colours in the family's control order. The answer is sealed to `custom:<base>|<size>|<colours>`, and Edith checks the `x-edith-digest` header against the opened container before using it. A custom request counts against the daily pack limit as its base pack.
+- Applying a custom recipe registers every cursor at 32 points times the size, with the hotspot scaled the same way, then verifies the arrow as for a preset. The applied recipe is saved with the state, and its container is kept encrypted under a name derived from the recipe, so putting it back after a login or wake never needs the network.
+
+The editor opens from a card or its Customize button. The stage shows eight key pointers on a light and a dark surface at the chosen size, the busy pointer animates for a few seconds after each change and while the mouse is over the stage (never with Reduce Motion), and the Try it here zones show each pointer as the real mouse pointer inside that zone only, without changing the system cursors. Colour and size changes update the preview after a short pause, keep the last preview on screen while the next one loads, and cancel a preview that a newer change replaced.
+
 ## Pack format
 
-A manifest has `schema: 1`, the pack `id`, `name`, `family`, `author`, `license`, `canvas: 32`, the atlas size, and `cursors`, keyed by role id. Each cursor has:
+A manifest has `schema: 1`, the pack `id`, `name`, `family`, `author`, `license`, `canvas: 32`, the atlas size, and `cursors`, keyed by role id. A customized pack keeps the base pack's `id` and adds `size`; when the size is above 1 every role carries 1x, 2x and 4x images so large pointers stay sharp. Each cursor has:
 
 - `hotspot`: the click point in canvas points.
 - `frames`: 1 for a still cursor, up to 24 for an animation.
@@ -62,7 +74,7 @@ Applying a pack, from the page or with `ed cursors apply`, runs one at a time an
 
 1. Download and verify the pack, validate it, and cut each cursor out of the atlas.
 2. Before the first apply in a login session, save a baseline: every cursor name in the role table that macOS has registered is saved with its size, hotspot, frames, duration and images, and the names macOS has not registered yet are recorded as absent.
-3. Register every role under each of its macOS names at 32 by 32 points.
+3. Register every role under each of its macOS names at 32 by 32 points, or at 32 points times the size of a customized pack.
 4. Read the arrow back from `com.apple.coregraphics.ArrowS`, the name macOS draws the visible arrow from, and compare its size, hotspot and image sizes, retrying briefly. If the arrow did not change, Edith restores the baseline and reports an error. Other names macOS refuses are reported without failing the apply.
 5. Save the applied pack and a fingerprint of the arrow as macOS returned it.
 
