@@ -13,8 +13,19 @@ readonly extensions_dir="$support_root/Extensions"
 readonly health_file="$support_root/update-health.json"
 readonly sandbox_dir="${EDITH_UPDATE_APP_DIR:-}"
 readonly launch_disabled="${EDITH_UPDATE_NO_LAUNCH:-0}"
-readonly health_timeout="${EDITH_UPDATE_HEALTH_TIMEOUT:-180}"
-readonly license_timeout="${EDITH_UPDATE_LICENSE_TIMEOUT:-1800}"
+seconds_setting() {
+  local value="$2"
+  if [[ "$1" =~ ^[0-9]{1,9}$ ]]; then
+    value="$((10#$1))"
+    ((value <= 43200)) || value=43200
+  elif [[ -n "$1" ]]; then
+    printf 'Ignoring the timeout setting "%s" and using %s seconds.\n' "$1" "$2" >&2
+  fi
+  printf '%s\n' "$value"
+}
+
+readonly health_timeout="$(seconds_setting "${EDITH_UPDATE_HEALTH_TIMEOUT:-}" 180)"
+readonly license_timeout="$(seconds_setting "${EDITH_UPDATE_LICENSE_TIMEOUT:-}" 1800)"
 readonly supervised_key="EDITH_UPDATE_SUPERVISED"
 
 dry_run=0
@@ -154,7 +165,7 @@ find_install() {
 }
 
 fetch() {
-  curl --fail --silent --show-error --location --proto '=https' --tlsv1.2 \
+  curl --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --tlsv1.2 \
     --retry 3 --retry-delay 2 --connect-timeout 20 "$@"
 }
 
@@ -166,6 +177,7 @@ read_latest_release() {
   latest_build="$(grep -o '<sparkle:version>[^<]*' "$appcast" | head -n 1 | sed 's/.*>//' || true)"
   latest_dmg_url="$(grep -o '<enclosure [^>]*' "$appcast" | head -n 1 | grep -o 'url="[^"]*"' | sed 's/^url="//; s/"$//' || true)"
   [[ "$latest_version" =~ ^[0-9]+(\.[0-9]+)*$ ]] || fail "The release information looks incomplete. Try again in a few minutes."
+  [[ "$latest_build" =~ ^[0-9]+$ ]] || latest_build=""
   latest_dmg_url="$(resolve_download_url "$latest_dmg_url")" ||
     fail "The release information points somewhere unexpected, so nothing was changed."
 }
@@ -547,11 +559,11 @@ update_with_brew() {
   say "Updating through Homebrew..."
   HOMEBREW_NO_ENV_HINTS=1 "$brew" update >/dev/null 2>&1 || true
   if HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_ENV_HINTS=1 "$brew" upgrade --cask --greedy edith >"$work_dir/brew.log" 2>&1 &&
-    installed_version_is_latest "$app"; then
+    installed_version_is_latest "$app" && verify_backup "$app"; then
     return 0
   fi
   if HOMEBREW_NO_AUTO_UPDATE=1 HOMEBREW_NO_ENV_HINTS=1 "$brew" reinstall --cask edith >>"$work_dir/brew.log" 2>&1 &&
-    installed_version_is_latest "$app"; then
+    installed_version_is_latest "$app" && verify_backup "$app"; then
     return 0
   fi
   note "Homebrew couldn't finish, so the update will be installed directly."
@@ -668,6 +680,10 @@ install_bundle() {
     as_owner rm -rf "$staged"
     fail "Couldn't copy the new version into $install_dir, so nothing was changed."
   }
+  if [[ "$(bundle_value "$staged" CFBundleShortVersionString)" != "$version" ]] || ! verify_backup "$staged"; then
+    as_owner rm -rf "$staged"
+    fail "The copy of Edith $version didn't pass its safety checks, so it was not installed. Open Edith from your Applications folder."
+  fi
   if [[ -e "$app" ]]; then
     as_owner mv "$app" "$retired" || {
       as_owner rm -rf "$staged"
